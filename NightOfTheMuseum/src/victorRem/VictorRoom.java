@@ -6,7 +6,6 @@ public class VictorRoom extends CaveRoom{
 
 	public VictorRoom(String description) {
 		super(description);
-		// TODO Auto-generated constructor stub
 	}
 
 }
