@@ -1,5 +1,11 @@
 package cobyZhehao;
 
-public class CobyBackEnd {
-//fycm tbha
+import caveExplorer.CaveRoom;
+
+public class CobyBackEnd extends CaveRoom{
+
+	public CobyBackEnd(){
+		
+	}
+	
 }
