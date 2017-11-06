@@ -67,4 +67,7 @@ public class Inventory {
 	public void StrangeKeyObtained() {
 		Strangekey = true;
 	}
+	public boolean haveStrangeKey() {
+		return Strangekey;
+	}
 }

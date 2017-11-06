@@ -2,14 +2,14 @@ package jasonDavid;
 
 import caveExplorer.CaveExplorer;
 import caveExplorer.NPCRoom;
-import caveExplorer.NPC;
-import caveExplorer.Inventory;
+
 
 public class DavidFront extends NPCRoom {
 
+	private DavidNPC Strangeman = new DavidNPC();
+	
 	public DavidFront(String description) {
 		super(description);
-		
 	}
 	public String validKeys() {
 		return "wdsaef";
@@ -19,6 +19,9 @@ public class DavidFront extends NPCRoom {
 	}
 	public void performAction(int direction) {
 		if (direction == 5) {
+			if (CaveExplorer.inventory.haveStrangeKey()==true) {
+				System.out.println("The stranger has nothing important left to steal.");
+			}
 			if(CaveExplorer.inventory.haveGlove() == false) {
 				System.out.println("The stranger catches your hand as you try to pick pocket his jacket. He pushes you away. (-10 hp)");
 				CaveExplorer.inventory.loseHealth(10);
