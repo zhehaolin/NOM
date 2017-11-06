@@ -1,5 +1,7 @@
 package caveExplorer;
 
+import jasonDavid.DavidFront;
+
 public class CaveRoom {
 
 	private String description;//tells what the room looks like
@@ -169,6 +171,8 @@ public class CaveRoom {
 		}
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
+		NPCRoom customRoom = new DavidFront("Room");
+		CaveExplorer.caves[0][4] = customRoom;
 		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];

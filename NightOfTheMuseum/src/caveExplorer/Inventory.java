@@ -3,9 +3,15 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
+	private boolean gloveofpp;
+	private int health;
+	private boolean Strangekey;
 	
 	public Inventory() {
 		updateMap();
+		gloveofpp = false;
+		health = 100;
+		Strangekey = false;
 	}
 
 	public void updateMap() {
@@ -41,7 +47,7 @@ public class Inventory {
 							text += "___";
 						}
 					}
-				}//last caveroom in row
+				}//last cave room in row
 				text+="|";
 				map += text +"\n";
 			}
@@ -52,5 +58,13 @@ public class Inventory {
 		return map;
 //		return "You have nothing in your inventory.";
 	}
-
+	public boolean haveGlove() {
+		return gloveofpp;
+	}
+	public void loseHealth(int lost) {
+		health = lost - 10;
+	}
+	public void StrangeKeyObtained() {
+		Strangekey = true;
+	}
 }
