@@ -4,8 +4,13 @@ public class VictorRoom extends CaveRoom{
 
 	private boolean triggered;
 	private boolean passed;
+	private double probability;
+	private int damage;
+	private String descDisabledTrap;
+	private int treasureAmount;
+	private String descTrapActivate;
 	
-	public VictorRoom(String description) {
+	public VictorRoom(String description, double probability, int damage, String descDisabledTrap, String descTrapActivate, int treasureAmount) {
 		super(description);
 		triggered = false;
 		passed = false;
@@ -23,9 +28,9 @@ public class VictorRoom extends CaveRoom{
 		if(direction == 4) {
 			activateTrap();
 			if(!triggered) {
-				CaveExplorer.print("You got 10 gold.");
+				CaveExplorer.print("You got " + treasureAmount + " gold.");
 				Inventory.changeGold(10);
-				this.setDescription("This room has coords 2, 3. The box is now empty.");
+				this.setDescription("This room has coords 2, 3. " + descDisabledTrap);
 			}
 		}else {
 			System.out.println("That key does nothing");
@@ -33,10 +38,10 @@ public class VictorRoom extends CaveRoom{
 	}
 
 	public void activateTrap() {
-		if(Math.random() > 0.5 && getContents().equals("X") && !triggered && !passed) {
-			Inventory.changeHP(-10);
+		if(Math.random() > probability && getContents().equals("X") && !triggered && !passed) {
+			Inventory.changeHP(damage);
 			triggered = true;
-			CaveExplorer.print("The box was a trap!");
+			CaveExplorer.print(descTrapActivate);
 			this.setDescription("This room has coords 2, 3. The trap has been sprung.");
 		}
 		passed = true;
