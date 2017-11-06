@@ -34,7 +34,7 @@ public class VictorRoom extends CaveRoom{
 
 	public void activateTrap() {
 		if(Math.random() > 0.5 && getContents().equals("X") && !triggered && !passed) {
-			Inventory.changeHP(10);
+			Inventory.changeHP(-10);
 			triggered = true;
 			CaveExplorer.print("The box was a trap!");
 			this.setDescription("This room has coords 2, 3. The trap has been sprung.");

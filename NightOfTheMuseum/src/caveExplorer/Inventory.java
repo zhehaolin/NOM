@@ -61,8 +61,8 @@ public class Inventory {
 //		return "You have nothing in your inventory.";
 	}
 
-	public static void changeHP(int damage) {
-		hp -= damage;
+	public static void changeHP(int change) {
+		hp += change;
 	}
 	
 	public static void changeGold(int change) {
