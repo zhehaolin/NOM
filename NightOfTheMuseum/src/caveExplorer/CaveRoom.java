@@ -1,7 +1,5 @@
 package caveExplorer;
 
-import victorRem.VictorRoom;
-
 public class CaveRoom {
 
 	private String description;//tells what the room looks like
@@ -129,7 +127,7 @@ public class CaveRoom {
 		return validEntries.indexOf(input) > -1 && input.length() ==1;
 	}
 
-	private void respondToKey(int direction) {
+	public void respondToKey(int direction) {
 		//first, protect against null pointer exception
 		//(user cannot go through non-existent door
 		if (direction < 4) {
@@ -171,30 +169,34 @@ public class CaveRoom {
 		}
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
+		
+		/**
 		CaveExplorer.caves[1][1] = new NPCRoom("This is an NPCRoom");
 		CaveExplorer.npcs = new NPC[1];
 		CaveExplorer.npcs[0] = new NPC();
 		CaveExplorer.npcs[0].setPosition(1, 1);
+		**/
 		
-		CaveExplorer.caves[2][3] = new VictorRoom("This is a VictorRoom");
+		CaveExplorer.caves[2][3] = new VictorRoom("This is coords 2, 3. There is a shiny box in the middle of the room. Press 'x' to touch it.");
 		
 		//4. Set your starting room:
-		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
+		CaveExplorer.currentRoom = CaveExplorer.caves[1][3];
 		CaveExplorer.currentRoom.enter();
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
-		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		///c[1][1].setConnection(SOUTH, c[2][1], new Door());
 		
-		c[1][3].setConnection(NORTH, c[0][1], new Door());
+		//c[2][1].setConnection(NORTH, c[1][1], new Door());
 		
-		c[2][3].setConnection(NORTH, c[3][3], new Door());
+		c[1][3].setConnection(SOUTH, c[2][3], new Door());
+		
+		c[2][3].setConnection(NORTH, c[1][3], new Door()); 
 		/**
 		 * Special requests:
 		 * moving objects in caves
 		 * what happens when you lose?
 		 * can another object move toward you?
-		 */
-		
+		 */	
 	}
 
 

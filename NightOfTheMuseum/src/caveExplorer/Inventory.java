@@ -3,9 +3,17 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
+	private static int hp;
+	private static int gold;
 	
 	public Inventory() {
 		updateMap();
+		hp = 100;
+		gold = 0;
+	}
+
+	public static int getHp() {
+		return hp;
 	}
 
 	public void updateMap() {
@@ -53,4 +61,15 @@ public class Inventory {
 //		return "You have nothing in your inventory.";
 	}
 
+	public static void changeHP(int damage) {
+		hp -= damage;
+	}
+	
+	public static void changeGold(int change) {
+		gold += change;
+	}
+
+	public static int getGold() {
+		return gold;
+	}
 }

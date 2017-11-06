@@ -7,6 +7,7 @@ public class NPC {
 		private int currentCol;
 		private NPCRoom currentRoom;
 		
+		
 	//fields relating to character
 		private boolean active;
 		private String activeDescription;

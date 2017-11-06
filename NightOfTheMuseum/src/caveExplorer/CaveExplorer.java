@@ -24,19 +24,25 @@ public class CaveExplorer {
 			npcActions();
 			print(inventory.getDescription());
 			print(currentRoom.getDescription());
+			CaveExplorer.print("You have " + Inventory.getHp() + " Hp.");
+			CaveExplorer.print("You have " + Inventory.getGold() + " gold.");
 			print("What would you like to do?");
 			String input = in.nextLine();
 			currentRoom.interpretInput(input);
 		}
 	}
+	
 	private static void npcActions() {
-		for(NPC n: npcs) {
-			n.act();
-		}
-		inventory.updateMap();
-	}
+		//for(NPC n: npcs) {
+			//n.act();
+		//}
+		//inventory.updateMap();
+	} 
+	
 	public static void print(String s) {
 		//later you can replace this line with the more sophisticated "multiline print" from Chatbot
 		System.out.println(s);
-	}
+	} 
+	
+
 }
