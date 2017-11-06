@@ -3,9 +3,11 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
+	private int hp;
 	
 	public Inventory() {
 		updateMap();
+		hp = 100;
 	}
 
 	public void updateMap() {

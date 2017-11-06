@@ -172,7 +172,7 @@ public class CaveRoom {
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
 		CaveRoom customRoom = new CobyRoom("Room");
-		CaveExplorer.caves[2][3] = customRoom;
+		CaveExplorer.caves[1][1] = customRoom;
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();
