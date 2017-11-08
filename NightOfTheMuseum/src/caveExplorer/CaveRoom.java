@@ -228,8 +228,60 @@ public class CaveRoom {
 		c[0][3].setConnection(EAST, c[0][4], new Door());
 		c[0][4].setConnection(WEST, c[0][3], new Door());
 		
+		c[6][0].setConnection(SOUTH, c[7][0], new Door());
+		c[7][0].setConnection(NORTH, c[6][0], new Door());
 		
-		/**
+		c[7][0].setConnection(SOUTH, c[8][0], new Door());
+		c[8][0].setConnection(NORTH, c[7][0], new Door());
+		
+		c[6][1].setConnection(SOUTH, c[7][1], new Door());
+		c[7][1].setConnection(NORTH, c[6][1], new Door());
+		
+		c[7][1].setConnection(SOUTH, c[8][1], new Door());
+		c[8][1].setConnection(NORTH, c[7][1], new Door());
+		
+		c[6][2].setConnection(SOUTH, c[7][2], new Door());
+		c[7][2].setConnection(NORTH, c[6][2], new Door());
+		
+		c[7][2].setConnection(SOUTH, c[8][2], new Door());
+		c[8][2].setConnection(NORTH, c[7][2], new Door());
+		
+		c[6][3].setConnection(SOUTH, c[7][3], new Door());
+		c[7][3].setConnection(NORTH, c[6][3], new Door());
+		
+		c[7][3].setConnection(SOUTH, c[8][3], new Door());
+		c[8][3].setConnection(NORTH, c[7][3], new Door());
+		
+		c[6][0].setConnection(EAST, c[6][1], new Door());
+		c[6][1].setConnection(WEST, c[6][0], new Door());
+		
+		c[7][0].setConnection(EAST, c[7][1], new Door());
+		c[7][1].setConnection(WEST, c[7][0], new Door());
+		
+		c[8][0].setConnection(EAST, c[8][1], new Door());
+		c[8][1].setConnection(WEST, c[8][0], new Door());
+		
+		c[6][1].setConnection(EAST, c[6][2], new Door());
+		c[6][2].setConnection(WEST, c[6][1], new Door());
+		
+		c[7][1].setConnection(EAST, c[7][2], new Door());
+		c[7][2].setConnection(WEST, c[7][1], new Door());
+		
+		c[8][1].setConnection(EAST, c[8][2], new Door());
+		c[8][2].setConnection(WEST, c[8][1], new Door());
+		
+		c[6][2].setConnection(EAST, c[6][3], new Door());
+		c[6][3].setConnection(WEST, c[6][2], new Door());
+		
+		c[7][2].setConnection(EAST, c[7][3], new Door());
+		c[7][3].setConnection(WEST, c[7][2], new Door());
+		
+		c[8][2].setConnection(EAST, c[8][3], new Door());
+		c[8][3].setConnection(WEST, c[8][2], new Door());
+		
+		
+		
+		/** 
 		 * Special requests:
 		 * moving objects in caves
 		 * what happens when you lose?
@@ -252,7 +304,7 @@ public class CaveRoom {
 		return contents;
 	}
 
-
+	
 	public void setContents(String contents) {
 		this.contents = contents;
 	}

@@ -20,7 +20,7 @@ public class DavidFront extends NPCRoom {
 	}
 	public void performAction(int direction) {
 		if (direction == 5) {
-			if (CaveExplorer.inventory.haveStrangeKey()==true) {
+			if (CaveExplorer.inventory.haveStrangeKey() == true) {
 				System.out.println("The stranger has nothing important left to steal.");
 			}
 			if(CaveExplorer.inventory.haveGlove() == false) {
