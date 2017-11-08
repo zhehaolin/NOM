@@ -177,7 +177,7 @@ public class CaveRoom {
 		CaveExplorer.caves[1][1] = customRoom;
 		
 		NPCRoom customRoom2 = new DavidFront("Room");
-		CaveExplorer.caves[0][4] = customRoom;
+		CaveExplorer.caves[0][4] = customRoom2;
 		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
@@ -185,6 +185,9 @@ public class CaveRoom {
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		c[0][1].setConnection(EAST, c[0][2], new Door());
+		c[0][2].setConnection(EAST, c[0][3], new Door());
+		c[0][3].setConnection(EAST, c[0][4], new Door());
 		/**
 		 * Special requests:
 		 * moving objects in caves
