@@ -192,7 +192,9 @@ public class CaveRoom {
 		
 		NPCRoom customRoom2 = new DavidFront("There is a strange figure in the corner. Press 'f' to interact.");
 		CaveExplorer.caves[0][4] = customRoom2;
+		//--- WE WILL DO LATER
 		
+
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
 		CaveExplorer.caves[1][3] = customRoom3;
 
@@ -226,15 +228,6 @@ public class CaveRoom {
 		c[0][3].setConnection(EAST, c[0][4], new Door());
 		c[0][4].setConnection(WEST, c[0][3], new Door());
 		
-		/**
-		 * Not able to display anything in console
-
-		CaveExplorer.npcs = new NPC[2];
-		
-		CaveExplorer.npcs[0] = new JasonNPC();
-		CaveExplorer.npcs[0].setposition(1, 3);
-		CaveExplorer.npcs[1] = new NPC();
-		CaveExplorer.npcs[1].setposition(0, 2);
 		
 		/**
 		 * Special requests:
