@@ -19,7 +19,7 @@ public class remingtonRoom extends CaveRoom{
 		if(direction == 4) {
 			CaveExplorer.print("You pick up the item that's closest to you.");
 			CaveExplorer.print("The picture frightens you and you lose 10HP!.");
-			int hp = hp - 10;
+			Inventory.changeHP(-10);
 		} else {
 			super.performAction(direction);
 		}
