@@ -30,10 +30,10 @@ public class CaveExplorer {
 		}
 	}
 	private static void npcActions() {
-		for(NPC n: npcs) {
-			n.act();
-		}
-		inventory.updateMap();
+	//	for(NPC n: npcs) {
+	//		n.act();
+	//	}
+	//	inventory.updateMap();
 	}
 	public static void print(String s) {
 		//later you can replace this line with the more sophisticated "multiline print" from Chatbot
