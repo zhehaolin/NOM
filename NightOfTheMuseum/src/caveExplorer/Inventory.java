@@ -56,7 +56,7 @@ public class Inventory {
 							text += "___";
 						}
 					}
-				}//last cave room in row
+				}//last caveroom in row
 				text+="|";
 				map += text +"\n";
 			}
@@ -78,6 +78,12 @@ public class Inventory {
 	}
 	public static void changeHP(int change) {
 		hp += change;
+		if(hp > 100) {
+			hp = 100;
+		}
+		if(hp < 0) {
+			hp = 0;
+		}
 	}
 	
 	public static void changeGold(int change) {
@@ -86,5 +92,12 @@ public class Inventory {
 
 	public static int getGold() {
 		return gold;
+	}
+	
+	public boolean isHealthy() {
+		if(hp == 100) {
+			return true;
+		}
+		return false;
 	}
 }

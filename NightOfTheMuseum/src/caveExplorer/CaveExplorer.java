@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class CaveExplorer {
 
-	public static CaveRoom[][] caves; //every room in the cave
+	public static CaveRoom[][] caves;//every room in the cave
 	public static Scanner in;//for user input
 	public static CaveRoom currentRoom;//changes based on how the user navigated
 	public static Inventory inventory;//where all objects found in cave are kept
@@ -14,11 +14,13 @@ public class CaveExplorer {
 	public static void main(String[] args) {
 		in = new Scanner(System.in);
 		CaveRoom.setUpCaves();
+		//npcs[0] = new NPC();
 		
 		inventory = new Inventory();
 		startExploring();
-
 	}
+
+
 	private static void startExploring() {
 		while(playing) {
 			npcActions();
@@ -34,15 +36,14 @@ public class CaveExplorer {
 	
 	private static void npcActions() {
 		//for(NPC n: npcs) {
+
 			//n.act();
 		//}
-		//inventory.updateMap();
+		inventory.updateMap();
 	} 
 	
 	public static void print(String s) {
-		//later you can replace this line with the more sophisticated "multiline print" from Chatbot
+		//NOTE: later, you can replace this line with the more sophistocated "multiLinePrint" from Chatbot
 		System.out.println(s);
 	} 
-	
-
 }

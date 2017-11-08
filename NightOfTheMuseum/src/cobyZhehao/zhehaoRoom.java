@@ -26,10 +26,14 @@ public class zhehaoRoom extends NPCRoom {
 		super.performAction(direction);
 		if(direction == 4) {
 			CaveExplorer.print("This is what is written under the statue: You must collect 3 keys to leave this place. You gain knowledge, gain 10 hp.");
-		}
-		if(direction == 5)
-		{
-			Inventory.getHp();
+			Inventory.changeHP(10);
+		}else {
+			if(direction == 5)
+			{
+				Inventory.getHp();
+			}else {
+				System.out.println("That key does nothing");
+			}
 		}
 	}
 	public String validKeys(){

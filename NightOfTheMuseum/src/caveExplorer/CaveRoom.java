@@ -2,7 +2,12 @@ package caveExplorer;
 
 import cobyZhehao.CobyRoom;
 import cobyZhehao.zhehaoRoom;
+import victorRemington.RemingtonFrontEnd;
 import victorRemington.VictorRoom;
+import jasonDavid.DavidFront;
+import jasonDavid.DavidNPC;
+import jasonDavid.JasonNPC;
+import jasonDavid.JasonRoom;
 
 public class CaveRoom {
 
@@ -161,7 +166,7 @@ public class CaveRoom {
 	public static void setUpCaves() {
 		//ALL OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new CaveRoom[5][5];
+		CaveExplorer.caves = new CaveRoom[10][10];
 		//2. Populate with caves and a defualt description: hint: when starting, use coordinates (helps debugging)
 		for(int row = 0; row < CaveExplorer.caves.length; row++) {
 			//PLEASE PAY ATTENTION TO THE DIFFERENCE:
@@ -173,21 +178,32 @@ public class CaveRoom {
 		}
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
+		
+		CaveRoom customRoom = new CobyRoom("There is a statue in front of you. Press 'q' to interact.");
 
-		CaveRoom customRoom = new CobyRoom("Room");
 		CaveExplorer.caves[2][3] = customRoom;
 
-		CaveExplorer.caves[3][2] = new zhehaoRoom("This is a zhehaoRoom");
+		CaveExplorer.caves[3][2] = new zhehaoRoom("There is a statue in front of you. Press 'f' to interact");
 		
 		CaveExplorer.caves[3][3] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'x' to touch it.", 0.5, -20,
 				"The box is empty", "The box was a trap!. You have been struck by an arrow", 10);
 		
+		CaveExplorer.caves[0][2] = new RemingtonFrontEnd("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
+		
+		NPCRoom customRoom2 = new DavidFront("There is a strange figure in the corner. Press 'f' to interact.");
+		CaveExplorer.caves[0][4] = customRoom2;
+		
+		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
+		CaveExplorer.caves[1][3] = customRoom3;
 
 		//4. Set your starting room:
-		CaveExplorer.currentRoom = CaveExplorer.caves[1][3];
+		CaveExplorer.currentRoom = CaveExplorer.caves[0][3];
 		CaveExplorer.currentRoom.enter();
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
+
+		c[0][3].setConnection(SOUTH, c[1][3], new Door());
+		c[1][3].setConnection(NORTH, c[0][3], new Door()); 
 		
 		c[1][3].setConnection(SOUTH, c[2][3], new Door());
 		c[2][3].setConnection(NORTH, c[1][3], new Door()); 
@@ -197,6 +213,28 @@ public class CaveRoom {
 		
 		c[2][3].setConnection(SOUTH, c[3][3], new Door());
 		c[3][3].setConnection(NORTH, c[2][3], new Door());
+
+		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		c[1][1].setConnection(NORTH, c[0][1], new Door());
+		
+		c[0][1].setConnection(EAST, c[0][2], new Door());
+		c[0][2].setConnection(WEST, c[0][1], new Door());
+		
+		c[0][2].setConnection(EAST, c[0][3], new Door());
+		c[0][3].setConnection(WEST, c[0][2], new Door());
+		
+		c[0][3].setConnection(EAST, c[0][4], new Door());
+		c[0][4].setConnection(WEST, c[0][3], new Door());
+		
+		/**
+		 * Not able to display anything in console
+
+		CaveExplorer.npcs = new NPC[2];
+		
+		CaveExplorer.npcs[0] = new JasonNPC();
+		CaveExplorer.npcs[0].setposition(1, 3);
+		CaveExplorer.npcs[1] = new NPC();
+		CaveExplorer.npcs[1].setposition(0, 2);
 		
 		/**
 		 * Special requests:
