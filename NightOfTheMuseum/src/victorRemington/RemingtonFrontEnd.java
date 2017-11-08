@@ -2,64 +2,42 @@ package victorRemington;
 
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
+import caveExplorer.Inventory;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
-public class RemingtonFrontEnd extends NPCRoom {
-	
-	private NPC presentNPC;
+public class RemingtonFrontEnd extends CaveRoom{
+
+	private String description;
 
 	public RemingtonFrontEnd(String description) {
 		super(description);
-		
+		this.description = "You see a couple of items scattered across the room.";
+	}
+
+	public void performAction(int direction) {
+		if(direction == 4) {
+			CaveExplorer.print("You pick up the item that's closest to you.");
+			CaveExplorer.print("The picture frightens you and you lose 10HP!.");
+			Inventory.changeHP(-10);
+		} else {
+			super.performAction(direction);
+		}
+	}
+	
+	public void printAllowedEntry() {
+		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you can type 'i' to interact.");
 	}
 	
 	public String validKeys() {
 		return "wdsai";
 	}
 	
-	public void printAllowedEntry() {
-		CaveExplorer.print("You can only enter 'w', 'a', 's' or 'd' to move or"
-				+ " you can type 'i' for information.");
-	}
-	
-	public boolean containsNPC() {
-		return presentNPC != null;
-	}
-	
-	
-	public void performAction(int direction) {
-		super.performAction(direction);
-		if(direction == 4) {
-			if(containsNPC() && presentNPC.isActive()) {
-				presentNPC.interact();
-				CaveExplorer.print("Isn't the museum beautiful??");
-			}else {
-				CaveExplorer.print("There is nothing to interact with.");
-			}
-		}else {
-			CaveExplorer.print("That key does nothing.");
-		}
-	}
-	
 	public String getContents() {
-		if(containsNPC() && presentNPC.isActive()) {
-			return "M";
-		}else {
-			//return what would be returned otherwise
-			return super.getContents();
-		}
+		return "C";
 	}
 	
 	public String getDescription() {
-		if(containsNPC() && !presentNPC.isActive()) {
-			return super.getDescription() +"\n"+presentNPC.getInactiveDescription();
-		}else {
-			String npcDesc = "";
-			if(presentNPC != null) {
-				npcDesc = presentNPC.getActiveDescription();
-			}
-			return super.getDescription() + "\n"+npcDesc;
-		}
+		return this.description;
 	}
 }
