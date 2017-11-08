@@ -1,6 +1,7 @@
 package cobyZhehao;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.Inventory;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
@@ -27,7 +28,7 @@ public class zheRoom extends NPCRoom {
 		
 		if(direction == 4) {
 			CaveExplorer.print("This is what is written under the statue: You must collect 3 keys to leave this place. You gain some knowledge, gain 10 hp.");
-			CaveExplorer.inventory.restoreHp();
+			Inventory.changeHP(10);
 			
 		}else if(direction == 5)
 		{
@@ -39,7 +40,7 @@ public class zheRoom extends NPCRoom {
 	}
 	public String returnthehp()
 	{
-		int number =CaveExplorer.inventory.returnhp();
+		int number =Inventory.getHp();
 		String x="Your current hp is "+ number;
 		return x;
 	}
