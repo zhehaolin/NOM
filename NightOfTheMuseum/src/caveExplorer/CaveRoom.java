@@ -1,6 +1,7 @@
 package caveExplorer;
 
 import cobyZhehao.CobyRoom;
+import jasonDavid.DavidFront;
 
 public class CaveRoom {
 
@@ -171,14 +172,22 @@ public class CaveRoom {
 		}
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
+		
 		CaveRoom customRoom = new CobyRoom("Room");
-		CaveExplorer.caves[2][3] = customRoom;
+		CaveExplorer.caves[1][1] = customRoom;
+		
+		NPCRoom customRoom2 = new DavidFront("Room");
+		CaveExplorer.caves[0][4] = customRoom2;
+		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		c[0][1].setConnection(EAST, c[0][2], new Door());
+		c[0][2].setConnection(EAST, c[0][3], new Door());
+		c[0][3].setConnection(EAST, c[0][4], new Door());
 		/**
 		 * Special requests:
 		 * moving objects in caves
