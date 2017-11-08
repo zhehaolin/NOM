@@ -9,7 +9,10 @@ public class Inventory {
 		updateMap();
 		hp = 100;
 	}
-
+	public int returnhp()
+	{
+		return hp;
+	}
 	public void updateMap() {
 		map = " ";
 		//create line across top:
