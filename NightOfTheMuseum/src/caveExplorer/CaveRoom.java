@@ -179,13 +179,13 @@ public class CaveRoom {
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
 		
-		CaveRoom customRoom = new CobyRoom("There is a statue in front of you. Press 'q' to interact.");
+		CaveRoom customRoom = new CobyRoom("There is a statue in front of you. Press 'f' to interact.");
 
 		CaveExplorer.caves[2][3] = customRoom;
 
 		CaveExplorer.caves[3][2] = new zhehaoRoom("There is a statue in front of you. Press 'f' to interact");
 		
-		CaveExplorer.caves[3][3] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'x' to touch it.", 0.5, -20,
+		CaveExplorer.caves[3][3] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'f' to touch it.", 0.5, -20,
 				"The box is empty", "The box was a trap!. You have been struck by an arrow", 10);
 		
 		CaveExplorer.caves[0][2] = new RemingtonFrontEnd("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
@@ -196,7 +196,7 @@ public class CaveRoom {
 		
 
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
-		CaveExplorer.caves[1][3] = customRoom3;
+		CaveExplorer.caves[1][1] = customRoom3;
 
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][3];

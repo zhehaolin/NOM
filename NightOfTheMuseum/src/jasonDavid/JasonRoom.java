@@ -20,12 +20,13 @@ public class JasonRoom extends NPCRoom{
 	}
 	public void performAction(int direction) {
 		if (direction == 4) {
+			CaveExplorer.currentRoom.leave();
 			CaveExplorer.print("You have been teleported!)");
 			CaveExplorer.currentRoom = CaveExplorer.caves[randomNum(0,9)][randomNum(0,9)];
 			CaveExplorer.currentRoom.enter();
 		}else {
 			if (direction == 5){
-				if(containsNPC() && jason.isActive()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ) {
+				if(containsNPC() && jason.isActive()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ) {
 					jason.interact();
 				}	
 			}else {

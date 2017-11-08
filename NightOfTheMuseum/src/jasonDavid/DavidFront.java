@@ -36,4 +36,7 @@ public class DavidFront extends NPCRoom {
 		}
 		
 	}
+	public String getContents() {
+		return "D";
+	}
 }

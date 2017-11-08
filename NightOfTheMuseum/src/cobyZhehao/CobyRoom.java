@@ -13,7 +13,7 @@ public class CobyRoom extends CaveRoom{
 	}
 
 	public void performAction(int direction) {
-		if(direction == 5) {
+		if(direction == 4) {
 			if(isEaten) {
 				CaveExplorer.print("You find a sandwich wrapper at the base of the statue.");
 			} else {
@@ -32,11 +32,11 @@ public class CobyRoom extends CaveRoom{
 	}
 	
 	public void printAllowedEntry() {
-		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you can type 'e' to talk. Or you could press 'q' to view the statue.");
+		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you could press 'f' to interact.");
 	}
 	
 	public String validKeys() {
-		return "wdsaeq";
+		return "wdsaf";
 	}
 	
 	public String getContents() {
