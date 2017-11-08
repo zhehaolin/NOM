@@ -176,8 +176,8 @@ public class CaveRoom {
 		CaveRoom customRoom = new CobyRoom("Room");
 		CaveExplorer.caves[1][1] = customRoom;
 		
-		NPCRoom customRoom2 = new DavidFront("Room");
-		CaveExplorer.caves[0][4] = customRoom;
+		CaveRoom customRoom2 = new DavidFront("Room");
+		CaveExplorer.caves[0][3] = customRoom2;
 		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];

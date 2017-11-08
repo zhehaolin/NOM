@@ -1,10 +1,10 @@
 package jasonDavid;
 
 import caveExplorer.CaveExplorer;
-import caveExplorer.NPCRoom;
+import caveExplorer.CaveRoom;
 
 
-public class DavidFront extends NPCRoom {
+public class DavidFront extends CaveRoom {
 
 	private DavidNPC Strangeman = new DavidNPC();
 	
@@ -34,5 +34,8 @@ public class DavidFront extends NPCRoom {
 			super.performAction(direction);
 		}
 		
+	}
+	public String getContents() {
+		return "D";
 	}
 }

@@ -14,7 +14,7 @@ public class CaveExplorer {
 	public static void main(String[] args) {
 		in = new Scanner(System.in);
 		CaveRoom.setUpCaves();
-		npcs[0] = new NPC();
+		//npcs[0] = new NPC();
 		
 		inventory = new Inventory();
 		startExploring();
