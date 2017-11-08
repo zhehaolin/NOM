@@ -4,6 +4,10 @@ public class Inventory {
 
 	private String map;
 	private int hp;
+	private boolean gloveofpp;
+	private int health;
+	private boolean Strangekey;
+	private int money;
 	
 	public Inventory() {
 		updateMap();
@@ -67,5 +71,25 @@ public class Inventory {
 			return true;
 		}
 		return false;
+	}
+
+	public boolean haveGlove() {
+		return gloveofpp;
+	}
+	
+	public void loseHealth(int lost) {
+		health = lost - 10;
+	}
+	
+	public void StrangeKeyObtained() {
+		Strangekey = true;
+	}
+	
+	public boolean haveStrangeKey() {
+		return Strangekey;
+	}
+
+	public void loseMoney(int i) {
+		money -= i;
 	}
 }
