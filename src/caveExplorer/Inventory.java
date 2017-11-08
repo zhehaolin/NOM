@@ -4,21 +4,8 @@ public class Inventory {
 
 	private String map;
 	
-	private static int hp;
-	private static int gold;
-	
 	public Inventory() {
 		updateMap();
-		hp = 100;
-		gold = 0;
-	}
-
-	public static int getHp() {
-		return hp;
-	}
-	public int returnhp()
-	{
-		return this.hp;
 	}
 
 	public void updateMap() {
@@ -65,17 +52,5 @@ public class Inventory {
 		return map;
 //		return "You have nothing in your inventory.";
 	}
-	
 
-	public static void changeHP(int change) {
-		hp += change;
-	}
-	
-	public static void changeGold(int change) {
-		gold += change;
-	}
-
-	public static int getGold() {
-		return gold;
-	}
 }
