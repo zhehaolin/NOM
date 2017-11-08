@@ -6,12 +6,14 @@ public class Inventory {
 	private boolean gloveofpp;
 	private int health;
 	private boolean Strangekey;
+	private int money;
 	
 	public Inventory() {
 		updateMap();
 		gloveofpp = false;
 		health = 100;
 		Strangekey = false;
+		money = 5000;
 	}
 
 	public void updateMap() {
@@ -69,5 +71,9 @@ public class Inventory {
 	}
 	public boolean haveStrangeKey() {
 		return Strangekey;
+	}
+
+	public void loseMoney(int i) {
+		money -= i;
 	}
 }
