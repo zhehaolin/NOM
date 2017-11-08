@@ -72,4 +72,5 @@ public class Inventory {
 	public static int getGold() {
 		return gold;
 	}
+
 }
