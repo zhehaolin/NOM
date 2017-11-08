@@ -13,16 +13,15 @@ public class CobyRoom extends CaveRoom{
 	public CobyRoom(String description) {
 		super(description);
 		this.description = "There is a statue in front of you.";
-		setDirections();
 	}
 
 	public void performAction(int direction) {
 		if(direction == 5) {
 			CaveExplorer.print("You look behind the statue. You find a sandwich!");
 			if(CaveExplorer.inventory.isHealthy() == true) {
-				System.out.println("You're hp is full so you decide to leave it there.");
+				CaveExplorer.print("You're hp is full so you decide to leave it there.");
 			}else {
-				System.out.println("You ate the sandwich and gained 10 hp!");
+				CaveExplorer.print("You ate the sandwich and gained 10 hp!");
 			}
 		} else {
 			super.performAction(direction);
@@ -39,5 +38,9 @@ public class CobyRoom extends CaveRoom{
 	
 	public String getContents() {
 		return "C";
+	}
+	
+	public String getDescription() {
+		return this.description;
 	}
 }
