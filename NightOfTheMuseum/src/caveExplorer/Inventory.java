@@ -12,6 +12,10 @@ public class Inventory {
 	public Inventory() {
 		updateMap();
 		hp = 100;
+		gloveofpp = false;
+		health = 100;
+		Strangekey = false;
+		money = 5000;
 	}
 
 	public void updateMap() {
@@ -47,7 +51,7 @@ public class Inventory {
 							text += "___";
 						}
 					}
-				}//last caveroom in row
+				}//last cave room in row
 				text+="|";
 				map += text +"\n";
 			}
@@ -58,7 +62,7 @@ public class Inventory {
 		return map;
 //		return "You have nothing in your inventory.";
 	}
-
+	
 	public void restoreHp() {
 		hp = hp + 10;
 		if(hp > 100) {
@@ -88,7 +92,7 @@ public class Inventory {
 	public boolean haveStrangeKey() {
 		return Strangekey;
 	}
-
+	
 	public void loseMoney(int i) {
 		money -= i;
 	}
