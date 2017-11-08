@@ -180,6 +180,9 @@ public class CaveRoom {
 		NPCRoom customRoom2 = new DavidFront("Room");
 		CaveExplorer.caves[0][4] = customRoom2;
 		
+		CaveRoom customRoom1 = new zheRoom("There is a statue in the room. Try to interact");//save
+		CaveExplorer.caves[0][2] = customRoom1;
+		
 		NPCRoom customRoom3 = new JasonRoom("Room");
 		CaveExplorer.caves[1][3] = customRoom3;
 		//4. Set your starting room:
