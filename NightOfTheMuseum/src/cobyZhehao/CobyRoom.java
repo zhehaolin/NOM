@@ -9,6 +9,7 @@ import caveExplorer.NPCRoom;
 public class CobyRoom extends CaveRoom{
 
 	private String description;
+	private boolean isEaten = false;
 
 	public CobyRoom(String description) {
 		super(description);
@@ -17,11 +18,16 @@ public class CobyRoom extends CaveRoom{
 
 	public void performAction(int direction) {
 		if(direction == 5) {
-			CaveExplorer.print("You look behind the statue. You find a sandwich!");
-			if(CaveExplorer.inventory.isHealthy() == true) {
-				CaveExplorer.print("You're hp is full so you decide to leave it there.");
-			}else {
-				CaveExplorer.print("You ate the sandwich and gained 10 hp!");
+			if(isEaten) {
+				CaveExplorer.print("You find a sandwich wrapper at the base of the statue.");
+			} else {
+				CaveExplorer.print("You look behind the statue. You find a sandwich!");
+				if(CaveExplorer.inventory.isHealthy() == true) {
+					CaveExplorer.print("You're hp is full so you decide to leave it there.");
+				}else {
+					CaveExplorer.print("You ate the sandwich and gained 10 hp!");
+					isEaten = true;
+				}
 			}
 		} else {
 			super.performAction(direction);
