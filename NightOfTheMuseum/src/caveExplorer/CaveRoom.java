@@ -2,6 +2,7 @@ package caveExplorer;
 
 import cobyZhehao.CobyRoom;
 import jasonDavid.DavidFront;
+import jasonDavid.JasonRoom;
 
 public class CaveRoom {
 
@@ -160,7 +161,7 @@ public class CaveRoom {
 	public static void setUpCaves() {
 		//ALL OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new CaveRoom[5][5];
+		CaveExplorer.caves = new CaveRoom[10][10];
 		//2. Populate with caves and a defualt description: hint: when starting, use coordinates (helps debugging)
 		for(int row = 0; row < CaveExplorer.caves.length; row++) {
 			//PLEASE PAY ATTENTION TO THE DIFFERENCE:
@@ -179,6 +180,8 @@ public class CaveRoom {
 		NPCRoom customRoom2 = new DavidFront("Room");
 		CaveExplorer.caves[0][4] = customRoom2;
 		
+		NPCRoom customRoom3 = new JasonRoom("Room");
+		CaveExplorer.caves[1][3] = customRoom3;
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();
@@ -188,6 +191,8 @@ public class CaveRoom {
 		c[0][1].setConnection(EAST, c[0][2], new Door());
 		c[0][2].setConnection(EAST, c[0][3], new Door());
 		c[0][3].setConnection(EAST, c[0][4], new Door());
+		c[0][3].setConnection(SOUTH, c[1][3], new Door());
+		
 		/**
 		 * Special requests:
 		 * moving objects in caves
