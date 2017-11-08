@@ -3,14 +3,17 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
-	private int hp;
+	private boolean gloveofpp;
+	private int health;
+	private boolean Strangekey;
+	private int money;
 	
 	public Inventory() {
 		updateMap();
-	}
-	public int returnhp()
-	{
-		return this.hp;
+		gloveofpp = false;
+		health = 100;
+		Strangekey = false;
+		money = 5000;
 	}
 
 	public void updateMap() {
@@ -46,7 +49,7 @@ public class Inventory {
 							text += "___";
 						}
 					}
-				}//last caveroom in row
+				}//last cave room in row
 				text+="|";
 				map += text +"\n";
 			}
@@ -57,6 +60,20 @@ public class Inventory {
 		return map;
 //		return "You have nothing in your inventory.";
 	}
-	
+	public boolean haveGlove() {
+		return gloveofpp;
+	}
+	public void loseHealth(int lost) {
+		health = lost - 10;
+	}
+	public void StrangeKeyObtained() {
+		Strangekey = true;
+	}
+	public boolean haveStrangeKey() {
+		return Strangekey;
+	}
 
+	public void loseMoney(int i) {
+		money -= i;
+	}
 }
