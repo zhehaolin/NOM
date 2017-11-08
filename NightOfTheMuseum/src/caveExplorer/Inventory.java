@@ -3,7 +3,6 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
-	private int hp;
 	private boolean gloveofpp;
 	private int health;
 	private boolean Strangekey;
@@ -80,18 +79,18 @@ public class Inventory {
 	
 	public int returnhp()
 	{
-		return hp;
+		return health;
 	}
 
 	public void restoreHp() {
-		hp = hp + 10;
-		if(hp > 100) {
-			hp = 100;
+		health = health + 10;
+		if(health > 100) {
+			health = 100;
 		}
 	}
 	
 	public boolean isHealthy() {
-		if(hp == 100) {
+		if(health == 100) {
 			return true;
 		}
 		return false;
