@@ -2,6 +2,7 @@ package cobyZhehao;
 
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
+import caveExplorer.Inventory;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
@@ -17,15 +18,19 @@ public class CobyRoom extends CaveRoom{
 
 	public void performAction(int direction) {
 		if(direction == 5) {
-			CaveExplorer.print("A statue falls on top of your leg! You lose 10 hp!");
-			
+			CaveExplorer.print("You look behind the statue. You find a sandwich!");
+			if(CaveExplorer.inventory.isHealthy() == true) {
+				System.out.println("You're hp is full so you decide to leave it there.");
+			}else {
+				System.out.println("You ate the sandwich and gained 10 hp!");
+			}
 		} else {
 			super.performAction(direction);
 		}
 	}
 	
 	public void printAllowedEntry() {
-		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you can type 'e' to talk. Or you could press 'q' to touch the statue.");
+		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you can type 'e' to talk. Or you could press 'q' to view the statue.");
 	}
 	
 	public String validKeys() {
@@ -35,9 +40,4 @@ public class CobyRoom extends CaveRoom{
 	public String getContents() {
 		return "C";
 	}
-	
-	public String getDescription() {
-		return description + "\n"+super.directions;
-	}
-	//adfaf
 }
