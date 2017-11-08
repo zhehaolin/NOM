@@ -1,6 +1,7 @@
 package caveExplorer;
 
 import cobyZhehao.CobyRoom;
+import cobyZhehao.zhehaoRoom;
 import victorRemington.VictorRoom;
 
 public class CaveRoom {
@@ -176,8 +177,9 @@ public class CaveRoom {
 		CaveRoom customRoom = new CobyRoom("Room");
 		CaveExplorer.caves[2][3] = customRoom;
 
+		CaveExplorer.caves[3][2] = new zhehaoRoom("This is a zhehaoRoom");
 		
-		CaveExplorer.caves[3][3] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'x' to touch it.", 0.9, -20,
+		CaveExplorer.caves[3][3] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'x' to touch it.", 0.5, -20,
 				"The box is empty", "The box was a trap!. You have been struck by an arrow", 10);
 		
 
@@ -189,6 +191,9 @@ public class CaveRoom {
 		
 		c[1][3].setConnection(SOUTH, c[2][3], new Door());
 		c[2][3].setConnection(NORTH, c[1][3], new Door()); 
+		
+		c[3][2].setConnection(EAST, c[3][3], new Door());
+		c[3][3].setConnection(WEST, c[3][2], new Door());
 		
 		c[2][3].setConnection(SOUTH, c[3][3], new Door());
 		c[3][3].setConnection(NORTH, c[2][3], new Door());

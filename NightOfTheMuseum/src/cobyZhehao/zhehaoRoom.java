@@ -1,6 +1,7 @@
 package cobyZhehao;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.Inventory;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
@@ -28,7 +29,7 @@ public class zhehaoRoom extends NPCRoom {
 		}
 		if(direction == 5)
 		{
-			CaveExplorer.inventory.returnhp();
+			Inventory.getHp();
 		}
 	}
 	public String validKeys(){

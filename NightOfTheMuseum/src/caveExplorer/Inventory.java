@@ -6,19 +6,21 @@ public class Inventory {
 	
 	private static int hp;
 	private static int gold;
+
+	private boolean gloveofpp;
+	private boolean Strangekey;
 	
 	public Inventory() {
 		updateMap();
+
 		hp = 100;
-		gold = 0;
+		gold = 5000;
+		Strangekey = false;
+		gloveofpp = false;
 	}
 
 	public static int getHp() {
 		return hp;
-	}
-	public int returnhp()
-	{
-		return this.hp;
 	}
 
 	public void updateMap() {
@@ -54,7 +56,7 @@ public class Inventory {
 							text += "___";
 						}
 					}
-				}//last caveroom in row
+				}//last cave room in row
 				text+="|";
 				map += text +"\n";
 			}
@@ -65,8 +67,15 @@ public class Inventory {
 		return map;
 //		return "You have nothing in your inventory.";
 	}
-	
-
+	public boolean haveGlove() {
+		return gloveofpp;
+	}
+	public void StrangeKeyObtained() {
+		Strangekey = true;
+	}
+	public boolean haveStrangeKey() {
+		return Strangekey;
+	}
 	public static void changeHP(int change) {
 		hp += change;
 	}
