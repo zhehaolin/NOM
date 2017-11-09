@@ -9,10 +9,11 @@ public class Inventory {
 
 	private boolean gloveofpp;
 	private boolean Strangekey;
+	private boolean hasKey;
 	
 	public Inventory() {
 		updateMap();
-
+		hasKey = false;
 		hp = 100;
 		gold = 5000;
 		Strangekey = false;
@@ -99,5 +100,9 @@ public class Inventory {
 			return true;
 		}
 		return false;
+	}
+	
+	public void gotkey() {
+		hasKey = true;
 	}
 }

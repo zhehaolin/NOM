@@ -45,4 +45,11 @@ public class Door {
 		this.details = details;
 	}
 
+	public boolean getLocked() {
+		return this.locked;
+	}
+	
+	public boolean getOpen() {
+		return this.open;
+	}
 }

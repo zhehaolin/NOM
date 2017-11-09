@@ -123,11 +123,11 @@ public class CaveRoom {
 	}
 	// override to add more keys, but always include "wdsa"
 	public String validKeys() {
-		return "wdsa";
+		return "wdsae";
 	}
 	//override to print a custom string describing what keys do
 	public void printAllowedEntry() {
-		System.out.println("You can only enter 'w', 'a', 's', or 'd'.");
+		System.out.println("You can only enter 'w', 'a', 's', 'd', 'e'.");
 	}
 
 
@@ -141,7 +141,7 @@ public class CaveRoom {
 		//(user cannot go through non-existent door
 		if (direction < 4) {
 		if(borderingRooms[direction] != null && 
-				doors[direction] != null) {
+				doors[direction] != null && !borderingRooms[direction].getDoor(oppositeDirection(direction)).getLocked() && !doors[direction].getLocked()){
 			CaveExplorer.currentRoom.leave();
 			CaveExplorer.currentRoom = borderingRooms[direction];
 			CaveExplorer.currentRoom.enter();
@@ -154,6 +154,9 @@ public class CaveRoom {
 	}
 	//override to give response to keys other than 'wasd'
 	public void performAction(int direction) {
+		if(direction == 5) {
+			//openDoor()
+		}
 		System.out.println("That key does nothing");
 		
 	}
@@ -194,10 +197,10 @@ public class CaveRoom {
 		CaveExplorer.caves[0][4] = customRoom2;		
 
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
-		CaveExplorer.caves[1][1] = customRoom3;
+		CaveExplorer.caves[0][1] = customRoom3;
 
 		//4. Set your starting room:
-		CaveExplorer.currentRoom = CaveExplorer.caves[9][0];
+		CaveExplorer.currentRoom = CaveExplorer.caves[9][1];
 		CaveExplorer.currentRoom.enter();
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
@@ -341,6 +344,12 @@ public class CaveRoom {
 		c[9][9].setConnection(WEST, c[9][8], new Door());
 		c[9][7].setConnection(EAST, c[9][8], new Door());
 		c[9][8].setConnection(WEST, c[9][7], new Door());
+		
+		c[7][2].setConnection(WEST, c[7][1], new Door());
+		c[7][1].setConnection(EAST, c[7][2], new Door());
+		
+		c[7][2].setConnection(EAST, c[7][3], new Door());
+		c[7][3].setConnection(WEST, c[7][2], new Door());
 		/** 
 		 * Special requests:
 		 * moving objects in caves
