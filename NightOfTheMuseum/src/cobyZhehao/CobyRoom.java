@@ -3,21 +3,17 @@ package cobyZhehao;
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
 import caveExplorer.Inventory;
-import caveExplorer.NPC;
-import caveExplorer.NPCRoom;
 
 public class CobyRoom extends CaveRoom{
 
-	private String description;
 	private boolean isEaten = false;
 
 	public CobyRoom(String description) {
 		super(description);
-		this.description = "There is a statue in front of you.";
 	}
 
 	public void performAction(int direction) {
-		if(direction == 5) {
+		if(direction == 4) {
 			if(isEaten) {
 				CaveExplorer.print("You find a sandwich wrapper at the base of the statue.");
 			} else {
@@ -26,6 +22,7 @@ public class CobyRoom extends CaveRoom{
 					CaveExplorer.print("You're hp is full so you decide to leave it there.");
 				}else {
 					CaveExplorer.print("You ate the sandwich and gained 10 hp!");
+					Inventory.changeHP(10);
 					isEaten = true;
 				}
 			}
@@ -35,18 +32,14 @@ public class CobyRoom extends CaveRoom{
 	}
 	
 	public void printAllowedEntry() {
-		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you can type 'e' to talk. Or you could press 'q' to view the statue.");
+		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you could press 'f' to interact.");
 	}
 	
 	public String validKeys() {
-		return "wdsaeq";
+		return "wdsaf";
 	}
 	
 	public String getContents() {
 		return "C";
-	}
-	
-	public String getDescription() {
-		return this.description;
 	}
 }

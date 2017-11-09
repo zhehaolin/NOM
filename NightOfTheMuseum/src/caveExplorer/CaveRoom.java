@@ -1,7 +1,13 @@
 package caveExplorer;
 
 import cobyZhehao.CobyRoom;
+import cobyZhehao.zhehaoRoom;
+import victorRemington.RemingtonFrontEnd;
+import victorRemington.VictorRoom;
 import jasonDavid.DavidFront;
+import jasonDavid.DavidNPC;
+import jasonDavid.JasonNPC;
+import jasonDavid.JasonRoom;
 
 public class CaveRoom {
 
@@ -130,7 +136,7 @@ public class CaveRoom {
 		return validEntries.indexOf(input) > -1 && input.length() ==1;
 	}
 
-	private void respondToKey(int direction) {
+	public void respondToKey(int direction) {
 		//first, protect against null pointer exception
 		//(user cannot go through non-existent door
 		if (direction < 4) {
@@ -160,7 +166,7 @@ public class CaveRoom {
 	public static void setUpCaves() {
 		//ALL OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new CaveRoom[5][5];
+		CaveExplorer.caves = new CaveRoom[10][10];
 		//2. Populate with caves and a defualt description: hint: when starting, use coordinates (helps debugging)
 		for(int row = 0; row < CaveExplorer.caves.length; row++) {
 			//PLEASE PAY ATTENTION TO THE DIFFERENCE:
@@ -173,27 +179,128 @@ public class CaveRoom {
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
 		
+		//CaveRoom customRoom = new CobyRoom("There is a statue in front of you. Press 'f' to interact.");
+
+		//CaveExplorer.caves[2][3] = customRoom;
+
+		CaveExplorer.caves[3][2] = new zhehaoRoom("There is a statue in front of you. Press 'f' to interact");
+		
+		CaveExplorer.caves[3][3] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'f' to touch it.", 0.5, -20,
+				"The box is empty", "The box was a trap!. You have been struck by an arrow", 10);
+		
+		CaveExplorer.caves[0][2] = new RemingtonFrontEnd("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
+		
+		
+		//--- WE WILL DO LATER
+
+		
 		CaveRoom customRoom = new CobyRoom("Room");
 		CaveExplorer.caves[1][1] = customRoom;
 		
 		CaveRoom customRoom2 = new DavidFront("Room");
 		CaveExplorer.caves[0][3] = customRoom2;
 		
+
+		
+
+		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
+		CaveExplorer.caves[1][1] = customRoom3;
+
+
 		//4. Set your starting room:
-		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
+		CaveExplorer.currentRoom = CaveExplorer.caves[0][3];
 		CaveExplorer.currentRoom.enter();
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
+
+		c[0][3].setConnection(SOUTH, c[1][3], new Door());
+		c[1][3].setConnection(NORTH, c[0][3], new Door()); 
+		
+		c[1][3].setConnection(SOUTH, c[2][3], new Door());
+		c[2][3].setConnection(NORTH, c[1][3], new Door()); 
+		
+		c[3][2].setConnection(EAST, c[3][3], new Door());
+		c[3][3].setConnection(WEST, c[3][2], new Door());
+		
+		c[2][3].setConnection(SOUTH, c[3][3], new Door());
+		c[3][3].setConnection(NORTH, c[2][3], new Door());
+
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
-		/**
+		c[1][1].setConnection(NORTH, c[0][1], new Door());
+		
+		c[0][1].setConnection(EAST, c[0][2], new Door());
+		c[0][2].setConnection(WEST, c[0][1], new Door());
+		
+		c[0][2].setConnection(EAST, c[0][3], new Door());
+		c[0][3].setConnection(WEST, c[0][2], new Door());
+		
+		c[0][3].setConnection(EAST, c[0][4], new Door());
+		c[0][4].setConnection(WEST, c[0][3], new Door());
+		
+		c[6][0].setConnection(SOUTH, c[7][0], new Door());
+		c[7][0].setConnection(NORTH, c[6][0], new Door());
+		
+		c[7][0].setConnection(SOUTH, c[8][0], new Door());
+		c[8][0].setConnection(NORTH, c[7][0], new Door());
+		
+		c[6][1].setConnection(SOUTH, c[7][1], new Door());
+		c[7][1].setConnection(NORTH, c[6][1], new Door());
+		
+		c[7][1].setConnection(SOUTH, c[8][1], new Door());
+		c[8][1].setConnection(NORTH, c[7][1], new Door());
+		
+		c[6][2].setConnection(SOUTH, c[7][2], new Door());
+		c[7][2].setConnection(NORTH, c[6][2], new Door());
+		
+		c[7][2].setConnection(SOUTH, c[8][2], new Door());
+		c[8][2].setConnection(NORTH, c[7][2], new Door());
+		
+		c[6][3].setConnection(SOUTH, c[7][3], new Door());
+		c[7][3].setConnection(NORTH, c[6][3], new Door());
+		
+		c[7][3].setConnection(SOUTH, c[8][3], new Door());
+		c[8][3].setConnection(NORTH, c[7][3], new Door());
+		
+		c[6][0].setConnection(EAST, c[6][1], new Door());
+		c[6][1].setConnection(WEST, c[6][0], new Door());
+		
+		c[7][0].setConnection(EAST, c[7][1], new Door());
+		c[7][1].setConnection(WEST, c[7][0], new Door());
+		
+		c[8][0].setConnection(EAST, c[8][1], new Door());
+		c[8][1].setConnection(WEST, c[8][0], new Door());
+		
+		c[6][1].setConnection(EAST, c[6][2], new Door());
+		c[6][2].setConnection(WEST, c[6][1], new Door());
+		
+		c[7][1].setConnection(EAST, c[7][2], new Door());
+		c[7][2].setConnection(WEST, c[7][1], new Door());
+		
+		c[8][1].setConnection(EAST, c[8][2], new Door());
+		c[8][2].setConnection(WEST, c[8][1], new Door());
+		
+		//david is cool
+		
+		c[7][2].setConnection(EAST, c[7][3], new Door());
+		c[7][3].setConnection(WEST, c[7][2], new Door());
+		
+		c[8][2].setConnection(EAST, c[8][3], new Door());
+		c[8][3].setConnection(WEST, c[8][2], new Door());
+		
+		
+		
+		/** 
 		 * Special requests:
 		 * moving objects in caves
 		 * what happens when you lose?
 		 * can another object move toward you?
-		 */
-		
+		 */	
 	}
 
+	private void makeConnectionBetweenRooms(CaveRoom r1, CaveRoom r2, int dir, Door d1, Door d2) {
+		r1.setConnection(dir, r2, d1);
+		r2.setConnection(oppositeDirection(dir), r1, d2);
+	}
 
 	public String getDescription() {
 		return description + "\n"+directions;
@@ -209,7 +316,7 @@ public class CaveRoom {
 		return contents;
 	}
 
-
+	
 	public void setContents(String contents) {
 		this.contents = contents;
 	}

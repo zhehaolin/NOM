@@ -1,6 +1,7 @@
 package jasonDavid;
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
+import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
 public class JasonRoom extends NPCRoom{
@@ -12,25 +13,26 @@ public class JasonRoom extends NPCRoom{
 	}
 	
 	public String validKeys() {
-		return "wdsaef";
+		return "wdsafe";
 	}
 	public void printAllowedEntry() {
 		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you can type 'e' to interact. Enter 'f' for a surprise!");
 	}
 	public void performAction(int direction) {
 		if (direction == 4) {
-			if (containsNPC() && jason.isActive()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ) {
-				jason.interact();
-			}else if (direction == 5){
-				CaveExplorer.print("You have been teleported!)");
-				CaveExplorer.currentRoom = CaveExplorer.caves[randomNum(0,9)][randomNum(0,9)];
-				CaveExplorer.currentRoom.enter();
-			}
+			CaveExplorer.currentRoom.leave();
+			CaveExplorer.print("You have been teleported!)");
+			CaveExplorer.currentRoom = CaveExplorer.caves[randomNum(0,9)][randomNum(0,9)];
+			CaveExplorer.currentRoom.enter();
 		}else {
-			
+			if (direction == 5){
+				if(containsNPC() && jason.isActive()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ) {
+					jason.interact();
+				}	
+			}else {
+				System.out.println("That key does nothing");
+			}
 		}
-		System.out.println("That key does nothing");
-		
 	}
 	public int randomNum(int min, int max) {
 		return (int)(Math.random() *(max-min)) + min;

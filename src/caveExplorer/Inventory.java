@@ -4,23 +4,8 @@ public class Inventory {
 
 	private String map;
 	
-	private static int hp;
-	private static int gold;
-
-	private boolean gloveofpp;
-	private boolean Strangekey;
-	
 	public Inventory() {
 		updateMap();
-
-		hp = 100;
-		gold = 5000;
-		Strangekey = false;
-		gloveofpp = false;
-	}
-
-	public static int getHp() {
-		return hp;
 	}
 
 	public void updateMap() {
@@ -67,37 +52,5 @@ public class Inventory {
 		return map;
 //		return "You have nothing in your inventory.";
 	}
-	public boolean haveGlove() {
-		return gloveofpp;
-	}
-	public void StrangeKeyObtained() {
-		Strangekey = true;
-	}
-	public boolean haveStrangeKey() {
-		return Strangekey;
-	}
-	public static void changeHP(int change) {
-		hp += change;
-		if(hp > 100) {
-			hp = 100;
-		}
-		if(hp < 0) {
-			hp = 0;
-		}
-	}
-	
-	public static void changeGold(int change) {
-		gold += change;
-	}
 
-	public static int getGold() {
-		return gold;
-	}
-	
-	public boolean isHealthy() {
-		if(hp == 100) {
-			return true;
-		}
-		return false;
-	}
 }

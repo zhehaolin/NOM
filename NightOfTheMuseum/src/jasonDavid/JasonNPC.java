@@ -1,11 +1,13 @@
 package jasonDavid;
-import caveExplorer.CaveExplorer;
 import caveExplorer.NPC;
+import caveExplorer.CaveExplorer;
+import caveExplorer.Inventory;
+
 
 public class JasonNPC extends NPC{
 	
 	public void interact() {
 		CaveExplorer.print("Haha!");
-		CaveExplorer.inventory.loseMoney(500);
+		Inventory.changeGold(-500);
 	}
 }
