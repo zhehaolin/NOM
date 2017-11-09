@@ -27,6 +27,7 @@ public class JasonRoom extends NPCRoom{
 		}else {
 			if (direction == 5){
 				if(containsNPC() && jason.isActive()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ) {
+					System.out.println("asd");
 					jason.interact();
 				}	
 			}else {
