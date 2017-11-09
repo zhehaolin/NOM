@@ -297,6 +297,37 @@ public class CaveRoom {
 		c[9][1].setConnection(EAST, c[9][2], new Door());
 		c[9][2].setConnection(WEST, c[9][1], new Door());
 		
+		c[6][7].setConnection(WEST, c[6][6], new Door());
+		c[6][6].setConnection(EAST, c[6][7], new Door());
+		
+		c[6][8].setConnection(WEST, c[8][6], new Door());
+		c[6][7].setConnection(EAST, c[6][8], new Door());
+		
+		c[6][9].setConnection(WEST, c[6][8], new Door());
+		c[6][8].setConnection(EAST, c[6][9], new Door());
+		
+		c[6][8].setConnection(SOUTH, c[7][8], new Door());
+		c[7][8].setConnection(NORTH, c[6][8], new Door());
+		
+		c[6][7].setConnection(SOUTH, c[7][7], new Door());
+		c[7][7].setConnection(NORTH, c[6][7], new Door());
+		
+		c[6][9].setConnection(SOUTH, c[7][9], new Door());
+		c[7][9].setConnection(NORTH, c[6][9], new Door());
+		
+		
+		c[7][8].setConnection(WEST, c[7][7], new Door());
+		c[7][7].setConnection(EAST, c[7][8], new Door());
+		
+		c[7][9].setConnection(WEST, c[7][8], new Door());
+		c[7][8].setConnection(EAST, c[7][9], new Door());
+		
+		c[8][8].setConnection(WEST, c[8][7], new Door());
+		c[8][7].setConnection(EAST, c[8][8], new Door());
+		
+		c[8][9].setConnection(WEST, c[8][8], new Door());
+		c[8][8].setConnection(EAST, c[8][9], new Door());
+		
 		c[9][2].setConnection(EAST, c[9][3], new Door());
 		c[9][3].setConnection(WEST, c[9][2], new Door());
 		
