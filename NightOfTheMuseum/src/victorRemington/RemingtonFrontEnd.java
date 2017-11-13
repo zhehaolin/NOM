@@ -1,49 +1,36 @@
 package victorRemington;
 
-import caveExplorer.CaveExplorer;
-import caveExplorer.CaveRoom;
-import caveExplorer.Inventory;
-import caveExplorer.NPC;
-import caveExplorer.NPCRoom;
+public class RemingtonFrontEnd implements VictorSupport{
 
-public class RemingtonFrontEnd extends CaveRoom{
-
-	private String description;
-	private boolean used = false;
-
-	public RemingtonFrontEnd(String description) {
-		super(description);
-		this.description = "You see a couple of items scattered across the room.";
-	}
-
-	public void performAction(int direction) {
-		if(direction == 4) {
-			if(!used) {
-				CaveExplorer.print("You pick up the item that's closest to you.");
-				CaveExplorer.print("The picture frightens you and you lose 10HP!.");
-				Inventory.changeHP(-10);
-				used = true;
-			} else {
-				CaveExplorer.print("This is where you got scared.");
-			}
-		} else {
-			super.performAction(direction);
-		}
+	private VictorBackEnd backend;
+	
+	public final static void main(String[] args) {
+		RemingtonFrontEnd demo = new RemingtonFrontEnd();
+		demo.play();
 	}
 	
-	public void printAllowedEntry() {
-		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you can type 'f' to interact.");
+	private void play() {
+		//send startPosition to the backEnd
+		//has to draw initial blank board
+		//then changes when back end responds
+		
+	}
+
+	public RemingtonFrontEnd(){
+		backend = new VictorBackEnd(this);
 	}
 	
-	public String validKeys() {
-		return "wdsaf";
+	public void drawField() {
+		//draws out board
 	}
 	
-	public String getContents() {
-		return "R";
+	public void setVisibility() {
+		//makes spaces visible when needed
 	}
 	
-	public String getDescription() {
-		return this.description;
+	public void displayGameState() {
+		//returns num of bombs
 	}
+	
+	
 }
