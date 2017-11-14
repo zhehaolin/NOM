@@ -2,13 +2,14 @@ package victorRemington;
 
 public class VictorRemingtonPlot {
 
-	int row; 
-	int col;
-	boolean isVisible;
-	boolean hasBomb;
-	boolean isEmpty;
-	boolean isFlaged;
-	String contents;
+	private int row; 
+	private int col;
+	private boolean isVisible;
+	private boolean hasBomb;
+	private boolean isEmpty;
+	private boolean isFlaged;
+	private String contents;
+	private final static String[] tileTypes = {"bomb", "empty", "number"};
 	
 	public VictorRemingtonPlot(int row, int col) {
 		isVisible = false;

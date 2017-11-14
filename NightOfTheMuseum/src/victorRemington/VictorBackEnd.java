@@ -46,12 +46,15 @@ public class VictorBackEnd implements RemingtonSupport{
 	public boolean checkBoundaries() {
 		return false;
 	}
-	
-	public boolean checkValidinput() {
-		return false;
+
+	public boolean checkValidinput(int[] coords) {
+		if(minefield[coords[0]][coords[1]].isVisible()) {
+			return false;
+		}
+		return true;
 	}
 	
 	public String victoryStatement() {
-		return "You won!";
+		return "You won! All of the mines have been cleared!";
 	}
 }
