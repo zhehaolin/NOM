@@ -4,4 +4,5 @@ public interface ZhehaoSupport {
 
 	int[] getCoordInput();
 
+	
 }

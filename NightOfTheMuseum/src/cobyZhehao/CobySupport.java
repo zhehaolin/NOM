@@ -8,4 +8,5 @@ public interface CobySupport {
 	
 	void move(ZhehaoCobyPlot p);
 	
+	
 }

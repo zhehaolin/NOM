@@ -10,6 +10,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 		test.play();
 	}
 	
+	
 	private void play() {
 		
 	}

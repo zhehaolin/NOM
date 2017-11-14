@@ -27,5 +27,6 @@ public class CobyBackEnd implements ZhehaoSupport{
 	public void move(ZhehaoCobyPlot p) {
 		p.move();
 	}
+	
 
 }
