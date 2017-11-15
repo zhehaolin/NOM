@@ -1,9 +1,9 @@
 package jasonDavid;
 
 public class JasonBackEnd implements DavidSupport{
-	private JasonSupport frontend;
-	private int[][] table;
-	private int[] chosen;
+	public JasonSupport frontend;
+	public int[][] table;
+	public int[] chosen;
 
 	public JasonBackEnd(DavidFrontEnd frontEnd, int size) {
 		frontend = frontEnd;
@@ -22,10 +22,54 @@ public class JasonBackEnd implements DavidSupport{
 	}
 	/**
 	 * generate unique random number that is not chosen yet
+	 * 
+	 * 
+	 * 
 	 * @return
 	 */
-	private int generateUniqueRandomNumber() {
+	public int generateUniqueRandomNumber() {
 		return 0;
+	}
+	/**
+	 * swaps position of the numbers
+	 * @param box1
+	 * @param box2
+	 */
+	public void swap(int[][] box1, int[][] box2) {
+		
+	}
+	/**
+	 * Formula: M=n(n^2+1)/2 M= winning number n= width of table
+	 * Checks to see if winning condition is met
+	 * @return
+	 */
+	public boolean calculateWin() {
+		return true;
+	}
+	/**
+	 * Use double for loop to check the sum of individual column/row
+	 * @param length
+	 * @param width
+	 * @param start
+	 * @return
+	 */
+	public int doubleForLoopCalc(int length, int width, String start) {
+		return 0;
+	}
+	@Override
+	public boolean stillPlaying() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean respondToInput(String input) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void analyzeBoard() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
