@@ -60,8 +60,10 @@ public class ZhehaoFrontEnd implements CobySupport {
 		for(int row = 0; row < plots.length; row++){
 			System.out.print(rows.substring(row, row+1)+" ");
 			for(int col = 0; col < plots[row].length; col++){
-				
+				System.out.println(ZhehaoCobyPlot[row][col]);
 			}
+			System.out.println(" " + rows.substring(row, row+1));
 		}
+		System.out.println(columns.substring(0, plots[0].length+2));
 	}
 }
