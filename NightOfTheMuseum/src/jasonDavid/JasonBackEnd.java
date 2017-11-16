@@ -5,12 +5,12 @@ public class JasonBackEnd implements DavidSupport{
 	public int[][] table;
 	public boolean playing;
 	
-	public int[] chosen;
+	public String chosen;
 	public int magicNumber;
 
 	public JasonBackEnd(DavidFrontEnd frontEnd, int size) {
 		table = new int[size][size];
-		chosen = new int[size*size];
+		chosen = "";
 		frontend = frontEnd;
 		createTable(size);
 		magicNumber = size* ((int)Math.pow(size, 2)+1)/2;
@@ -22,7 +22,7 @@ public class JasonBackEnd implements DavidSupport{
 	 */
 	public void createTable(int size) {
 		for (int i=0; i<size; i++) {
-			for ( int j=0; j<size; j++) {
+			for ( int j=0; j<size; j ++) {
 				table[i][j] = generateUniqueRandomNumber(size);
 			}
 		}
@@ -33,17 +33,16 @@ public class JasonBackEnd implements DavidSupport{
 	 */
 	public int generateUniqueRandomNumber(int size) {
 		int num = (int)(Math.random()*size*size)+1;
-		while(isRepeated(chosen, num)) {
+		while(isRepeated(num)) {
 			num = (int)(Math.random()*size*size)+1;
 		}
 		return num;
 		
 	}
-	public boolean isRepeated(int[] arr, int num) {
-		for (int i=0; i<arr.length; i++) {
-			if (arr[i] == num) {
-				return true;
-			}
+	public boolean isRepeated(int num) {
+		String x = Integer.toString(num);
+		if (chosen.indexOf(x) == -1) {
+			return true;
 		}
 		return false;
 	}
@@ -123,11 +122,17 @@ public class JasonBackEnd implements DavidSupport{
 		return playing;
 	}
 	public boolean respondToInput(String input) {
-		// TODO Auto-generated method stub
+		//
 		return false;
 	}
 	public void analyzeBoard() {
 		playing = calculateWin();
+	}
+	public boolean isValid(String input) {
+		if (input.length() == 3) {
+			
+		}
+		return true;
 	}
 	
 }
