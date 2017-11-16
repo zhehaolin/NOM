@@ -11,7 +11,6 @@ public class VictorBackEnd implements RemingtonSupport{
 		minefield = new VictorRemingtonPlot[8][8];
 		bombs = 0;
 		populateMinefield();
-		setContents();
 	}
 	
 	public void populateMinefield() {
@@ -20,7 +19,7 @@ public class VictorBackEnd implements RemingtonSupport{
 				minefield[row][col] = new VictorRemingtonPlot(row, col);
 			}
 		}
-		setUpBombs();
+		setContents();
 	}
 	
 	public static int getBombs() {
@@ -28,16 +27,16 @@ public class VictorBackEnd implements RemingtonSupport{
 	}
 	
 	public void setUpBombs() {
-		while(bombs < 12) {
+		while(bombs < 60) {
 			int row = (int)(Math.random() * 8);
 			int col = (int)(Math.random() * 8);
 			while(minefield[row][col].hasBomb()) {
 				row = (int)(Math.random() * 8);
 				col = (int)(Math.random() * 8);
 			}
-			minefield[row][col].setContents("bomb");
+			minefield[row][col].setContents("b");
 			minefield[row][col].setHasBomb(true);
-			bombs--;
+			bombs++;
 		}
 	}
 	
@@ -115,5 +114,9 @@ public class VictorBackEnd implements RemingtonSupport{
 	
 	public String victoryStatement() {
 		return "You won! All of the mines have been cleared!";
+	}
+	
+	public VictorRemingtonPlot[][] getMinefield() {
+		return minefield;
 	}
 }

@@ -1,6 +1,7 @@
 package victorRemington;
 
 import victorRemington.VictorRemingtonPlot;
+import caveExplorer.BenNocklesPlot;
 import caveExplorer.CaveExplorer;
 import victorRemington.RemingtonIntro;
 import victorRemington.RemingtonUtility;
@@ -17,9 +18,13 @@ public class RemingtonFrontEnd implements VictorSupport{
 	private int bombAmt;
 	
 	public void play() {
+
 		new RemingtonIntro().play();
 		CaveExplorer.in.nextLine();
 		introScreen();
+
+		System.out.print(revealAll());
+
 	}
 
 	private void introScreen() {
@@ -41,20 +46,17 @@ public class RemingtonFrontEnd implements VictorSupport{
 	}
 	
 	public void drawField() {
-		for(int row = 0; row < backend.minefield.length; row++) {
-			
+		for(int row = 0; row < backend.getMinefield().length; row++) {
+			  for (int col = 0; col < backend.getMinefield()[row].length; col++){
+				  minefield[row][col] = new VictorRemingtonPlot(row, col);
+			  }
 		}
 	
 	public void displayGameState() {
 	
 	}
 	
-	public void getSafeTile() {
-		
-	}
-	
 	public int calculateAdjacentBombs() {
-	
 		return 0;
 	}
 	
@@ -65,4 +67,19 @@ public class RemingtonFrontEnd implements VictorSupport{
 	public void handleVisiblity() {
 		
 	}
+	
+	public String revealAll() {
+		String line = "";
+		String chart = "";
+		VictorRemingtonPlot[][] minefield = backend.getMinefield();
+		for(int row = 0; row < minefield.length; row++) {
+			for(int col = 0; col < minefield[0].length; col++) {
+				line += minefield[row][col].getContents() + " ";
+			}
+			chart += line + "\n";
+			line = "";
+		}
+		return chart;
+	}
+	
 }

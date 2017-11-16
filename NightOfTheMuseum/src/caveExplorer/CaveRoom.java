@@ -2,7 +2,7 @@ package caveExplorer;
 
 import cobyZhehao.CobyRoom;
 import cobyZhehao.zhehaoRoom;
-import victorRemington.RemingtonFrontEnd;
+import victorRemington.RemingtonRoom;
 import victorRemington.VictorRoom;
 import jasonDavid.DavidFront;
 import jasonDavid.DavidNPC;
@@ -123,11 +123,11 @@ public class CaveRoom {
 	}
 	// override to add more keys, but always include "wdsa"
 	public String validKeys() {
-		return "wdsa";
+		return "wdsae";
 	}
 	//override to print a custom string describing what keys do
 	public void printAllowedEntry() {
-		System.out.println("You can only enter 'w', 'a', 's', or 'd'.");
+		System.out.println("You can only enter 'w', 'a', 's', 'd', 'e'.");
 	}
 
 
@@ -141,7 +141,7 @@ public class CaveRoom {
 		//(user cannot go through non-existent door
 		if (direction < 4) {
 		if(borderingRooms[direction] != null && 
-				doors[direction] != null) {
+				doors[direction] != null && !borderingRooms[direction].getDoor(oppositeDirection(direction)).getLocked() && !doors[direction].getLocked()){
 			CaveExplorer.currentRoom.leave();
 			CaveExplorer.currentRoom = borderingRooms[direction];
 			CaveExplorer.currentRoom.enter();
@@ -154,6 +154,9 @@ public class CaveRoom {
 	}
 	//override to give response to keys other than 'wasd'
 	public void performAction(int direction) {
+		if(direction == 5) {
+			//openDoor()
+		}
 		System.out.println("That key does nothing");
 		
 	}
@@ -185,25 +188,47 @@ public class CaveRoom {
 
 		CaveExplorer.caves[3][2] = new zhehaoRoom("There is a statue in front of you. Press 'f' to interact");
 		
-		CaveExplorer.caves[3][3] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'f' to touch it.", 0.5, -20,
+		CaveExplorer.caves[9][4] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'f' to touch it.", 0.5, -20,
 				"The box is empty", "The box was a trap!. You have been struck by an arrow", 10);
 		
-		CaveExplorer.caves[0][2] = new RemingtonFrontEnd("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
+		CaveExplorer.caves[0][2] = new RemingtonRoom("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
 		
 		NPCRoom customRoom2 = new DavidFront("There is a strange figure in the corner. Press 'f' to interact.");
-		CaveExplorer.caves[0][4] = customRoom2;
-		//--- WE WILL DO LATER
-		
+		CaveExplorer.caves[0][4] = customRoom2;		
 
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
-		CaveExplorer.caves[1][1] = customRoom3;
+		CaveExplorer.caves[0][1] = customRoom3;
 
 		//4. Set your starting room:
-		CaveExplorer.currentRoom = CaveExplorer.caves[0][3];
+		CaveExplorer.currentRoom = CaveExplorer.caves[9][1];
 		CaveExplorer.currentRoom.enter();
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
 
+		Door CZRoom = new Door();
+		CZRoom.setOpen(false);
+		CZRoom.setLocked(true);
+		c[3][7].setConnection(EAST, c[3][8], CZRoom);
+		c[3][8].setConnection(WEST, c[3][7], CZRoom);
+		
+		Door giftShop = new Door();
+		giftShop.setOpen(false);
+		giftShop.setLocked(false);
+		c[0][1].setConnection(SOUTH, c[1][1], giftShop);
+		c[1][1].setConnection(NORTH, c[0][1], giftShop);
+		
+		Door lockedDoor = new Door();
+		lockedDoor.setOpen(false);
+		lockedDoor.setLocked(true);
+		c[7][3].setConnection(EAST, c[7][4], lockedDoor);
+		c[7][4].setConnection(WEST, c[7][3], lockedDoor);
+		
+		Door bathroom = new Door();
+		bathroom.setOpen(false);
+		bathroom.setLocked(true);
+		c[9][0].setConnection(EAST, c[9][1], bathroom);
+		c[9][1].setConnection(WEST, c[9][0], bathroom);
+		
 		c[0][3].setConnection(SOUTH, c[1][3], new Door());
 		c[1][3].setConnection(NORTH, c[0][3], new Door()); 
 		
@@ -215,9 +240,6 @@ public class CaveRoom {
 		
 		c[2][3].setConnection(SOUTH, c[3][3], new Door());
 		c[3][3].setConnection(NORTH, c[2][3], new Door());
-
-		c[0][1].setConnection(SOUTH, c[1][1], new Door());
-		c[1][1].setConnection(NORTH, c[0][1], new Door());
 		
 		c[0][1].setConnection(EAST, c[0][2], new Door());
 		c[0][2].setConnection(WEST, c[0][1], new Door());
@@ -264,23 +286,70 @@ public class CaveRoom {
 		c[6][1].setConnection(EAST, c[6][2], new Door());
 		c[6][2].setConnection(WEST, c[6][1], new Door());
 		
-		c[7][1].setConnection(EAST, c[7][2], new Door());
-		c[7][2].setConnection(WEST, c[7][1], new Door());
-		
+		c[8][2].setConnection(WEST, c[8][1], new Door());
+			
 		c[8][1].setConnection(EAST, c[8][2], new Door());
 		c[8][2].setConnection(WEST, c[8][1], new Door());
 		
 		c[6][2].setConnection(EAST, c[6][3], new Door());
 		c[6][3].setConnection(WEST, c[6][2], new Door());
 		
-		c[7][2].setConnection(EAST, c[7][3], new Door());
-		c[7][3].setConnection(WEST, c[7][2], new Door());
-		
 		c[8][2].setConnection(EAST, c[8][3], new Door());
 		c[8][3].setConnection(WEST, c[8][2], new Door());
 		
+		c[9][1].setConnection(EAST, c[9][2], new Door());
+		c[9][2].setConnection(WEST, c[9][1], new Door());
+		
+		c[6][7].setConnection(WEST, c[6][6], new Door());
+		c[6][6].setConnection(EAST, c[6][7], new Door());
+		
+		c[6][8].setConnection(WEST, c[8][6], new Door());
+		c[6][7].setConnection(EAST, c[6][8], new Door());
+		
+		c[6][9].setConnection(WEST, c[6][8], new Door());
+		c[6][8].setConnection(EAST, c[6][9], new Door());
+		
+		c[6][8].setConnection(SOUTH, c[7][8], new Door());
+		c[7][8].setConnection(NORTH, c[6][8], new Door());
+		
+		c[6][7].setConnection(SOUTH, c[7][7], new Door());
+		c[7][7].setConnection(NORTH, c[6][7], new Door());
+		
+		c[6][9].setConnection(SOUTH, c[7][9], new Door());
+		c[7][9].setConnection(NORTH, c[6][9], new Door());
 		
 		
+		c[7][8].setConnection(WEST, c[7][7], new Door());
+		c[7][7].setConnection(EAST, c[7][8], new Door());
+		
+		c[7][9].setConnection(WEST, c[7][8], new Door());
+		c[7][8].setConnection(EAST, c[7][9], new Door());
+		
+		c[8][8].setConnection(WEST, c[8][7], new Door());
+		c[8][7].setConnection(EAST, c[8][8], new Door());
+		
+		c[8][9].setConnection(WEST, c[8][8], new Door());
+		c[8][8].setConnection(EAST, c[8][9], new Door());
+		
+		c[9][2].setConnection(EAST, c[9][3], new Door());
+		c[9][3].setConnection(WEST, c[9][2], new Door());
+		
+		c[9][3].setConnection(EAST, c[9][4], new Door());
+		c[9][4].setConnection(WEST, c[9][3], new Door());
+		
+		//room on bottom left
+		c[9][7].setConnection(EAST, c[9][8], new Door());
+		c[9][8].setConnection(WEST, c[9][7], new Door());
+		c[9][8].setConnection(EAST, c[9][9], new Door());
+		c[9][9].setConnection(WEST, c[9][8], new Door());
+		c[9][7].setConnection(EAST, c[9][8], new Door());
+		c[9][8].setConnection(WEST, c[9][7], new Door());
+		
+		c[7][2].setConnection(WEST, c[7][1], new Door());
+		c[7][1].setConnection(EAST, c[7][2], new Door());
+		
+		c[7][2].setConnection(EAST, c[7][3], new Door());
+		c[7][3].setConnection(WEST, c[7][2], new Door());
 		/** 
 		 * Special requests:
 		 * moving objects in caves
