@@ -3,6 +3,7 @@ package jasonDavid;
 public class JasonBackEnd implements DavidSupport{
 	public JasonSupport frontend;
 	public int[][] table;
+	
 	public int[] chosen;
 	public int magicNumber;
 
