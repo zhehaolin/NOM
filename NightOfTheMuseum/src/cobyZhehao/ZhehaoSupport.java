@@ -9,5 +9,8 @@ public interface ZhehaoSupport {
 
 	void move(ZhehaoCobyPlot p);
 
+
+	boolean gameover();
+
 	
 }

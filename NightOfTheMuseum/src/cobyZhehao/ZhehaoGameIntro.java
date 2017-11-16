@@ -9,7 +9,12 @@ public class ZhehaoGameIntro {
 	}
 
 	public void play() {
-		// TODO Auto-generated method stub
+		displaystartingscreen();
+		
+	}
+
+	private void displaystartingscreen() {
+		System.out.println("The only way to leave this room is to solve this swap puzzle.");
 		
 	}
 

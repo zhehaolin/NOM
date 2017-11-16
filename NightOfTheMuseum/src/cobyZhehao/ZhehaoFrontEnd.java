@@ -6,6 +6,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 
 	private ZhehaoSupport backend;
 	private int[][] ZhehaoCobyPlot;
+	private int movestaken;
 	
 	public static final void main(String[] args) {
 		ZhehaoFrontEnd test = new ZhehaoFrontEnd();
@@ -36,22 +37,34 @@ public class ZhehaoFrontEnd implements CobySupport {
 
 	public ZhehaoFrontEnd() {
 		backend = new CobyBackEnd(this);
+		movestaken=0;
 	}
 	
 	private void StartGame() {
 		 ZhehaoCobyPlot[][] plots = backend.getPlots();
 		 ZhehaoCobyPlot p = null;
-		 while(!over()) {
+		 while(!backend.gameover()) {
 			 displayField(plots);
-			 System.out.println("Which tile do you want to move?");
+			 displaymovestaken(p);
+			 System.out.println("Which tile do you want to move? Or enter 'h' for hints based on your puzzle.");
+			 String userinput= ZhehaoUtility.waitForLetterInput("h");
+			 if(userinput.equals("h")) {
+				 displayhints(p);
+			 }
 			 int[] coords = backend.getCoordInput();
 			 p = plots[coords[0]][coords[1]];
 			 backend.move(p);
+			 movestaken++;
 		 }
+		 System.out.println("You solve the puzzle! The door is now unclocked!");
 	}
-	private boolean over() {
-		return CobyBackEnd.gameover();
+	private void displaymovestaken(ZhehaoCobyPlot p) {
+		System.out.println("Moves taken: "+movestaken);
 	}
+	private void displayhints(ZhehaoCobyPlot p) {
+		
+	}
+		
 
 
 	private void displayField(cobyZhehao.ZhehaoCobyPlot[][] plots) {
@@ -66,4 +79,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 		}
 		System.out.println(columns.substring(0, plots[0].length+2));
 	}
+
+	//http://www.instructables.com/id/How-To-Solve-The-15-Puzzle/
+
 }
