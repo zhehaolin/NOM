@@ -117,16 +117,13 @@ public class JasonBackEnd implements DavidSupport{
 		}
 		return count;
 	}
-	@Override
 	public boolean stillPlaying() {
 		return playing;
 	}
-	@Override
 	public boolean respondToInput(String input) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	@Override
 	public void analyzeBoard() {
 		playing = calculateWin();
 	}
