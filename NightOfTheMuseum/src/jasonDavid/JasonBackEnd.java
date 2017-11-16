@@ -2,15 +2,15 @@ package jasonDavid;
 
 public class JasonBackEnd implements DavidSupport{
 	public JasonSupport frontend;
-	public int[][] table;
+	public static int[][] table;
 	public boolean playing;
 	
-	public String chosen;
+	public static int[] chosen;
 	public int magicNumber;
-
+	
 	public JasonBackEnd(DavidFrontEnd frontEnd, int size) {
 		table = new int[size][size];
-		chosen = "";
+		chosen = new int[size*size];
 		frontend = frontEnd;
 		createTable(size);
 		magicNumber = size* ((int)Math.pow(size, 2)+1)/2;
@@ -40,11 +40,21 @@ public class JasonBackEnd implements DavidSupport{
 		
 	}
 	public boolean isRepeated(int num) {
-		String x = Integer.toString(num);
-		if (chosen.indexOf(x) == -1) {
-			return true;
+		for (int i=0; i<chosen.length; i++) {
+			if (chosen[i] == num) {
+				return true;
+			}
 		}
+		addNum(num);
 		return false;
+	}
+	private void addNum(int num) {
+		for (int i=0; i<chosen.length;i++) {
+			if (chosen[i] == 0) {
+				chosen[i] = num;
+				return;
+			}
+		}
 	}
 	/**
 	 * swaps position of the numbers
