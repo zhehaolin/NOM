@@ -3,6 +3,7 @@ package jasonDavid;
 public class JasonBackEnd implements DavidSupport{
 	public JasonSupport frontend;
 	public int[][] table;
+	public boolean playing;
 	
 	public int[] chosen;
 	public int magicNumber;
@@ -11,7 +12,7 @@ public class JasonBackEnd implements DavidSupport{
 		frontend = frontEnd;
 		createTable(size);
 		magicNumber = size* ((int)Math.pow(size, 2)+1)/2;
-		
+		playing = true;
 	}
 	/**
 	 * creates a size x size table using double for loop
@@ -118,8 +119,7 @@ public class JasonBackEnd implements DavidSupport{
 	}
 	@Override
 	public boolean stillPlaying() {
-		// TODO Auto-generated method stub
-		return false;
+		return playing;
 	}
 	@Override
 	public boolean respondToInput(String input) {
@@ -127,8 +127,8 @@ public class JasonBackEnd implements DavidSupport{
 		return false;
 	}
 	@Override
-	public boolean analyzeBoard() {
-		return true;
+	public void analyzeBoard() {
+		playing = calculateWin();
 	}
 	
 }
