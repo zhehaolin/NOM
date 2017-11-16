@@ -68,6 +68,9 @@ public class JasonBackEnd implements DavidSupport{
 				return false;
 			}
 		}
+		if (calcDiagonal("left") != magicNumber || calcDiagonal("right") != magicNumber) {
+			return false;
+		}
 		return true;
 	}
 	/**
@@ -86,6 +89,28 @@ public class JasonBackEnd implements DavidSupport{
 		else {
 			for (int i=0; i<table.length; i++) {
 				count+= table[i][num];
+			}
+		}
+		return count;
+	}
+	public int calcDiagonal(String start) {
+		int count =0;
+		if (start.equals("left")) {
+			int x =0;
+			int y =0;
+			while (x < table.length && y < table[0].length) {
+				count+= table[x][y];
+				x++;
+				y++;
+			}
+		}
+		else {
+			int x= 0;
+			int y= table.length-1;
+			while (x < table.length && y >= 0) {
+				count+=count+= table[x][y];
+				x++;
+				y--;
 			}
 		}
 		return count;
