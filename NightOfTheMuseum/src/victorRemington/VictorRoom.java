@@ -26,11 +26,11 @@ public class VictorRoom extends CaveRoom{
 	}
 	
 	public String validKeys() {
-		return "wdsaxc";
+		return "wdsafc";
 	}
 	
 	public void printAllowedEntry() {
-		System.out.println("You can only enter 'w', 'a', 's', 'd', or 'x'.");
+		System.out.println("You can only enter 'w', 'a', 's', 'd', or 'f'.");
 	}
 	
 	public void performAction(int direction) {

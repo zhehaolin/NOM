@@ -6,12 +6,11 @@ public class RemingtonFrontEnd implements VictorSupport{
 	
 	public final static void main(String[] args) {
 		RemingtonFrontEnd demo = new RemingtonFrontEnd();
-		System.out.print("a");
 		demo.play();
 	}
 	
 	public void play() {
-		System.out.print("a");
+		System.out.print(revealAll());
 	}
 
 	public RemingtonFrontEnd(){
@@ -24,10 +23,6 @@ public class RemingtonFrontEnd implements VictorSupport{
 	
 	public void displayGameState() {
 	
-	}
-	
-	public void getSafeTile() {
-		
 	}
 	
 	public int calculateAdjacentBombs() {
@@ -48,9 +43,10 @@ public class RemingtonFrontEnd implements VictorSupport{
 		VictorRemingtonPlot[][] minefield = backend.getMinefield();
 		for(int row = 0; row < minefield.length; row++) {
 			for(int col = 0; col < minefield[0].length; col++) {
-				line += minefield[row][col].getContents();
+				line += minefield[row][col].getContents() + " ";
 			}
 			chart += line + "\n";
+			line = "";
 		}
 		return chart;
 	}
