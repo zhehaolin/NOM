@@ -51,7 +51,7 @@ public class RemingtonFrontEnd implements VictorSupport{
 				  minefield[row][col] = new VictorRemingtonPlot(row, col);
 			  }
 		}
-	
+	//rr
 	public void displayGameState() {
 	
 	}
