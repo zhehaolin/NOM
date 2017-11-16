@@ -13,7 +13,7 @@ public class DavidFrontEnd implements JasonSupport{
 
 	public static void main(String[] arg) {
 		System.out.println("What size?");
-		int size = sc.nextInt();
+		int size = CaveExplorer.in.nextInt();
 		DavidFrontEnd demo = new DavidFrontEnd(size);
 		demo.play();
 	}
@@ -27,8 +27,8 @@ public class DavidFrontEnd implements JasonSupport{
 			
 		      backend.analyzeBoard();
 		    }
-		        printGameOverMessage();
-		}
+		    printGameOverMessage();
+	}
 
 	private void provideHint() {
 		// TODO Auto-generated method stub
@@ -36,17 +36,14 @@ public class DavidFrontEnd implements JasonSupport{
 	}
 
 	private void printGameOverMessage() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Click! A sound ringed loudly signifying the completion of the puzzle.");
 	}
 
 	private String getValidUserInput() {
-		// TODO Auto-generated method stub
-		return null;
+		 return CaveExplorer.in.nextLine();
 	}
 
 	private void displayBoard() {
-		// TODO Auto-generated method stub
 		
 	}
 
