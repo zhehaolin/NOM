@@ -24,7 +24,7 @@ public class JasonBackEnd implements DavidSupport{
 		}
 	}
 	/**
-	 * generate unique random number that is not chosen yet :)
+	 * generate unique random number that is not chosen yet
 	 * @return
 	 */
 	public int generateUniqueRandomNumber(int size) {
