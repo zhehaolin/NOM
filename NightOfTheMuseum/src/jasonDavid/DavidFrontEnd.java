@@ -59,7 +59,7 @@ public class DavidFrontEnd implements JasonSupport{
 			for(int i = 0; i < 3; i++) {
 				String text = "";
 				for(int cr : row) {
-						text += "|";
+					text += "|";
 					//contents of room depend on what row this is
 					if(i==0) {
 						text+="   ";//3 spaces
@@ -82,6 +82,22 @@ public class DavidFrontEnd implements JasonSupport{
 			}
 		}
 		System.out.print(map);
+		System.out.print(SumOfArrays(backend.table));
+	}
+
+	private String SumOfArrays(int[][] table) {
+		String rows="";
+		String columns="";
+		int rowcount = 1;
+		for (int[] row : table){
+			int valuer = 0;
+			for (int cr : row){
+				valuer += cr;
+			}
+		rows += "Row "+rowcount+" sum:"+valuer+"\n";
+		rowcount+=1;
+		}
+		return rows;
 	}
 
 }
