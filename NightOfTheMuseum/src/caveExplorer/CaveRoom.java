@@ -3,6 +3,7 @@ package caveExplorer;
 import cobyZhehao.CobyRoom;
 import cobyZhehao.zhehaoRoom;
 import victorRemington.RemingtonFrontEnd;
+import victorRemington.RemingtonRoom;
 import victorRemington.VictorRoom;
 import jasonDavid.DavidFront;
 import jasonDavid.DavidNPC;
@@ -188,7 +189,7 @@ public class CaveRoom {
 		CaveExplorer.caves[3][3] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'f' to touch it.", 0.5, -20,
 				"The box is empty", "The box was a trap!. You have been struck by an arrow", 10);
 		
-		CaveExplorer.caves[0][2] = new RemingtonFrontEnd("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
+		CaveExplorer.caves[0][2] = new RemingtonRoom("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
 		
 		NPCRoom customRoom2 = new DavidFront("There is a strange figure in the corner. Press 'f' to interact.");
 		CaveExplorer.caves[0][4] = customRoom2;
