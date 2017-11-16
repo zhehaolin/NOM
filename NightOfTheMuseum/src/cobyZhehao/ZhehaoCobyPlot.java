@@ -4,6 +4,7 @@ public class ZhehaoCobyPlot {
 
 	private int row;
 	private int col;
+	private int contents;
 	
 	public ZhehaoCobyPlot(int row,int col) {
 		this.row=row;
@@ -19,5 +20,9 @@ public class ZhehaoCobyPlot {
 	public void move() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void setContents(int s) {
+		contents = s;
 	}
 }
