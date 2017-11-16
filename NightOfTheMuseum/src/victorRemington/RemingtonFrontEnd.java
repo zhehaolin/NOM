@@ -81,5 +81,11 @@ public class RemingtonFrontEnd implements VictorSupport{
 		}
 		return chart;
 	}
+
+	@Override
+	public void getSafeTile() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

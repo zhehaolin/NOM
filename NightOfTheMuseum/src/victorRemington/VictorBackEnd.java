@@ -27,7 +27,7 @@ public class VictorBackEnd implements RemingtonSupport{
 	}
 	
 	public void setUpBombs() {
-		while(bombs < 60) {
+		while(bombs < 54) {
 			int row = (int)(Math.random() * 8);
 			int col = (int)(Math.random() * 8);
 			while(minefield[row][col].hasBomb()) {
@@ -63,22 +63,22 @@ public class VictorBackEnd implements RemingtonSupport{
 		int count = 0;
 		if(row > 0) {
 			//N
-			count += checkForBomb(row - 1, col);
+			//count += checkForBomb(row - 1, col);
 		}
 		
-		if(row < minefield.length - 2) {
+		if(row < minefield.length - 1) {
 			//S
-			count += checkForBomb(row + 1, col);
+			//count += checkForBomb(row + 1, col);
 		}
 		
 		if(col > 0) {
 			//W
-			count += checkForBomb(row, col - 1);
+			//count += checkForBomb(row, col - 1);
 			if(row > 0) {
 				//NW
 				count += checkForBomb(row - 1, col - 1);
 			}
-			if(row < minefield.length - 2) {
+			if(row < minefield.length - 1) {
 				//SW
 				count += checkForBomb(row + 1, col - 1);
 			}
@@ -86,7 +86,7 @@ public class VictorBackEnd implements RemingtonSupport{
 		
 		if(col < minefield[0].length - 2) {
 			//E
-			count += checkForBomb(row, col + 1);
+			//count += checkForBomb(row, col + 1);
 			if(row > 0) {
 				//NE
 				count += checkForBomb(row - 1, col + 1);
