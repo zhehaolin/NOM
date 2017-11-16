@@ -26,7 +26,7 @@ public class VictorRoom extends CaveRoom{
 	}
 	
 	public String validKeys() {
-		return "wdsax";
+		return "wdsaxc";
 	}
 	
 	public void printAllowedEntry() {
@@ -42,8 +42,16 @@ public class VictorRoom extends CaveRoom{
 				this.setDescription("This room has coords 2, 3. " + descDisabledTrap);
 			}
 		}else {
-			System.out.println("That key does nothing");
+			if(direction == 5) {
+				//runMinigame();
+			}else {
+				System.out.println("That key does nothing");
+			}
 		}
+	}
+
+	private void runMinigame() {
+		
 	}
 
 	public void activateTrap() {

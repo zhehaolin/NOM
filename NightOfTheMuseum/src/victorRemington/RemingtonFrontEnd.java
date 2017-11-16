@@ -7,7 +7,7 @@ public class RemingtonFrontEnd implements VictorSupport{
 	public final static void main(String[] args) {
 		RemingtonFrontEnd demo = new RemingtonFrontEnd();
 		System.out.print("a");
-		//demo.play();
+		demo.play();
 	}
 	
 	public void play() {

@@ -188,7 +188,7 @@ public class CaveRoom {
 
 		CaveExplorer.caves[3][2] = new zhehaoRoom("There is a statue in front of you. Press 'f' to interact");
 		
-		CaveExplorer.caves[3][3] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'f' to touch it.", 0.5, -20,
+		CaveExplorer.caves[9][4] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'f' to touch it.", 0.5, -20,
 				"The box is empty", "The box was a trap!. You have been struck by an arrow", 10);
 		
 		CaveExplorer.caves[0][2] = new RemingtonRoom("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
