@@ -9,6 +9,8 @@ public class JasonBackEnd implements DavidSupport{
 	public int magicNumber;
 
 	public JasonBackEnd(DavidFrontEnd frontEnd, int size) {
+		table = new int[size][size];
+		chosen = new int[size*size];
 		frontend = frontEnd;
 		createTable(size);
 		magicNumber = size* ((int)Math.pow(size, 2)+1)/2;
