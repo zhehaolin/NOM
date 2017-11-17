@@ -22,17 +22,20 @@ public class DavidFrontEnd implements JasonSupport{
 		demo.play();
 	}
 	public void play() {	
-		displayBoard();
-		//while(backend.stillPlaying()) {
-			// displayBoard();}
-			// String input = getValidUserInput();
-		    // if(!backend.respondToInput(input)) {
-		    //	 provideHint();
-		    // }
-			//
-		     // backend.analyzeBoard();
-		   // }
-		   // printGameOverMessage();
+		while(backend.stillPlaying()) {
+			 displayBoard();
+			 Scanner sc = new Scanner(System.in);
+			 String input1 = sc.nextLine();
+			 String input2 = sc.nextLine();
+		     if(!backend.respondToInput(input1,input2)) {
+		    	 provideHint();
+		     }else {
+		    	backend.respondToInput(input1,input2); 
+		    	displayBoard();
+		     }
+		      //backend.analyzeBoard();
+		    }
+		  // printGameOverMessage();
 	}
 
 	private void provideHint() {
@@ -89,6 +92,7 @@ public class DavidFrontEnd implements JasonSupport{
 		String rows="";
 		String columns="";
 		int rowcount = 1;
+		int columncount = 1;
 		for (int[] row : table){
 			int valuer = 0;
 			for (int cr : row){
@@ -97,7 +101,28 @@ public class DavidFrontEnd implements JasonSupport{
 		rows += "Row "+rowcount+" sum:"+valuer+"\n";
 		rowcount+=1;
 		}
-		return rows;
+		for (int i=0; i<table.length; i++) {
+			int valuec = 0;
+			for (int[] row : table) {
+				valuec += row[i];
+			}
+			columns+= "Columns "+columncount+" sum:"+valuec+"\n";
+			columncount++;
+		}
+		int valuetl = 0;
+		for (int i=0; i<table.length;i++) {
+			valuetl += table[i][i];
+		}
+		String tl = "Top left to bottom right sum:"+valuetl;
+		int valuetr = 0;
+		int j = table.length-1;
+		for (int i=0; i<table.length;i++) {
+				valuetr += table[i][j];
+				j-=1;
+		}
+		String tr = "Top right to bottom left sum:"+valuetr;
+		String finito = rows+"\n"+columns+"\n"+tl+"\n"+tr;
+		return finito;
 	}
 
 }
