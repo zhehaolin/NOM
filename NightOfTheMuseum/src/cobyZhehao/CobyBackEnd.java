@@ -8,7 +8,6 @@ public class CobyBackEnd implements ZhehaoSupport{
 	private int[] randNums;
 	private int[][] answer= {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15}};
 	private int[][] starting = {{1,5,10,9},{15,0,4,14},{12,2,8,13},{11,7,3,6}};
-	private int[] allNums = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0};
 	private int[] blankSpot;
 	private ZhehaoCobyPlot[][] plots;
 	
@@ -28,16 +27,15 @@ public class CobyBackEnd implements ZhehaoSupport{
 		for(int i = 1; i < randNums.length; i++) {
 			randNums[i-1] = i;
 		}
-		int counter = 0;
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4; j++) {
 				plots[i][j].setContents(starting[i][j]);
+				plots[i][j].setAnswer(starting[i][j]);
 				if(plots[i][j].equals("0")) {
 					plots[i][j] = null;
 					blankSpot[0] = i;
 					blankSpot[1] = j;
 				}
-				counter++;
 			}
 		}
 	}
@@ -45,33 +43,12 @@ public class CobyBackEnd implements ZhehaoSupport{
 	public boolean gameover() {
 		for(int i=0;i<answer.length;i++) {
 			for(int j=0;j<answer[i].length; j++) {
-				if(plots[i][j] != answer[i][j]) {
+				if(plots[i][j].getContents() != plots[i][j].getAnswer()) {
 					return false;
 				}
 			}
 		}
 		return true;
-	}
-	
-	public void move(ZhehaoCobyPlot p) {
-		p.move();
-	}
-
-	public int[] getCoordInput() {
-		String input = CaveExplorer.in.nextLine();
-		if(validCoords(input)) {
-			int[] coords = findCoords(input);
-			if(isNextToBlank(coords)) {
-				moveIntoBlank(coords);
-			}
-		}
-		return null;
-	}
-
-	private void moveIntoBlank(int[] coords) {
-		blankSpot[0] = coords[0];
-		blankSpot[1] = coords[1];
-		coords = null;
 	}
 
 	private int[] findCoords(String input) {
@@ -111,18 +88,37 @@ public class CobyBackEnd implements ZhehaoSupport{
 		if(oneRight > 3) {
 			oneRight = 3;
 		}
-		if(place[0] - 1 == blankSpot[0] || place[0] + 1 == blankSpot[0]) {
-			if(place[1] - 1 == blankSpot[1] || place[1] + 1 == blankSpot[1]) {
-				return true;
-			}
+		if(oneUp == blankSpot[0] || oneDown == blankSpot[0] || oneLeft == blankSpot[1] || oneRight == blankSpot[1]) {
+			return true;
 		}
 		return false;
 	}
 	
 	public ZhehaoCobyPlot[][] getPlots() {
-		// TODO Auto-generated method stub
-		return null;
+		return plots;
 	}
+
+	@Override
+	public int[] getCoordInput() {
+		int[] coords = null;
+		String input = CaveExplorer.in.nextLine();
+		if(validCoords(input)) {
+			coords = findCoords(input);
+		}
+		return coords;
+	}
+
+	@Override
+	public void move(ZhehaoCobyPlot p) {
+		if(isNextToBlank(coords)) {
+			moveIntoBlank(coords);
+		} 
+	}
+	
+	//Coords is the coordinates of the new spot being turned into a blank
+		private void moveIntoBlank(int[] coords) {
+			plots[blankSpot[0]].getContents() = coords[0];
+		}
 	
 
 }
