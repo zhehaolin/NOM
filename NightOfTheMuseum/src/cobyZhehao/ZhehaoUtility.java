@@ -51,7 +51,7 @@ public interface ZhehaoUtility {
 			}
 			list += " or "+letters.substring(letters.length()-1); 
 			System.out.println(list);
-			input = ZhehaoFrontEnd.in.nextLine();
+			input = ZhehaoFrontEnd.in.nextLine();//hi
 		}
 		return input.toLowerCase().substring(0, 1);
 	}

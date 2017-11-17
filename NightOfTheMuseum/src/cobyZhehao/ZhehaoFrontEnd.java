@@ -58,7 +58,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 			 }
 			 int[] coords = backend.getCoordInput();
 			 if(coords !=null) {
-				 p = plots[coords[0]][coords[1]];
+				 p = plots[coords[0]][coords[1]];//hi
 				 backend.move(p);
 				 movestaken++;
 			 }else {
