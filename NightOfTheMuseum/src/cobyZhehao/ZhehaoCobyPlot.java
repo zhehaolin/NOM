@@ -4,30 +4,28 @@ public class ZhehaoCobyPlot {
 
 	private int row;
 	private int col;
-	private int contents;
+	private String contents;
 	private int correct;
 	
 	public ZhehaoCobyPlot(int row,int col) {
 		this.row=row;
 		this.col=col;
 	}
-	public int getRow()
-	{
+	public int getRow(){
 		return row;
 	}
 	public int getCol() {
 		return col;
 	}
 	public void move() {
-		// TODO Auto-generated method stub
 		
 	}
 	
-	public void setContents(int s) {
-		contents = s;
+	public void setContents(String starting) {
+		contents = starting;
 	}
 	
-	public int getContents() {
+	public String getContents() {
 		return this.contents;
 	}
 	
@@ -37,5 +35,9 @@ public class ZhehaoCobyPlot {
 	
 	public int getAnswer() {
 		return this.correct;
+	}
+	
+	public void setContentsNull() {
+		this.contents = " ";
 	}
 }
