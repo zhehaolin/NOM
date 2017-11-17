@@ -87,7 +87,7 @@ public class JasonBackEnd implements DavidSupport{
 		return true;
 	}
 	/**
-	 * Use double for loop to check the sum of individual column/row
+	 * Use a double for loop to check the sum of individual column/row
 	 * @param num
 	 * @param start
 	 * @return
