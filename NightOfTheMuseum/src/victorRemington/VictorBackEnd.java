@@ -27,7 +27,7 @@ public class VictorBackEnd implements RemingtonSupport{
 	}
 	
 	public void setUpBombs() {
-		while(bombs < 54) {
+		while(bombs < 11) {
 			int row = (int)(Math.random() * 8);
 			int col = (int)(Math.random() * 8);
 			while(minefield[row][col].hasBomb()) {
@@ -63,17 +63,17 @@ public class VictorBackEnd implements RemingtonSupport{
 		int count = 0;
 		if(row > 0) {
 			//N
-			//count += checkForBomb(row - 1, col);
+			count += checkForBomb(row - 1, col);
 		}
 		
 		if(row < minefield.length - 1) {
 			//S
-			//count += checkForBomb(row + 1, col);
+			count += checkForBomb(row + 1, col);
 		}
 		
 		if(col > 0) {
 			//W
-			//count += checkForBomb(row, col - 1);
+			count += checkForBomb(row, col - 1);
 			if(row > 0) {
 				//NW
 				count += checkForBomb(row - 1, col - 1);
@@ -84,14 +84,14 @@ public class VictorBackEnd implements RemingtonSupport{
 			}
 		}
 		
-		if(col < minefield[0].length - 2) {
+		if(col < minefield[0].length - 1) {
 			//E
-			//count += checkForBomb(row, col + 1);
+			count += checkForBomb(row, col + 1);
 			if(row > 0) {
 				//NE
 				count += checkForBomb(row - 1, col + 1);
 			}
-			if(row < minefield.length - 2) {
+			if(row < minefield.length - 1) {
 				//SE
 				count += checkForBomb(row + 1, col + 1);
 			}
@@ -99,11 +99,16 @@ public class VictorBackEnd implements RemingtonSupport{
 		return Integer.toString(count);
 	}
 
+	//checks if the space is visible or not
 	public boolean checkValidinput(int[] coords) {
-		if(minefield[coords[0]][coords[1]].isVisible()) {
-			return false;
+		int row = coords[0];
+		int col = coords[1];
+		if(row >= 0 && row < 8 && col >= 0 && col < 8) {
+			return !minefield[coords[0]][coords[1]].isVisible();
 		}
-		return true;
+		return false;
+			
+
 	}
 	
 	public void changeNumConcealedBombs() {

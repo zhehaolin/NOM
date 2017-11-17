@@ -26,6 +26,7 @@ public class RemingtonFrontEnd implements VictorSupport{
 		in.nextLine();
 		introScreen();
 
+		//used for cheatcode and testing
 		System.out.print(revealAll());
 
 	}
@@ -49,12 +50,17 @@ public class RemingtonFrontEnd implements VictorSupport{
 	}
 	
 	public void drawField() {
+		String line = "0  ";
+		String chart = "   0 1 2 3 4 5 6 7 \n\n";
 		VictorRemingtonPlot[][] minefield = backend.getMinefield();
 		for(int row = 0; row < minefield.length; row++) {
-			  for (int col = 0; col < minefield[row].length; col++){
-				  minefield[row][col] = new VictorRemingtonPlot(row, col);
-			  }
+			for(int col = 0; col < minefield[0].length; col++) {
+				line += "* ";
+			}
+			chart += line + "\n";
+			line = row+1 + "  ";
 		}
+		System.out.println(chart);;
 	}
 	//rr
 	public void displayGameState() {
@@ -74,16 +80,17 @@ public class RemingtonFrontEnd implements VictorSupport{
 	}
 	
 	public String revealAll() {
-		String line = "";
-		String chart = "";
+		String line = "0  ";
+		String chart = "   0 1 2 3 4 5 6 7 \n\n";
 		VictorRemingtonPlot[][] minefield = backend.getMinefield();
 		for(int row = 0; row < minefield.length; row++) {
 			for(int col = 0; col < minefield[0].length; col++) {
 				line += minefield[row][col].getContents() + " ";
 			}
 			chart += line + "\n";
-			line = "";
+			line = row+1 + "  ";
 		}
+
 		return chart;
 	}
 
