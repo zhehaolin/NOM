@@ -131,18 +131,32 @@ public class JasonBackEnd implements DavidSupport{
 	public boolean stillPlaying() {
 		return playing;
 	}
-	public boolean respondToInput(String input) {
-		//
+	public boolean respondToInput(String input1, String input2) {
+		if (isValid(input1) && isValid(input2)) {
+			int x = Integer.parseInt(input1.substring(0,1));
+			int y = Integer.parseInt(input1.substring(2,3));
+			int x1 = Integer.parseInt(input2.substring(0,1));
+			int y1 = Integer.parseInt(input2.substring(0,1));
+			swap(table,x,y,x1,y1);
+		}
 		return false;
 	}
 	public void analyzeBoard() {
 		playing = calculateWin();
 	}
 	public boolean isValid(String input) {
-		if (input.length() == 3) {
-			
-		}
-		return true;
+		return input.length()==3 &&isNum(input.substring(0,1)) && isNum(input.substring(2,3)) && input.substring(1,2).equals(",");
+	}
+	public static boolean isNum(String input) {
+	    boolean isNum = true;
+	    try {
+
+	        Double.parseDouble(input);
+
+	    }catch (NumberFormatException e) {
+	        isNum = false;
+	    }
+	    return isNum;
 	}
 	
 }
