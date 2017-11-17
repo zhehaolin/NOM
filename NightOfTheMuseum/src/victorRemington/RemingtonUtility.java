@@ -2,8 +2,9 @@ package victorRemington;
 
 import caveExplorer.CaveExplorer;
 
-public class RemingtonUtility {
 
+public class RemingtonUtility {
+	
 	public static void print(String s){
 		//create a multi-line String
 		String printString = "";
@@ -41,7 +42,7 @@ public class RemingtonUtility {
 
 	
 	public static String waitForLetterInput(String letters){
-		String input = CaveExplorer.in.nextLine();
+		String input = RemingtonFrontEnd.in.nextLine();
 		while(input.length() <1 || letters.toLowerCase().indexOf(input.toLowerCase().substring(0, 1))<0){
 			System.out.print("That entry is not allowed. Please type on of the following: ");
 			String list = "";

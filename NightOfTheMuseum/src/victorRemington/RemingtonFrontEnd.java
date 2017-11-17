@@ -1,16 +1,19 @@
 package victorRemington;
 
 import victorRemington.VictorRemingtonPlot;
-import caveExplorer.BenNocklesPlot;
 import caveExplorer.CaveExplorer;
 import victorRemington.RemingtonIntro;
 import victorRemington.RemingtonUtility;
+import java.util.Scanner;
 
 public class RemingtonFrontEnd implements VictorSupport{
 
+	public static Scanner in;
 	private VictorBackEnd backend;
 	
+	
 	public final static void main(String[] args) {
+		in = new Scanner(System.in);
 		RemingtonFrontEnd demo = new RemingtonFrontEnd();
 		demo.play();
 	}
@@ -20,7 +23,7 @@ public class RemingtonFrontEnd implements VictorSupport{
 	public void play() {
 
 		new RemingtonIntro().play();
-		CaveExplorer.in.nextLine();
+		in.nextLine();
 		introScreen();
 
 		System.out.print(revealAll());
@@ -33,7 +36,7 @@ public class RemingtonFrontEnd implements VictorSupport{
 		if(command.equals("r")){
 			RemingtonUtility.print("The objective of the game is to clear the board containing hidden 'mines' or bombs without detonating any of them."
 					+" With help from clues(numbers that pop up after putting in a coordinate) about the number of neighboring mines in each field.\n\n      - - press enter - -");
-			CaveExplorer.in.nextLine();
+			in.nextLine();
 			introScreen();
 		}else{
 			drawField();
@@ -46,11 +49,13 @@ public class RemingtonFrontEnd implements VictorSupport{
 	}
 	
 	public void drawField() {
-		for(int row = 0; row < backend.getMinefield().length; row++) {
-			  for (int col = 0; col < backend.getMinefield()[row].length; col++){
+		VictorRemingtonPlot[][] minefield = backend.getMinefield();
+		for(int row = 0; row < minefield.length; row++) {
+			  for (int col = 0; col < minefield[row].length; col++){
 				  minefield[row][col] = new VictorRemingtonPlot(row, col);
 			  }
 		}
+	}
 	//rr
 	public void displayGameState() {
 	
