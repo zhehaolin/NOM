@@ -82,6 +82,7 @@ public class JasonBackEnd implements DavidSupport{
 			}
 		}
 		if (calcDiagonal("left") != magicNumber || calcDiagonal("right") != magicNumber) {
+			System.out.println(calcDiagonal("right"));
 			return false;
 		}
 		return true;
@@ -109,19 +110,19 @@ public class JasonBackEnd implements DavidSupport{
 	public int calcDiagonal(String start) {
 		int count =0;
 		if (start.equals("left")) {
-			int x =0;
-			int y =0;
-			while (x < table.length && y < table[0].length) {
-				count+= table[x][y];
-				x++;
-				y++;
+			int row =0;
+			int col =0;
+			while (row < table.length && col < table[0].length) {
+				count+= table[row][col];
+				row++;
+				col++;
 			}
 		}
 		else {
 			int x= 0;
 			int y= table.length-1;
 			while (x < table.length && y >= 0) {
-				count+=count+= table[x][y];
+				count+= table[x][y];
 				x++;
 				y--;
 			}
@@ -133,13 +134,16 @@ public class JasonBackEnd implements DavidSupport{
 	}
 	public boolean respondToInput(String input1, String input2) {
 		if (isValid(input1) && isValid(input2)) {
-			int x = Integer.parseInt(input1.substring(0,1));
-			int y = Integer.parseInt(input1.substring(2,3));
-			int x1 = Integer.parseInt(input2.substring(0,1));
-			int y1 = Integer.parseInt(input2.substring(0,1));
-			swap(table,x,y,x1,y1);
+			return true;
 		}
 		return false;
+	}
+	public void performSwap(String input1, String input2) {
+		int y = Integer.parseInt(input1.substring(0,1))-1;
+		int x = Integer.parseInt(input1.substring(2,3))-1;
+		int y1 = Integer.parseInt(input2.substring(0,1))-1;
+		int x1 = Integer.parseInt(input2.substring(2,3))-1;
+		swap(table,x,y,x1,y1);
 	}
 	public void analyzeBoard() {
 		playing = calculateWin();
@@ -160,4 +164,5 @@ public class JasonBackEnd implements DavidSupport{
 	}
 	
 }
+
 
