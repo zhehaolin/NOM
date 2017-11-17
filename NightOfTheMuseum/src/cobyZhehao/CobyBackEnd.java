@@ -121,6 +121,5 @@ public class CobyBackEnd implements ZhehaoSupport{
 		plots[blankSpot[0]][blankSpot[1]].setContents(switchingNum);
 		p.setContents(null);
 	}
-	
 
 }

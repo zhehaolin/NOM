@@ -11,8 +11,7 @@ public class ZhehaoCobyPlot {
 		this.row=row;
 		this.col=col;
 	}
-	public int getRow()
-	{
+	public int getRow(){
 		return row;
 	}
 	public int getCol() {
