@@ -1,8 +1,11 @@
 package cobyZhehao;
 
+
+
 import caveExplorer.CaveExplorer;
 
 public interface ZhehaoUtility {
+	
 	public static void print(String s){
 		//create a multi-line String
 		String printString = "";
@@ -37,10 +40,9 @@ public interface ZhehaoUtility {
 
 		System.out.println(printString);
 	}
-
 	
 	public static String waitForLetterInput(String letters){
-		String input = CaveExplorer.in.nextLine();
+		String input = ZhehaoFrontEnd.in.nextLine();
 		while(input.length() <1 || letters.toLowerCase().indexOf(input.toLowerCase().substring(0, 1))<0){
 			System.out.print("That entry is not allowed. Please type on of the following: ");
 			String list = "";
@@ -49,7 +51,7 @@ public interface ZhehaoUtility {
 			}
 			list += " or "+letters.substring(letters.length()-1); 
 			System.out.println(list);
-			input = CaveExplorer.in.nextLine();
+			input = ZhehaoFrontEnd.in.nextLine();
 		}
 		return input.toLowerCase().substring(0, 1);
 	}
