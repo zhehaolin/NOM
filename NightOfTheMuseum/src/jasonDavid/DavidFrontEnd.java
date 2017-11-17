@@ -124,5 +124,31 @@ public class DavidFrontEnd implements JasonSupport{
 		String finito = rows+"\n"+columns+"\n"+tl+"\n"+tr;
 		return finito;
 	}
-
+	private boolean checkForNext(int xcoord, int ycoord) {
+		int[][] table = backend.table;
+		if (table[ycoord-1][xcoord] < 0) {
+			if (table[table.length-1][xcoord+1] < 0){
+				if (table[table.length-1][0] == table[ycoord][xcoord]+1) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else {
+				if (table[table.length-1][xcoord+1]==table[ycoord][xcoord]+1) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+		}
+		if (backend.table[ycoord][xcoord] == 1+backend.table[ycoord-1][xcoord+1]) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
