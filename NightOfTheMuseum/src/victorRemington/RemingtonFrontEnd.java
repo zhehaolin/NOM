@@ -56,7 +56,6 @@ public class RemingtonFrontEnd implements VictorSupport{
 			  }
 		}
 	}
-	//rr
 	public void displayGameState() {
 	
 	}
