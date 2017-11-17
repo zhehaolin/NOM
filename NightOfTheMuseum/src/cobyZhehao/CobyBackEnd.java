@@ -7,7 +7,7 @@ public class CobyBackEnd implements ZhehaoSupport{
 	private CobySupport frontend;
 	private int[] randNums;
 	private int[][] answer= {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15}};
-	private int[][] starting = {{1,5,10,9},{15,0,4,14},{12,2,8,13},{11,7,3,6}};
+	private String[][] starting = {{"1","5","10","9"},{"15"," ","4","14"},{"12","2","8","13"},{"11","7","3","6"}};
 	private int[] blankSpot;
 	private ZhehaoCobyPlot[][] plots;
 	
@@ -71,11 +71,11 @@ public class CobyBackEnd implements ZhehaoSupport{
 		return false;
 	}
 	
-	public boolean isNextToBlank(int[] place) {
-		int oneUp = place[0]-1;
-		int oneDown = place[0]+1;
-		int oneLeft = place[1]-1;
-		int oneRight = place[1]+1;
+	public boolean isNextToBlank(ZhehaoCobyPlot p) {
+		int oneUp = p.getRow()-1;
+		int oneDown = p.getRow()+1;
+		int oneLeft = p.getCol()-1;
+		int oneRight = p.getCol()+1;
 		if(oneUp < 0) {
 			oneUp = 0;
 		}
@@ -110,15 +110,17 @@ public class CobyBackEnd implements ZhehaoSupport{
 
 	@Override
 	public void move(ZhehaoCobyPlot p) {
-		if(isNextToBlank(coords)) {
-			moveIntoBlank(coords);
+		if(isNextToBlank(p)) {
+			moveIntoBlank(p);
 		} 
 	}
 	
 	//Coords is the coordinates of the new spot being turned into a blank
-		private void moveIntoBlank(int[] coords) {
-			plots[blankSpot[0]].getContents() = coords[0];
-		}
+	public void moveIntoBlank(ZhehaoCobyPlot p) {
+		int switchingNum = p.getContents();
+		plots[blankSpot[0]][blankSpot[1]].setContents(switchingNum);
+		p.setContents(null);
+	}
 	
 
 }
