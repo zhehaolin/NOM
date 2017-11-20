@@ -1,5 +1,7 @@
 package cobyZhehao;
 
+import java.util.Scanner;
+
 import caveExplorer.CaveExplorer;
 
 public class CobyBackEnd implements ZhehaoSupport{
@@ -11,6 +13,7 @@ public class CobyBackEnd implements ZhehaoSupport{
 	private int[] blankSpot;
 	private ZhehaoCobyPlot[][] plots;
 	private String keyword = "math";
+	public static Scanner in;
 	
 	public CobyBackEnd(CobySupport frontend) {
 		this.frontend = frontend;
