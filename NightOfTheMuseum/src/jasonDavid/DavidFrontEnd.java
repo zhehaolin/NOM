@@ -144,11 +144,27 @@ public class DavidFrontEnd implements JasonSupport{
 				}
 			}
 		}
-		if (backend.table[ycoord][xcoord] == 1+backend.table[ycoord-1][xcoord+1]) {
+		if (table[ycoord][xcoord+1]<0) {
+			if (table[ycoord-1][0]<0) {
+				if(table[table.length-1][0]==table[ycoord][xcoord]+1) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else {
+				if (table[ycoord-1][0] == table[ycoord][xcoord]+1) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+		}
+		if (table[ycoord][xcoord] == 1+table[ycoord-1][xcoord+1]) {
 			return true;
 		}
-		else {
 			return false;
-		}
 	}
 }
