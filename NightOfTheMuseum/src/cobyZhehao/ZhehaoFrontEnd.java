@@ -50,11 +50,10 @@ public class ZhehaoFrontEnd implements CobySupport {
 		 while(backend.gameover()) {
 			 updateMap();
 			 displaymovestaken(p);
-			 System.out.println("Which tile do you want to move? Or enter 'h' for hints based on your puzzle.");
-			 String userinput= ZhehaoUtility.waitForLetterInput("h");
-			 if(userinput.equals("h")) {
+			 System.out.println("Which tile do you want to move? ");
+			
 				 displayhints(p);
-			 }else {
+			
 				 int[] coords = backend.getCoordInput();
 				 if(coords !=null) {
 					 p = plots[coords[0]][coords[1]];
@@ -66,8 +65,6 @@ public class ZhehaoFrontEnd implements CobySupport {
 				 
 			 }
 			
-			 
-		 }
 		 System.out.println("You solve the puzzle! The door is now unclocked!");
 	}
 	private void displaymovestaken(ZhehaoCobyPlot p) {
