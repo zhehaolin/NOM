@@ -16,11 +16,16 @@ public class CobyBackEnd implements ZhehaoSupport{
 	public static Scanner in;
 	
 	public CobyBackEnd(CobySupport frontend) {
+		initScanner();
 		this.frontend = frontend;
 		plots = new ZhehaoCobyPlot[4][4];
 		createPlots();
 	}
 
+	public static void initScanner() {
+		in = new Scanner(System.in);
+	}
+	
 	private void createPlots() {
 		for(int row = 0; row < plots.length; row++) {
 			for(int col = 0; col < plots[row].length; col++) {
