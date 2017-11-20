@@ -6,8 +6,7 @@ import caveExplorer.CaveExplorer;
 
 public class ZhehaoFrontEnd implements CobySupport {
 
-	private ZhehaoSupport backend;
-	private int[][] ZhehaoCobyPlot;
+	private CobyBackEnd backend;
 	private int movestaken;
 	public static Scanner in;
 	
@@ -48,22 +47,25 @@ public class ZhehaoFrontEnd implements CobySupport {
 	private void StartGame() {
 		 ZhehaoCobyPlot[][] plots = backend.getPlots();
 		 ZhehaoCobyPlot p = null;
-		 while(!backend.gameover()) {
-			 displayField(plots);
+		 while(backend.gameover()) {
+			 updateMap();
 			 displaymovestaken(p);
 			 System.out.println("Which tile do you want to move? Or enter 'h' for hints based on your puzzle.");
 			 String userinput= ZhehaoUtility.waitForLetterInput("h");
 			 if(userinput.equals("h")) {
 				 displayhints(p);
-			 }
-			 int[] coords = backend.getCoordInput();
-			 if(coords !=null) {
-				 p = plots[coords[0]][coords[1]];//hi
-				 backend.move(p);
-				 movestaken++;
 			 }else {
-				 System.out.println("Please enter a valid input");
+				 int[] coords = backend.getCoordInput();
+				 if(coords !=null) {
+					 p = plots[coords[0]][coords[1]];
+					 backend.move(p);
+					 movestaken++;
+				 }else {
+					 System.out.println("Please enter a valid input");
+				 }
+				 
 			 }
+			
 			 
 		 }
 		 System.out.println("You solve the puzzle! The door is now unclocked!");
@@ -98,22 +100,35 @@ public class ZhehaoFrontEnd implements CobySupport {
 		return count;
 			
 	}
-		
-
-
-	private void displayField(cobyZhehao.ZhehaoCobyPlot[][] plots) {
-		String rows = "0123456789";
-		String columns = "  0123456789";
-		for(int row = 0; row < plots.length; row++){
-			System.out.print(rows.substring(row, row+1)+" ");
-			for(int col = 0; col < plots[row].length; col++){
-				System.out.println(ZhehaoCobyPlot[row][col]);
-			}
-			System.out.println(" " + rows.substring(row, row+1));
-		}
-		System.out.println(columns.substring(0, plots[0].length+2));
-	}
-
 	
-
+	public void updateMap() {
+		String map = " ";
+	
+		for(int i = 0; i < backend.plots[0].length -1; i++) {
+			map += "____";
+		}
+		map+= "___\n";
+		for(ZhehaoCobyPlot[] row : backend.plots) {
+			
+			for(int i = 0; i < 3; i++) {
+				String text = "";
+				for(ZhehaoCobyPlot cr : row) {
+					
+						text += "|";
+					
+					if(i==0) {
+						text+="   ";
+					}else if(i == 1) {
+						text += " "+cr.getContents()+" ";
+					}else if(i == 2) {
+							text += "___";
+					}
+				}
+				text+="|";
+				map += text +"\n";
+			}
+			
+		}
+		System.out.print(map);
+	}
 }
