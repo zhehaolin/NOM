@@ -10,6 +10,7 @@ public class CobyBackEnd implements ZhehaoSupport{
 	private String[][] starting = {{"1","5","10","9"},{"15"," ","4","14"},{"12","2","8","13"},{"11","7","3","6"}};
 	private int[] blankSpot;
 	private ZhehaoCobyPlot[][] plots;
+	private String keyword = "math";
 	
 	public CobyBackEnd(CobySupport frontend) {
 		this.frontend = frontend;
@@ -123,5 +124,13 @@ public class CobyBackEnd implements ZhehaoSupport{
 		blankSpot[0] = p.getRow();
 		blankSpot[1] = p.getCol();
 	}
+	
+	public boolean keyWordUsed() {
+		if(CaveExplorer.in.nextLine() == keyword) {
+			return true;
+		}
+		return false;
+	}
+	
 
 }
