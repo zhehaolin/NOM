@@ -9,12 +9,13 @@ public class VictorRemingtonPlot {
 	private boolean isEmpty;
 	private boolean isFlaged;
 	private String contents;
-	private final static String[] tileTypes = {"bomb", "empty", "number"};
+	private String tempContents;
 	
 	public VictorRemingtonPlot(int row, int col) {
 		isVisible = false;
 		isFlaged = false;
-		this.contents = " ";
+		this.contents = "";
+		this.tempContents = "";
 		this.row = row;
 		this.col = col;
 	}
@@ -37,17 +38,24 @@ public class VictorRemingtonPlot {
 
 	public void setContents(String contents) {
 		this.contents = contents;
+		tempContents = contents;
 	}
 
 	public boolean isEmpty() {
 		return isEmpty;
 	}
 
-	public String getContents() {
-		return contents;
+	public String getTempContents() {
+		return tempContents;
 	}
 	
 	public void setFlaged(boolean flaged) {
 		isFlaged = flaged;
+		if(flaged) {
+			tempContents = "F";
+		}else {
+			tempContents = contents;
+		}
+		
 	}
 }

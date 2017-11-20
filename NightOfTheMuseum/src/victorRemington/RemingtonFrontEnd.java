@@ -10,6 +10,9 @@ public class RemingtonFrontEnd implements VictorSupport{
 
 	public static Scanner in;
 	private VictorBackEnd backend;
+	public String cheatCode;
+	public boolean playing;
+	
 	
 	
 	public final static void main(String[] args) {
@@ -18,16 +21,28 @@ public class RemingtonFrontEnd implements VictorSupport{
 		demo.play();
 	}
 	
-	private int bombAmt;
-	
 	public void play() {
-
 		new RemingtonIntro().play();
 		in.nextLine();
 		introScreen();
 
-		//used for cheatcode and testing
-		System.out.print(revealAll());
+		while(!backend.checkVictory()) {
+			drawField();
+			displayGameState();
+			String input = in.nextLine();
+			while(!backend.checkValidinput(getCoords(input))) {
+				input = in.nextLine();
+				System.out.println("Try another tile.");
+			}
+			
+			//MAKE SURE TO ENSURE THAT ALL INPUTS WORK. 
+			//HAVE SOME ERROR CHECKING TO TELL THE USER WHAT TO DO.
+			backend.getMinefield()[getCoords(input)[0]][getCoords(input)[1]].setVisible(true);
+			//if(checkCheatCode(in.nextLine())){
+				System.out.print(revealAll() +"\n\nCongradulations you won!!!!\n\n\n\n\n...By cheating.......");
+			//}
+		}
+		
 
 	}
 
@@ -39,43 +54,34 @@ public class RemingtonFrontEnd implements VictorSupport{
 					+" With help from clues(numbers that pop up after putting in a coordinate) about the number of neighboring mines in each field.\n\n      - - press enter - -");
 			in.nextLine();
 			introScreen();
-		}else{
-			drawField();
 		}
-
 	}
+	
 	
 	public RemingtonFrontEnd(){
 		backend = new VictorBackEnd(this);
+		cheatCode = "ab";
 	}
 	
 	public void drawField() {
-		String line = "0  ";
-		String chart = "   0 1 2 3 4 5 6 7 \n\n";
+		String line = "0 |";
+		String chart = "\n   0 1 2 3 4 5 6 7 \n   _______________\n";
 		VictorRemingtonPlot[][] minefield = backend.getMinefield();
 		for(int row = 0; row < minefield.length; row++) {
 			for(int col = 0; col < minefield[0].length; col++) {
-				line += "* ";
+				if(minefield[row][col].isVisible()) {
+					line += minefield[row][col].getTempContents()+" ";
+				}else {
+					line += "* ";
+				}
 			}
 			chart += line + "\n";
-			line = row+1 + "  ";
+			line = row+1 + " |";      
 		}
 		System.out.println(chart);;
 	}
 	public void displayGameState() {
-	
-	}
-	
-	public int calculateAdjacentBombs() {
-		return 0;
-	}
-	
-	public void evaluateInput() {
-		
-	}
-	
-	public void handleVisiblity() {
-		
+		System.out.println("You have "+ backend.getFlaged() + " flaged bombs. You need to flag 11 to win. But make sure they are actually bombs...or else.");
 	}
 	
 	public String revealAll() {
@@ -84,19 +90,24 @@ public class RemingtonFrontEnd implements VictorSupport{
 		VictorRemingtonPlot[][] minefield = backend.getMinefield();
 		for(int row = 0; row < minefield.length; row++) {
 			for(int col = 0; col < minefield[0].length; col++) {
-				line += minefield[row][col].getContents() + " ";
+				line += minefield[row][col].getTempContents() + " ";
 			}
 			chart += line + "\n";
 			line = row+1 + "  ";
 		}
-
 		return chart;
 	}
 
-	@Override
-	public void getSafeTile() {
-		// TODO Auto-generated method stub
-		
+	public boolean checkCheatCode(String code) {
+		return(code.equals(cheatCode));
 	}
 	
+	public int[] getCoords(String s) {
+		int[] coords = new int[2];
+		int row = Integer.parseInt(s.substring(0, 1));
+		int col = Integer.parseInt(s.substring(2, 3));
+		coords[0] = row;
+		coords[1] = col;
+		return coords;
+	}
 }

@@ -5,11 +5,14 @@ public class VictorBackEnd implements RemingtonSupport{
 	private RemingtonFrontEnd frontend;
 	private VictorRemingtonPlot[][] minefield;
 	private static int bombs; 
+	private static int correctFlaged;
+	private static int flaged;
 	
 	public VictorBackEnd(RemingtonFrontEnd remingtonFrontEnd) {
 		this.frontend = remingtonFrontEnd;
 		minefield = new VictorRemingtonPlot[8][8];
 		bombs = 0;
+		correctFlaged = 0;
 		populateMinefield();
 	}
 	
@@ -34,7 +37,7 @@ public class VictorBackEnd implements RemingtonSupport{
 				row = (int)(Math.random() * 8);
 				col = (int)(Math.random() * 8);
 			}
-			minefield[row][col].setContents("b");
+			minefield[row][col].setContents("B");
 			minefield[row][col].setHasBomb(true);
 			bombs++;
 		}
@@ -107,14 +110,6 @@ public class VictorBackEnd implements RemingtonSupport{
 			return !minefield[coords[0]][coords[1]].isVisible();
 		}
 		return false;
-			
-
-	}
-	
-	public void changeNumConcealedBombs() {
-		//changes number of bombs based on front end input
-		//also have seperate var checking how many are actually bombs
-		//ensure player cant just flag 11 random tiles and win
 	}
 	
 	public String victoryStatement() {
@@ -123,5 +118,25 @@ public class VictorBackEnd implements RemingtonSupport{
 	
 	public VictorRemingtonPlot[][] getMinefield() {
 		return minefield;
+	}
+	
+	public void flag(int[] coords) {
+		minefield[coords[0]][coords[1]].setFlaged(true);
+		flaged++;
+		checkIsFlagedBombs(coords);
+	}
+	
+	public boolean checkVictory() {
+		return (correctFlaged == bombs);
+	}
+	
+	public void checkIsFlagedBombs(int[] coords) {
+		if(minefield[coords[0]][coords[1]].hasBomb()) {
+			correctFlaged++;
+		}
+	}
+	
+	public int getFlaged() {
+		return flaged;
 	}
 }
