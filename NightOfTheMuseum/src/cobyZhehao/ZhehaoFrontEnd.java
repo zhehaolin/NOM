@@ -79,7 +79,24 @@ public class ZhehaoFrontEnd implements CobySupport {
 		"-Move tile 13 to be in tile 9's final position.\n -Move tile 9 to be directly to the right of tile 13.","-Rotate the 5 tiles in the bottom left of the board counter clockwise like a snake until tiles 13 and 9 are in their final positions.","-Move tile 14 to the right of tile 9 so that it is in tile 10's final position.\n -Move tile 10 to be directly to the right of tile 14.",
 		"-Rotate the three tiles in the middle two columns on the bottom two rows counter clockwise like a snake until tiles 14 and 10 are in their final positions.","-Rotate tiles 11, 12, and 15 either clockwise or counter clockwise until they are all in the correct positions"};
 		
+		System.out.println(possiblehint[checkplot(plot)]);
 		
+	}
+	private int checkplot(ZhehaoCobyPlot[][] z) {
+		
+		int[][] answer={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15}};
+		int count=0;
+		for(int row = 0; row < z.length; row++) {
+			for(int col = 0; col < z[row].length; col++) {
+				if(Integer.parseInt(z[row][col].getContents())!=answer[row][col] || Integer.parseInt(z[row][col+1].getContents())!=answer[row][col+1]) {
+					return count;
+				}else {
+					count++;
+				}
+			}
+		}
+		return count;
+			
 	}
 		
 
