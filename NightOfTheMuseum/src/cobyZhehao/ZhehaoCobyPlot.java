@@ -5,7 +5,7 @@ public class ZhehaoCobyPlot {
 	private int row;
 	private int col;
 	private String contents;
-	private int correct;
+	private String correct;
 	
 	public ZhehaoCobyPlot(int row,int col) {
 		this.row=row;
@@ -29,11 +29,11 @@ public class ZhehaoCobyPlot {
 		return this.contents;
 	}
 	
-	public void setAnswer(int a) {
+	public void setAnswer(String a) {
 		correct = a;
 	}
 	
-	public int getAnswer() {
+	public String getAnswer() {
 		return this.correct;
 	}
 	

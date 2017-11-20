@@ -61,7 +61,7 @@ public class CobyBackEnd implements ZhehaoSupport{
 	}
 
 	public boolean validCoords(String input) {
-		if(input.substring(1,2).equals(",") && input.length() ==3){
+		if(input.substring(1,2).equals(",") && input.length() == 3){
 			if(input.substring(0,1) == "0" || input.substring(0,1) == "1" || input.substring(0,1) == "2" || input.substring(0,1) == "3") {
 				if(input.substring(2,3) == "0" || input.substring(2,3) == "1" || input.substring(2,3) == "2" || input.substring(2,3) == "3") {
 					return true;
@@ -117,9 +117,11 @@ public class CobyBackEnd implements ZhehaoSupport{
 	
 	//Coords is the coordinates of the new spot being turned into a blank
 	public void moveIntoBlank(ZhehaoCobyPlot p) {
-		int switchingNum = p.getContents();
+		String switchingNum = p.getContents();
 		plots[blankSpot[0]][blankSpot[1]].setContents(switchingNum);
 		p.setContents(null);
+		blankSpot[0] = p.getRow();
+		blankSpot[1] = p.getCol();
 	}
 
 }
