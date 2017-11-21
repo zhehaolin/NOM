@@ -13,7 +13,7 @@ public class DavidFrontEnd implements JasonSupport{
 		backend = new JasonBackEnd(this, size);
 	}
 
-	public static void main(String[] arg) {
+	public static void main(String[] arg) {0
 		System.out.println("What size?");
 		//int size = CaveExplorer.in.nextInt();
 		Scanner sc = new Scanner(System.in);
@@ -38,8 +38,8 @@ public class DavidFrontEnd implements JasonSupport{
 		  // printGameOverMessage();
 	}
 
-	private void provideHint() {
-		
+	private void provideHint(int x, int y) {
+
 	}
 
 	private void printGameOverMessage() {
