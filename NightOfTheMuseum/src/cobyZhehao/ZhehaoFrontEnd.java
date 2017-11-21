@@ -95,7 +95,6 @@ public class ZhehaoFrontEnd implements CobySupport {
 			}
 		}
 		return count;
-			
 	}
 	
 	public void updateMap() {
