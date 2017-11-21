@@ -6,6 +6,7 @@ import victorRemington.RemingtonFrontEnd;
 import victorRemington.VictorRoom;
 import jasonDavid.DavidFront;
 import jasonDavid.DavidNPC;
+import jasonDavid.JasonDavidStartRoom;
 import jasonDavid.JasonNPC;
 import jasonDavid.JasonRoom;
 
@@ -199,6 +200,7 @@ public class CaveRoom {
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
 		CaveExplorer.caves[0][1] = customRoom3;
 
+		JasonDavidStartRoom startRoom = new JasonDavidStartRoom("Magoc Square");
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[9][1];
 		CaveExplorer.currentRoom.enter();
