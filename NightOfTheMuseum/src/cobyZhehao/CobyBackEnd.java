@@ -6,16 +6,16 @@ import caveExplorer.CaveExplorer;
 
 public class CobyBackEnd implements ZhehaoSupport{
 
-	private CobySupport frontend;
+	private ZhehaoFrontEnd frontend;
 	private int[] randNums;
 	private int[][] answer= {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15}};
 	private String[][] starting = {{"1","5","10","9"},{"15"," ","4","14"},{"12","2","8","13"},{"11","7","3","6"}};
-	private int[] blankSpot;
+	private int[] blankSpot = {1,1};
 	public ZhehaoCobyPlot[][] plots;
 	private String keyword = "math";
 	public static Scanner in;
 	
-	public CobyBackEnd(CobySupport frontend) {
+	public CobyBackEnd(ZhehaoFrontEnd frontend) {
 		initScanner();
 		this.frontend = frontend;
 		plots = new ZhehaoCobyPlot[4][4];
@@ -40,28 +40,29 @@ public class CobyBackEnd implements ZhehaoSupport{
 			for(int j = 0; j < 4; j++) {
 				plots[i][j].setContents(starting[i][j]);
 				plots[i][j].setAnswer(starting[i][j]);
-				if(plots[i][j].equals("0")) {
-					plots[i][j] = null;
-					blankSpot[0] = i;
-					blankSpot[1] = j;
-				}
 			}
 		}
 	}
 	
 	public boolean gameover() {
+		int rightCount = 0;
 		for(int i=0;i<answer.length;i++) {
 			for(int j=0;j<answer[i].length; j++) {
 				if(plots[i][j].getContents() != plots[i][j].getAnswer()) {
 					return false;
+				}else {
+					rightCount++;
 				}
 			}
 		}
-		return true;
+		if(rightCount == 16) {
+			return true;
+		}
+		return false;
 	}
 
 	private int[] findCoords(String input) {
-		int[] coords = {};
+		int[] coords = {0,0};
 		int a = Integer.parseInt(input.substring(0,1));
 		int b = Integer.parseInt(input.substring(2,3));
 		coords[0] = a;
@@ -71,8 +72,8 @@ public class CobyBackEnd implements ZhehaoSupport{
 
 	public boolean validCoords(String input) {
 		if(input.substring(1,2).equals(",") && input.length() == 3){
-			if(input.substring(0,1) == "0" || input.substring(0,1) == "1" || input.substring(0,1) == "2" || input.substring(0,1) == "3") {
-				if(input.substring(2,3) == "0" || input.substring(2,3) == "1" || input.substring(2,3) == "2" || input.substring(2,3) == "3") {
+			if(input.substring(0,1).equals("0") || input.substring(0,1).equals("1") || input.substring(0,1).equals("2") || input.substring(0,1).equals("3")) {
+				if(input.substring(2,3).equals("0") || input.substring(2,3).equals("1") || input.substring(2,3).equals("2") || input.substring(2,3).equals("3")) {
 					return true;
 				}
 			}
@@ -107,17 +108,15 @@ public class CobyBackEnd implements ZhehaoSupport{
 		return plots;
 	}
 
-	@Override
 	public int[] getCoordInput() {
 		int[] coords = null;
-		String input = CaveExplorer.in.nextLine();
+		String input = frontend.in.nextLine();
 		if(validCoords(input)) {
 			coords = findCoords(input);
 		}
 		return coords;
 	}
 
-	@Override
 	public void move(ZhehaoCobyPlot p) {
 		if(isNextToBlank(p)) {
 			moveIntoBlank(p);
@@ -128,13 +127,13 @@ public class CobyBackEnd implements ZhehaoSupport{
 	public void moveIntoBlank(ZhehaoCobyPlot p) {
 		String switchingNum = p.getContents();
 		plots[blankSpot[0]][blankSpot[1]].setContents(switchingNum);
-		p.setContents(null);
+		p.setContentsNull();
 		blankSpot[0] = p.getRow();
 		blankSpot[1] = p.getCol();
 	}
 	
 	public boolean keyWordUsed() {
-		if(CaveExplorer.in.nextLine() == keyword) {
+		if(ZhehaoFrontEnd.in.nextLine() == keyword) {
 			return true;
 		}
 		return false;

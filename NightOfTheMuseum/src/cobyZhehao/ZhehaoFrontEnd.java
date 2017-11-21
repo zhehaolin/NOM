@@ -47,7 +47,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 	private void StartGame() {
 		 ZhehaoCobyPlot[][] plots = backend.getPlots();
 		 ZhehaoCobyPlot p = null;
-		 while(backend.gameover()) {
+		 while(!backend.gameover()) {
 			 updateMap();
 			 displaymovestaken(p);
 			 System.out.println("Which tile do you want to move? ");
