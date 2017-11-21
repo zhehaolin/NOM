@@ -134,6 +134,8 @@ public class JasonBackEnd implements DavidSupport{
 	}
 	public boolean respondToInput(String input1, String input2) {
 		if (isValid(input1) && isValid(input2)) {
+			
+			
 			return true;
 		}
 		return false;
@@ -161,6 +163,9 @@ public class JasonBackEnd implements DavidSupport{
 	        isNum = false;
 	    }
 	    return isNum;
+	}
+	public boolean isCheatCode(String str) {
+		return str.equals("getgood");
 	}
 	
 }
