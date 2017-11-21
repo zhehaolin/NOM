@@ -36,6 +36,7 @@ public class DavidFrontEnd implements JasonSupport{
 		      //backend.analyzeBoard();
 		    }
 		  // printGameOverMessage();
+			//:)
 	}
 
 	private void provideHint() {
