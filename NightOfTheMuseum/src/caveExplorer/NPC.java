@@ -88,6 +88,7 @@ public class NPC {
 	
 	public int[] calculateMovement() {
 		int[] moves = new int[2];
+		if(currentRoom != null) {
 		int[][] possibleMoves = {{-1,0},{0,1},{1,0},{0,-1}};
 		int rand = (int)(Math.random()*possibleMoves.length);
 		moves[0] = possibleMoves[rand][0]+currentRow;
@@ -97,6 +98,8 @@ public class NPC {
 			rand = (int)(Math.random()*possibleMoves.length);
 			moves[0] = possibleMoves[rand][0]+currentRow;
 			moves[1] = possibleMoves[rand][1]+currentCol;
+		}
+		
 		}
 		return moves;
 	}

@@ -1,6 +1,7 @@
 package caveExplorer;
 
 import cobyZhehao.CobyRoom;
+import cobyZhehao.MiniStarter;
 import cobyZhehao.zhehaoRoom;
 import victorRemington.RemingtonFrontEnd;
 import victorRemington.VictorRoom;
@@ -177,7 +178,7 @@ public class CaveRoom {
 			for(int col = 0; col < CaveExplorer.caves[row].length; col++) {
 				//create a "default" cave
 				CaveExplorer.caves[row][col] = 
-						new CaveRoom("This cave has coords ("+row+","+col+")");
+						new NPCRoom("This cave has coords ("+row+","+col+")");
 			}
 		}
 		//3. Replace default rooms with custom rooms
@@ -201,6 +202,14 @@ public class CaveRoom {
 		CaveExplorer.caves[0][1] = customRoom3;
 
 		JasonDavidStartRoom startRoom = new JasonDavidStartRoom("Magoc Square");
+//		CaveExplorer.npcs = new NPC[1];
+//		CaveExplorer.npcs[0] = new NPC();
+//		CaveExplorer.npcs[0].setposition(9, 2);
+		
+		MiniStarter starterNPC=new MiniStarter();
+		starterNPC.setposition(9, 2);
+		CaveExplorer.npcs=new NPC[1];
+		CaveExplorer.npcs[0]=starterNPC;
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[9][1];
 		CaveExplorer.currentRoom.enter();
