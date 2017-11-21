@@ -39,7 +39,7 @@ public class DavidFrontEnd implements JasonSupport{
 	}
 
 	private void provideHint(int x, int y) {
-
+df
 	}
 
 	private void printGameOverMessage() {
