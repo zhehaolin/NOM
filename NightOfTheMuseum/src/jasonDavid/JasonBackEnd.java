@@ -167,7 +167,7 @@ public class JasonBackEnd implements DavidSupport{
 	public boolean isCheatCode(String str) {
 		return str.equals("getgood");
 	}
-	
+	//s
 }
 
 

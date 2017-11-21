@@ -10,7 +10,7 @@ public class JasonDavidStartRoom extends CaveRoom{
 	public void enter() {
 		super.enter();
 		DavidFrontEnd.main(null);
-		//s
+		
 	}
 
 }
