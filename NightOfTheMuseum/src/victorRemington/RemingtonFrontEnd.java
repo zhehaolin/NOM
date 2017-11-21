@@ -30,13 +30,14 @@ public class RemingtonFrontEnd implements VictorSupport{
 			drawField();
 			displayGameState();
 			String input = in.nextLine();
-			while(!backend.checkValidinput(getCoords(input))) {
+			while(!backend.checkValidinput(input)) {
 				input = in.nextLine();
-				System.out.println("Try another tile.");
+				System.out.println("Type input in form #,# or f#,#");
 			}
 			
 			//MAKE SURE TO ENSURE THAT ALL INPUTS WORK. 
 			//HAVE SOME ERROR CHECKING TO TELL THE USER WHAT TO DO.
+				
 			backend.getMinefield()[getCoords(input)[0]][getCoords(input)[1]].setVisible(true);
 			//if(checkCheatCode(in.nextLine())){
 				System.out.print(revealAll() +"\n\nCongradulations you won!!!!\n\n\n\n\n...By cheating.......");
@@ -104,10 +105,13 @@ public class RemingtonFrontEnd implements VictorSupport{
 	
 	public int[] getCoords(String s) {
 		int[] coords = new int[2];
-		int row = Integer.parseInt(s.substring(0, 1));
-		int col = Integer.parseInt(s.substring(2, 3));
-		coords[0] = row;
-		coords[1] = col;
+		if(s.substring(0,1).equals("f")) {
+			coords[0] = Integer.parseInt(s.substring(1, 2));
+			coords[1] = Integer.parseInt(s.substring(3, 4));
+			return coords;
+		}
+		coords[0] = Integer.parseInt(s.substring(0, 1));
+		coords[1] = Integer.parseInt(s.substring(2, 3));
 		return coords;
 	}
 }

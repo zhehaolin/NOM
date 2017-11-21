@@ -56,6 +56,9 @@ public class VictorRemingtonPlot {
 		}else {
 			tempContents = contents;
 		}
-		
+	}
+	
+	public boolean isFlaged() {
+		return isFlaged;
 	}
 }

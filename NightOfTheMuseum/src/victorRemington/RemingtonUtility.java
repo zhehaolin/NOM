@@ -51,7 +51,7 @@ public class RemingtonUtility {
 			}
 			list += " or "+letters.substring(letters.length()-1); 
 			System.out.println(list);
-			input = CaveExplorer.in.nextLine();
+			input = RemingtonFrontEnd.in.nextLine();
 		}
 		return input.toLowerCase().substring(0, 1);
 	}

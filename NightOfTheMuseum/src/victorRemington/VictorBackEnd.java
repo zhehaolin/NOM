@@ -103,7 +103,7 @@ public class VictorBackEnd implements RemingtonSupport{
 	}
 
 	//checks if the space is visible or not
-	public boolean checkValidinput(int[] coords) {
+	public boolean checkValidCoords(int[] coords) {
 		int row = coords[0];
 		int col = coords[1];
 		if(row >= 0 && row < 8 && col >= 0 && col < 8) {
@@ -138,5 +138,16 @@ public class VictorBackEnd implements RemingtonSupport{
 	
 	public int getFlaged() {
 		return flaged;
+	}
+
+	public boolean checkValidinput(String s) {
+		if(s.length() > 5 || s.length() < 3) {
+			return false;
+		}
+		
+		if(s.length() == 4 && s.substring(0, 1).equals("f") && Character.isDigit(s.charAt(1)) && s.substring(2,3).equals(",") && Character.isDigit(s.charAt(3))) {
+			return true;
+		}
+		return Character.isDigit(s.charAt(0)) && s.substring(1,2).equals(",") && Character.isDigit(s.charAt(2));
 	}
 }
