@@ -13,22 +13,23 @@ public class DavidFrontEnd implements JasonSupport{
 		backend = new JasonBackEnd(this, size);
 	}
 
-	public static void main(String[] arg) {0
+	public static void main(String[] arg) {
 		System.out.println("What size?");
 		//int size = CaveExplorer.in.nextInt();
 		Scanner sc = new Scanner(System.in);
 		int size = sc.nextInt();
 		DavidFrontEnd demo = new DavidFrontEnd(size);
-		demo.play();
+		demo.play(size);
 	}
-	public void play() {	
+	public void play(int size) {	
 		while(backend.stillPlaying()) {
 			 displayBoard();
 			 Scanner sc = new Scanner(System.in);
 			 String input1 = sc.nextLine();
 			 String input2 = sc.nextLine();
 		     if(!backend.respondToInput(input1,input2)) {
-		    	 provideHint();
+		    	 System.out.println("Would you like a hint?");
+		    	 int input3 = sc.nextInt();
 		     }else {
 		    	backend.respondToInput(input1,input2); 
 		    	displayBoard();
@@ -38,10 +39,43 @@ public class DavidFrontEnd implements JasonSupport{
 		  // printGameOverMessage();
 	}
 
-	private void provideHint(int x, int y) {
-		//asfasdfwqeer
-	}
+	private void provideHint(int x, int y, int size) {
+		int[][] table = backend.table;
+		int[][] finishedtable = finishedBoard(size);
+		int[] found;
+		loop:{
+		for (int i = 0; i<size; i++) {
+			for (int j = 0; j<size; j++) {
+				if (table[y][x] == finishedtable[i][j]) {
+					backend.swap(table, y, x, i, j);
+					System.out.println("Swapped "+y+","+x+" and "+i+","+j);
+					break loop;
+				}
+			}
+		}
+		}
+		}
+	private static int[][] finishedBoard(int boardSize) {
+        int[][] magic = new int[boardSize][boardSize];
 
+        int row = boardSize-1;
+        int col = boardSize/2;
+        magic[row][col] = 1;
+
+        for (int i = 2; i <= boardSize*boardSize; i++) {
+            if (magic[(row + 1) % boardSize][(col + 1) % boardSize] == 0) {
+                row = (row + 1) % boardSize;
+                col = (col + 1) % boardSize;
+            }
+            else {
+                row = (row - 1 + boardSize) % boardSize;
+            }
+            magic[row][col] = i;
+        }
+        return magic;
+    }
+		
+	
 	private void printGameOverMessage() {
 		System.out.println("Click! A sound ringed loudly signifying the completion of the puzzle.");
 	}
