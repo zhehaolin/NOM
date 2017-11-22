@@ -119,8 +119,7 @@ public class CobyBackEnd implements ZhehaoSupport{
 	
 	//Coords is the coordinates of the new spot being turned into a blank
 	public void moveIntoBlank(ZhehaoCobyPlot p) {
-		String switchingNum = p.getContents();
-		plots[blankSpot[0]][blankSpot[1]].setContents(switchingNum);
+		plots[blankSpot[0]][blankSpot[1]].setContents(p.getContents());
 		p.setContentsNull();
 		blankSpot[0] = p.getRow();
 		blankSpot[1] = p.getCol();
