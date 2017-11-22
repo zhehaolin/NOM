@@ -8,9 +8,10 @@ public class CobyBackEnd implements ZhehaoSupport{
 
 	private ZhehaoFrontEnd frontend;
 	private int[] randNums;
-	private int[][] answer= {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15}};
-	private String[][] starting = {{"1","5","10","9"},{"15"," ","4","14"},{"12","2","8","13"},{"11","7","3","6"}};
-	private int[] blankSpot = {1,1};
+	private String[][] answer= {{"1","2","3","4"},{"5","6","7","8"},{"9","10","11","12"},{"13","14","15"," "}};
+	//private String[][] starting = {{"1","5","10","9"},{"15"," ","4","14"},{"12","2","8","13"},{"11","7","3","6"}};
+	private String[][] starting = {{"1","2","3","4"},{"5","6","7","8"},{"9","10","11","12"},{"13","14"," ","15"}};
+	private int[] blankSpot = {3,2};
 	public ZhehaoCobyPlot[][] plots;
 	private String keyword = "math";
 	public static Scanner in;
@@ -39,7 +40,7 @@ public class CobyBackEnd implements ZhehaoSupport{
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4; j++) {
 				plots[i][j].setContents(starting[i][j]);
-				plots[i][j].setAnswer(starting[i][j]);
+				plots[i][j].setAnswer(answer[i][j]);
 			}
 		}
 	}
@@ -48,7 +49,7 @@ public class CobyBackEnd implements ZhehaoSupport{
 		int rightCount = 0;
 		for(int i=0;i<answer.length;i++) {
 			for(int j=0;j<answer[i].length; j++) {
-				if(plots[i][j].getContents() != plots[i][j].getAnswer()) {
+				if(!plots[i][j].getContents().equals(plots[i][j].getAnswer())) {
 					return false;
 				}else {
 					rightCount++;
@@ -125,7 +126,7 @@ public class CobyBackEnd implements ZhehaoSupport{
 	}
 	
 	public boolean keyWordUsed() {
-		if(ZhehaoFrontEnd.in.nextLine() == keyword) {
+		if(ZhehaoFrontEnd.in.nextLine().equals(keyword)) {
 			return true;
 		}
 		return false;
