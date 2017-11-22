@@ -89,13 +89,13 @@ public class ZhehaoFrontEnd implements CobySupport {
 	private int checkplot(ZhehaoCobyPlot[][] z) {
 		
 		int[][] answer={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15}};
+		ZhehaoCobyPlot[][] plots = backend.getPlots();
 		int count=0;
 		for(int row = 0; row < z.length; row++) {
 			for(int col = 0; col < z[row].length; col++) {
-				if(col==15) {
-					return 11;
-				}else {
-					if(z[row][col].getContents()==" " || z[row][col+1].getContents()==" ") {
+				
+				if(valid(0,col+1)) {
+					if(z[row][col].getContents().equals(" ") || z[row][col+1].getContents().equals(" ")){
 						if(count>11) {
 							return 10;
 						}else {
@@ -112,7 +112,10 @@ public class ZhehaoFrontEnd implements CobySupport {
 							count++;
 						}
 					}
+				}else {
+					return 10;
 				}
+					
 				
 			}
 		}
