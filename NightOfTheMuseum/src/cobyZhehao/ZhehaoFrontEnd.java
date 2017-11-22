@@ -53,13 +53,19 @@ public class ZhehaoFrontEnd implements CobySupport {
 			 System.out.println("Which tile do you want to move? ");
 				 displayhints(p);
 				 int[] coords = backend.getCoordInput();
-				 if(coords !=null) {
-					 p = plots[coords[0]][coords[1]];
-					 backend.move(p);
-					 movestaken++;
+				 if(backend.keyWordUsed()) {
+					 System.out.println("You solve the puzzle! The door is now unclocked!");
+					 
 				 }else {
-					 System.out.println("Please enter a valid input");
+					 if(coords !=null) {
+						 p = plots[coords[0]][coords[1]];
+						 backend.move(p);
+						 movestaken++;
+					 }else {
+						 System.out.println("Please enter a valid input");
+					 }
 				 }
+				
 				 
 			 }
 			
@@ -87,10 +93,18 @@ public class ZhehaoFrontEnd implements CobySupport {
 		for(int row = 0; row < z.length; row++) {
 			for(int col = 0; col < z[row].length; col++) {
 				if(z[row][col].getContents()==" " || z[row][col+1].getContents()==" ") {
-					return count;
+					if(count>11) {
+						return 10;
+					}else {
+						return count;
+					}
 				}else {
 					if(Integer.parseInt(z[row][col].getContents())!=answer[row][col] || Integer.parseInt(z[row][col+1].getContents())!=answer[row][col+1]) {
-						return count;
+						if(count>11) {
+							return 10;
+						}else {
+							return count;
+						}
 					}else {
 						count++;
 					}
