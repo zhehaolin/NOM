@@ -72,6 +72,9 @@ public class CobyBackEnd implements ZhehaoSupport{
 
 	public boolean validCoords(String input) {
 		if(input.substring(1,2).equals(",") && input.length() == 3){
+			if(input.substring(0,1).equals(blankSpot[0]) && input.substring(2,3).equals(blankSpot[1])){
+				return false;
+			}
 			if(input.substring(0,1).equals("0") || input.substring(0,1).equals("1") || input.substring(0,1).equals("2") || input.substring(0,1).equals("3")) {
 				if(input.substring(2,3).equals("0") || input.substring(2,3).equals("1") || input.substring(2,3).equals("2") || input.substring(2,3).equals("3")) {
 					return true;
@@ -86,19 +89,8 @@ public class CobyBackEnd implements ZhehaoSupport{
 		int oneDown = p.getRow()+1;
 		int oneLeft = p.getCol()-1;
 		int oneRight = p.getCol()+1;
-		if(oneUp < 0) {
-			oneUp = 0;
-		}
-		if(oneDown > 3) {
-			oneDown = 3;
-		}
-		if(oneLeft < 0) {
-			oneLeft = 0;
-		}
-		if(oneRight > 3) {
-			oneRight = 3;
-		}
-		if(oneUp == blankSpot[0] || oneDown == blankSpot[0] || oneLeft == blankSpot[1] || oneRight == blankSpot[1]) {
+		if(oneUp == blankSpot[0] && p.getCol() == blankSpot[1]|| oneDown == blankSpot[0] && p.getCol() == blankSpot[1]
+				|| oneLeft == blankSpot[1] && p.getRow() == blankSpot[0] || oneRight == blankSpot[1] && p.getRow() == blankSpot[0]) {
 			return true;
 		}
 		return false;
