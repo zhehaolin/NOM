@@ -13,6 +13,7 @@ public class VictorBackEnd implements RemingtonSupport{
 		minefield = new VictorRemingtonPlot[8][8];
 		bombs = 0;
 		correctFlaged = 0;
+		flaged = 0;
 		populateMinefield();
 	}
 	
@@ -112,28 +113,37 @@ public class VictorBackEnd implements RemingtonSupport{
 		return false;
 	}
 	
-	public String victoryStatement() {
-		return "You won! All of the mines have been cleared!";
-	}
-	
 	public VictorRemingtonPlot[][] getMinefield() {
 		return minefield;
 	}
 	
 	public void flag(int[] coords) {
-		minefield[coords[0]][coords[1]].setFlaged(true);
-		flaged++;
-		checkIsFlagedBombs(coords);
+		if(minefield[coords[0]][coords[1]].isFlaged()) {
+			minefield[coords[0]][coords[1]].setFlaged(false);
+			minefield[coords[0]][coords[1]].setVisible(false);
+			flaged--;
+			if(checkIsFlagedBombs(coords)) {
+				correctFlaged--;
+			}
+		}else {
+			minefield[coords[0]][coords[1]].setFlaged(true);
+			minefield[coords[0]][coords[1]].setVisible(true);
+			flaged++;
+			if(checkIsFlagedBombs(coords)) {
+				correctFlaged++;
+			}
+		}
 	}
 	
 	public boolean checkVictory() {
 		return (correctFlaged == bombs);
 	}
 	
-	public void checkIsFlagedBombs(int[] coords) {
+	public boolean checkIsFlagedBombs(int[] coords) {
 		if(minefield[coords[0]][coords[1]].hasBomb()) {
-			correctFlaged++;
+			return true;
 		}
+		return false;
 	}
 	
 	public int getFlaged() {
@@ -149,5 +159,9 @@ public class VictorBackEnd implements RemingtonSupport{
 			return true;
 		}
 		return Character.isDigit(s.charAt(0)) && s.substring(1,2).equals(",") && Character.isDigit(s.charAt(2));
+	}
+
+	public int getCorrectFlaged() {
+		return correctFlaged;
 	}
 }

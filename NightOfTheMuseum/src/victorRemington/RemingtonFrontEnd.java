@@ -37,12 +37,19 @@ public class RemingtonFrontEnd implements VictorSupport{
 			
 			//MAKE SURE TO ENSURE THAT ALL INPUTS WORK. 
 			//HAVE SOME ERROR CHECKING TO TELL THE USER WHAT TO DO.
-				
-			backend.getMinefield()[getCoords(input)[0]][getCoords(input)[1]].setVisible(true);
+
+			if(input.substring(0, 1).equals("f")) {
+				backend.flag(getCoords(input));
+			}else {
+				backend.getMinefield()[getCoords(input)[0]][getCoords(input)[1]].setVisible(true);
+			}
+			
 			//if(checkCheatCode(in.nextLine())){
 				System.out.print(revealAll() +"\n\nCongradulations you won!!!!\n\n\n\n\n...By cheating.......");
 			//}
 		}
+		
+		System.out.print("You won!");
 		
 
 	}
@@ -65,10 +72,11 @@ public class RemingtonFrontEnd implements VictorSupport{
 	}
 	
 	public void drawField() {
-		String line = "0 |";
+		String line = "";
 		String chart = "\n   0 1 2 3 4 5 6 7 \n   _______________\n";
 		VictorRemingtonPlot[][] minefield = backend.getMinefield();
 		for(int row = 0; row < minefield.length; row++) {
+			line = row + " |"; 
 			for(int col = 0; col < minefield[0].length; col++) {
 				if(minefield[row][col].isVisible()) {
 					line += minefield[row][col].getTempContents()+" ";
@@ -77,12 +85,12 @@ public class RemingtonFrontEnd implements VictorSupport{
 				}
 			}
 			chart += line + "\n";
-			line = row+1 + " |";      
+			     
 		}
 		System.out.println(chart);;
 	}
 	public void displayGameState() {
-		System.out.println("You have "+ backend.getFlaged() + " flaged bombs. You need to flag 11 to win. But make sure they are actually bombs...or else.");
+		System.out.println("You have "+ backend.getFlaged() + " flaged tiles. You need to correctly flag 11 bombs to win. But make sure they are actually bombs...or else." + "TEST " + backend.getCorrectFlaged());
 	}
 	
 	public String revealAll() {
