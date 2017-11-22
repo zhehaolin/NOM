@@ -151,6 +151,9 @@ public class VictorBackEnd implements RemingtonSupport{
 	}
 
 	public boolean checkValidinput(String s) {
+		if(s.equals(frontend.cheatCode)) {
+			return true;
+		}
 		if(s.length() > 5 || s.length() < 3) {
 			return false;
 		}

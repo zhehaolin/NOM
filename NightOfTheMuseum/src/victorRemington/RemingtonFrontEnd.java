@@ -25,33 +25,41 @@ public class RemingtonFrontEnd implements VictorSupport{
 		new RemingtonIntro().play();
 		in.nextLine();
 		introScreen();
-
-		while(!backend.checkVictory()) {
+		boolean victory = backend.checkVictory();
+		
+		while(!victory) {
 			drawField();
 			displayGameState();
 			String input = in.nextLine();
 			while(!backend.checkValidinput(input)) {
+				System.out.println("Type input in form #,# or f#,# to flag or unflag a tile.");
 				input = in.nextLine();
-				System.out.println("Type input in form #,# or f#,#");
 			}
 			
+			if(checkCheatCode(input)){
+				victory = true;
+			}else {
+				if(input.substring(0, 1).equals("f")) {
+					backend.flag(getCoords(input));
+				}else {
+					if(backend.getMinefield()[getCoords(input)[0]][getCoords(input)[1]].hasBomb()) {
+						System.out.println("That was a bomb. You lose.");
+						break;
+					}else {
+						backend.getMinefield()[getCoords(input)[0]][getCoords(input)[1]].setVisible(true);
+					}
+				}
+			}
+			drawField();
 			//MAKE SURE TO ENSURE THAT ALL INPUTS WORK. 
 			//HAVE SOME ERROR CHECKING TO TELL THE USER WHAT TO DO.
 
-			if(input.substring(0, 1).equals("f")) {
-				backend.flag(getCoords(input));
-			}else {
-				backend.getMinefield()[getCoords(input)[0]][getCoords(input)[1]].setVisible(true);
-			}
 			
-			//if(checkCheatCode(in.nextLine())){
-				System.out.print(revealAll() +"\n\nCongradulations you won!!!!\n\n\n\n\n...By cheating.......");
-			//}
 		}
-		
-		System.out.print("You won!");
-		
-
+		if(victory) {
+			System.out.print(revealAll());
+			System.out.print("\n\nYou won!");
+		}
 	}
 
 	private void introScreen() {
