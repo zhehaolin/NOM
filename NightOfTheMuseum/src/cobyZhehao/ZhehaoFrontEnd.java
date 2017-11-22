@@ -88,30 +88,32 @@ public class ZhehaoFrontEnd implements CobySupport {
 	}
 	private int checkplot(ZhehaoCobyPlot[][] z) {
 		
-		int[][] answer={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,0}};
+		int[][] answer={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15}};
 		int count=0;
 		for(int row = 0; row < z.length; row++) {
 			for(int col = 0; col < z[row].length; col++) {
 				if(col==15) {
 					return 11;
-				}
-				if(z[row][col].getContents()==" " || z[row][col+1].getContents()==" ") {
-					if(count>11) {
-						return 10;
-					}else {
-						return count;
-					}
 				}else {
-					if(Integer.parseInt(z[row][col].getContents())!=answer[row][col] || Integer.parseInt(z[row][col+1].getContents())!=answer[row][col+1]) {
+					if(z[row][col].getContents()==" " || z[row][col+1].getContents()==" ") {
 						if(count>11) {
 							return 10;
 						}else {
 							return count;
 						}
 					}else {
-						count++;
+						if(Integer.parseInt(z[row][col].getContents())!=answer[row][col] || Integer.parseInt(z[row][col+1].getContents())!=answer[row][col+1]) {
+							if(count>11) {
+								return 10;
+							}else {
+								return count;
+							}
+						}else {
+							count++;
+						}
 					}
 				}
+				
 			}
 		}
 		return count;
