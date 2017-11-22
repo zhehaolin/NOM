@@ -127,7 +127,7 @@ public class CobyBackEnd implements ZhehaoSupport{
 	}
 	
 	public boolean keyWordUsed() {
-		if(ZhehaoFrontEnd.in.nextLine().equals(keyword)) {
+		if(frontend.in.nextLine().equals(keyword)) {
 			return true;
 		}
 		return false;
