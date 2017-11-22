@@ -55,7 +55,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 				 int[] coords = backend.getCoordInput();
 				 if(backend.keyWordUsed()) {
 					 System.out.println("You solve the puzzle! The door is now unclocked!");
-					 
+					 break;
 				 }else {
 					 if(coords !=null) {
 						 p = plots[coords[0]][coords[1]];
