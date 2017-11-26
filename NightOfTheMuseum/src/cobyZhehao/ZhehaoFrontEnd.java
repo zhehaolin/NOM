@@ -71,6 +71,8 @@ public class ZhehaoFrontEnd implements CobySupport {
 			
 		 System.out.println("You solve the puzzle! The door is now unclocked!");
 	}
+	
+
 	private void displaymovestaken(ZhehaoCobyPlot p) {
 		System.out.println("Moves taken: "+movestaken);
 	}
@@ -123,6 +125,10 @@ public class ZhehaoFrontEnd implements CobySupport {
 		
 	}
 	
+	private boolean valid(int row, int col) {
+		return row >= 0 && row< backend.getPlots().length && col >= 0 && col < backend.getPlots()[row].length;
+	}
+
 	public void updateMap() {
 		String map = " ";
 	
