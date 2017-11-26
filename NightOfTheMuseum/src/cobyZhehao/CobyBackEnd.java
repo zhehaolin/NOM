@@ -124,13 +124,4 @@ public class CobyBackEnd implements ZhehaoSupport{
 		blankSpot[0] = p.getRow();
 		blankSpot[1] = p.getCol();
 	}
-	
-	public boolean keyWordUsed() {
-		if(frontend.in.nextLine().equals(keyword)) {
-			return true;
-		}
-		return false;
-	}
-
-	
 }
