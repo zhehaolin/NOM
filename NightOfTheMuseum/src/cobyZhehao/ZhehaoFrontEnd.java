@@ -53,10 +53,10 @@ public class ZhehaoFrontEnd implements CobySupport {
 			 System.out.println("Which tile do you want to move? ");
 				 displayhints(p);
 				 int[] coords = backend.getCoordInput();
-				 if(backend.keyWordUsed()) {
-					 System.out.println("You solve the puzzle! The door is now unclocked!");
-					 break;
-				 }else {
+				 //if(backend.keyWordUsed()) {
+				//	 System.out.println("You solve the puzzle! The door is now unclocked!");
+				//	 break;
+				// }else {
 					 if(coords !=null) {
 						 p = plots[coords[0]][coords[1]];
 						 backend.move(p);
@@ -64,7 +64,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 					 }else {
 						 System.out.println("Please enter a valid input");
 					 }
-				 }
+				// }
 				
 				 
 			 }
