@@ -40,6 +40,5 @@ public class zhehaoRoom extends NPCRoom {
 		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you can type 'f' to read.");
 	}
 	
-	
 }
 
