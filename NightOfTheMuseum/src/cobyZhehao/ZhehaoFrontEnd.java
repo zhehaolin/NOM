@@ -31,7 +31,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 		System.out.println("Enter 'r' for rules or 'p' to play.");
 		String command = ZhehaoUtility.waitForLetterInput("rp");
 		if(command.equals("r")){
-			ZhehaoUtility.print("You have to solve the puzzle to unlock the door. In a 4 by 4 square ,you have to place the numbers in order from 1 to 15. Enter the coord of the number "
+			ZhehaoUtility.print("You're asked to solve a puzzle. Your reward will be a key. In a 4 by 4 square ,you have to place the numbers in order from 1 to 15. Enter the coord of the number "
 					+ "you want to move."+"\n press enter to continue");
 			in.nextLine();
 			menu();
