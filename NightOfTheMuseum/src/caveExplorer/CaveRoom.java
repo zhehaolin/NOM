@@ -1,5 +1,6 @@
 package caveExplorer;
 
+import cobyZhehao.CheatRoom;
 import cobyZhehao.CobyRoom;
 import cobyZhehao.MiniStarter;
 import cobyZhehao.keyRoom;
@@ -214,6 +215,9 @@ public class CaveRoom {
 		
 		keyRoom OpenFinal = new keyRoom("Open Final");
 		CaveExplorer.caves[5][9] = OpenFinal;
+		
+		CheatRoom cheat = new CheatRoom("WARNING: This is just to cheat and get all 3 keys. Press 'e' to continue.");
+		CaveExplorer.caves[0][9] = cheat;
 
 		MiniStarter starterNPC=new MiniStarter("There is a math genius in front of you. Type 'e' to ineract.","You already finished the puzzle.");
 		starterNPC.setposition(3,8);

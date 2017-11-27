@@ -26,4 +26,4 @@ public class keyRoom extends CaveRoom{
 	public String getContents() {
 		return "F";
 	}
-}//df
+}
