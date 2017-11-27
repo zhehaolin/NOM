@@ -201,7 +201,8 @@ public class CaveRoom {
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
 		CaveExplorer.caves[0][1] = customRoom3;
 
-		JasonDavidStartRoom startRoom = new JasonDavidStartRoom("Magoc Square");
+		JasonDavidStartRoom startRoom = new JasonDavidStartRoom("Magic Square");
+		CaveExplorer.caves[9][9] = startRoom;
 //		CaveExplorer.npcs = new NPC[1];
 //		CaveExplorer.npcs[0] = new NPC();
 //		CaveExplorer.npcs[0].setposition(9, 2);
