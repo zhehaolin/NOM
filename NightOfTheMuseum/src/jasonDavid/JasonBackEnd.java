@@ -83,7 +83,6 @@ public class JasonBackEnd implements DavidSupport{
 			}
 		}
 		if (calcDiagonal("left") != magicNumber || calcDiagonal("right") != magicNumber) {
-			System.out.println(calcDiagonal("right"));
 			return false;
 		}
 		return true;
@@ -131,7 +130,7 @@ public class JasonBackEnd implements DavidSupport{
 		return count;
 	}
 	public boolean stillPlaying() {
-		return !playing;
+		return playing;
 	}
 	public boolean respondToInput(String input1, String input2) {
 		if (isValid(input1) && isValid(input2)) {
@@ -147,10 +146,9 @@ public class JasonBackEnd implements DavidSupport{
 		int y1 = Integer.parseInt(input2.substring(0,psn2))-1;
 		int x1 = Integer.parseInt(input2.substring(psn2+1,input2.length()))-1;
 		swap(table,x,y,x1,y1);
-		System.out.println(psn1);
 	}
 	public void analyzeBoard() {
-		playing = calculateWin();
+		playing = !calculateWin();
 	}
 	public boolean isValid(String input) {
 		return input.length() <= 2*sizeLength+1 && isOneComma(input) && isNum(input.substring(0,commaPos(input))) && isNum(input.substring(commaPos(input)+1,input.length()));
