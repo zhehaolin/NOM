@@ -131,7 +131,7 @@ public class JasonBackEnd implements DavidSupport{
 		return count;
 	}
 	public boolean stillPlaying() {
-		return playing;
+		return !playing;
 	}
 	public boolean respondToInput(String input1, String input2) {
 		if (isValid(input1) && isValid(input2)) {
@@ -140,12 +140,12 @@ public class JasonBackEnd implements DavidSupport{
 		return false;
 	}
 	public void performSwap(String input1, String input2) {
+		int psn1 = commaPos(input1);
+		int psn2 = commaPos(input2);
 		int y = Integer.parseInt(input1.substring(0,psn1))-1;
 		int x = Integer.parseInt(input1.substring(psn1+1,input1.length()))-1;
 		int y1 = Integer.parseInt(input2.substring(0,psn2))-1;
 		int x1 = Integer.parseInt(input2.substring(psn2+1,input2.length()))-1;
-		int psn1 = commaPos(input1);
-		int psn2 = commaPos(input2);
 		swap(table,x,y,x1,y1);
 		System.out.println(psn1);
 	}
