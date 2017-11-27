@@ -9,6 +9,7 @@ public class keyRoom extends CaveRoom{
 	
 	public keyRoom(String description) {
 		super(description);
+		
 	}
 	
 	public void performAction(int direction) {
