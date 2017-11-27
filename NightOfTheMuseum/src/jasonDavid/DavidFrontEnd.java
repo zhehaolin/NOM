@@ -53,7 +53,6 @@ public class DavidFrontEnd implements JasonSupport{
                      if(!backend.respondToInput(input1,input2)) {
                          System.out.println("Please type in valid coordinates in this format ('x,y') or type 'help' and the selected coord after.");
                  }
-
                  }
                  backend.analyzeBoard();
              }
