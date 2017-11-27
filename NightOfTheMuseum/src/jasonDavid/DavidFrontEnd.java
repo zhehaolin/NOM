@@ -2,6 +2,7 @@ package jasonDavid;
 import java.util.Scanner;
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
+import victorRemington.RemingtonUtility;
 
 public class DavidFrontEnd implements JasonSupport{
 	
@@ -48,6 +49,16 @@ public class DavidFrontEnd implements JasonSupport{
 			 backend.analyzeBoard();
 	}
 		printGameOverMessage();
+	}
+	private void introScreen() {
+		System.out.println("Enter 'p' to play.");
+		String command = DavidUtility.waitForLetterInput("p");
+		if(command.equals("r")){
+			DavidUtility.print("The objective of the game is to clear the board containing hidden 'mines' or bombs without detonating any of them."
+					+" With help from clues(numbers that pop up after putting in a coordinate) about the number of neighboring mines in each field.\n\n      - - press enter - -");
+			in.nextLine();
+			introScreen();
+		}
 	}
 
 	private void provideHint(int x, int y, int size) {
