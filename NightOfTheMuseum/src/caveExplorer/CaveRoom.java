@@ -352,14 +352,14 @@ public class CaveRoom {
 		c[6][4].setConnection(EAST, c[6][5], new Door());
 		c[6][5].setConnection(WEST, c[6][4], new Door());
 		c[6][5].setConnection(EAST, c[6][6], new Door());
-		c[6][6].setConnection(WEST, c[6][6], new Door());
+		c[6][6].setConnection(WEST, c[6][5], new Door());
 		
 		c[7][3].setConnection(EAST, c[7][4], new Door());
 		c[7][4].setConnection(WEST, c[7][3], new Door());
 		c[7][4].setConnection(EAST, c[7][5], new Door());
 		c[7][5].setConnection(WEST, c[7][4], new Door());
 		c[7][5].setConnection(EAST, c[7][6], new Door());
-		c[7][6].setConnection(WEST, c[7][6], new Door());
+		c[7][6].setConnection(WEST, c[7][5], new Door());
 		
 		c[8][4].setConnection(EAST, c[8][5], new Door());
 		c[8][5].setConnection(WEST, c[8][4], new Door());
