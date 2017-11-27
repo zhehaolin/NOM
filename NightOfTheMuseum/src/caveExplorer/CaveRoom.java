@@ -1,13 +1,21 @@
 package caveExplorer;
 
+
 import cobyZhehao.CobyRoom;
+import cobyZhehao.CheatRoom;
+import cobyZhehao.MiniStarter;
+import cobyZhehao.keyRoom;
 import cobyZhehao.zhehaoRoom;
-import victorRemington.RemingtonRoom;
+import victorRemington.RemingtonFrontEnd;
 import victorRemington.VictorRoom;
 import jasonDavid.DavidFront;
 import jasonDavid.DavidNPC;
+import jasonDavid.EndGameRoom;
+import jasonDavid.JasonDavidStartRoom;
 import jasonDavid.JasonNPC;
 import jasonDavid.JasonRoom;
+import victorRemington.RemingtonRoom;
+import victorRemington.VictorRemingtonPuzzleRoom;
 
 public class CaveRoom {
 
@@ -24,6 +32,7 @@ public class CaveRoom {
 	public static final int EAST = 1;
 	public static final int SOUTH =2;
 	public static final int WEST = 3;
+	public static Door bathroom = null;
 	
 	
 	public CaveRoom(String description) {
@@ -176,45 +185,64 @@ public class CaveRoom {
 			for(int col = 0; col < CaveExplorer.caves[row].length; col++) {
 				//create a "default" cave
 				CaveExplorer.caves[row][col] = 
-						new CaveRoom("This cave has coords ("+row+","+col+")");
+						new NPCRoom("This cave has coords ("+row+","+col+")");
 			}
 		}
-		//3. Replace default rooms with custom rooms
-		//--- WE WILL DO LATER
-		
-		//CaveRoom customRoom = new CobyRoom("There is a statue in front of you. Press 'f' to interact.");
 
-		//CaveExplorer.caves[2][3] = customRoom;
 
-		CaveExplorer.caves[3][2] = new zhehaoRoom("There is a statue in front of you. Press 'f' to interact");
+		CaveExplorer.caves[3][6] = new zhehaoRoom("There is a sign in front. Press 'f' to interact");
 		
-		CaveExplorer.caves[9][4] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'f' to touch it.", 0.5, -20,
-				"The box is empty", "The box was a trap!. You have been struck by an arrow", 10);
-		
-		CaveExplorer.caves[0][2] = new RemingtonRoom("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
-		
-		//--- WE WILL DO LATER
+		CaveExplorer.caves[7][2] = new VictorRoom("You are in the middle of a battlefield. You see a supply cache. Press 'f' to try and get it.", 0.5, -20,
+				"You got the cache already", "You were unlucky and tripped. The cache was desrtoyed by an explosive. You are hit by a bullet", 10);
 
 		
-		CaveRoom customRoom = new CobyRoom("Room");
-		CaveExplorer.caves[1][1] = customRoom;
-		
-		CaveRoom customRoom2 = new DavidFront("Room");
-		CaveExplorer.caves[0][3] = customRoom2;
+		CaveExplorer.caves[0][2] = new RemingtonRoom("There are a variety of artifacts on the floor.");
 
+		CaveRoom customRoom1 = new CobyRoom("Room");
+		CaveExplorer.caves[1][1] = customRoom1;
+		
+
+
+		DavidFront customRoom2 = new DavidFront("There is a strange figure in the corner. Press 'f' to interact.");
+		CaveExplorer.caves[8][5] = customRoom2;		
+
+>>
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
 		CaveExplorer.caves[0][1] = customRoom3;
 
 
+
+
+//df
+		VictorRemingtonPuzzleRoom minesweeperRoom = new VictorRemingtonPuzzleRoom("Minesweeper");
+		CaveExplorer.caves[7][1] = minesweeperRoom;
+
+		JasonDavidStartRoom startRoom = new JasonDavidStartRoom("Magic Square");
+		CaveExplorer.caves[9][9] = startRoom;
+		CaveExplorer.npcs=new NPC[1];
+		EndGameRoom endgame = new EndGameRoom("Game End");
+		CaveExplorer.caves[9][0] = endgame;
+		
+		keyRoom OpenFinal = new keyRoom("Open Final");
+		CaveExplorer.caves[5][9] = OpenFinal;
+		
+		CheatRoom cheat = new CheatRoom("WARNING: This is just to cheat and get all 3 keys. Press 'e' to continue.");
+		CaveExplorer.caves[0][9] = cheat;
+
+		MiniStarter starterNPC=new MiniStarter("There is a math genius in front of you. Type 'e' to ineract.","You already finished the puzzle.");
+		starterNPC.setposition(3,8);
+		
+		CaveExplorer.npcs[0]=starterNPC;
+
 		//4. Set your starting room:
-		CaveExplorer.currentRoom = CaveExplorer.caves[9][1];
+		CaveExplorer.currentRoom = CaveExplorer.caves[9][4];
 		CaveExplorer.currentRoom.enter();
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
 
 		Door CZRoom = new Door();
 		CZRoom.setOpen(false);
-		CZRoom.setLocked(true);
+		CZRoom.setLocked(false);
 		c[3][7].setConnection(EAST, c[3][8], CZRoom);
 		c[3][8].setConnection(WEST, c[3][7], CZRoom);
 		
@@ -226,36 +254,277 @@ public class CaveRoom {
 		
 		Door lockedDoor = new Door();
 		lockedDoor.setOpen(false);
-		lockedDoor.setLocked(true);
+		lockedDoor.setLocked(false);
 		c[7][3].setConnection(EAST, c[7][4], lockedDoor);
 		c[7][4].setConnection(WEST, c[7][3], lockedDoor);
 		
-		Door bathroom = new Door();
+		bathroom = new Door();
 		bathroom.setOpen(false);
 		bathroom.setLocked(true);
 		c[9][0].setConnection(EAST, c[9][1], bathroom);
 		c[9][1].setConnection(WEST, c[9][0], bathroom);
 		
-		c[0][3].setConnection(SOUTH, c[1][3], new Door());
-		c[1][3].setConnection(NORTH, c[0][3], new Door()); 
-		
-		c[1][3].setConnection(SOUTH, c[2][3], new Door());
-		c[2][3].setConnection(NORTH, c[1][3], new Door()); 
-		
-		c[3][2].setConnection(EAST, c[3][3], new Door());
-		c[3][3].setConnection(WEST, c[3][2], new Door());
-		
-		c[2][3].setConnection(SOUTH, c[3][3], new Door());
-		c[3][3].setConnection(NORTH, c[2][3], new Door());
-		
-		c[0][1].setConnection(EAST, c[0][2], new Door());
-		c[0][2].setConnection(WEST, c[0][1], new Door());
-		
 		c[0][2].setConnection(EAST, c[0][3], new Door());
 		c[0][3].setConnection(WEST, c[0][2], new Door());
-		
 		c[0][3].setConnection(EAST, c[0][4], new Door());
 		c[0][4].setConnection(WEST, c[0][3], new Door());
+		c[0][4].setConnection(EAST, c[0][5], new Door());
+		c[0][5].setConnection(WEST, c[0][4], new Door());
+		c[0][5].setConnection(EAST, c[0][6], new Door());
+		c[0][6].setConnection(WEST, c[0][5], new Door());
+		c[0][6].setConnection(EAST, c[0][7], new Door());
+		c[0][7].setConnection(WEST, c[0][6], new Door());
+		c[0][7].setConnection(EAST, c[0][8], new Door());
+		c[0][8].setConnection(WEST, c[0][7], new Door());
+		c[0][8].setConnection(EAST, c[0][9], new Door());
+		c[0][9].setConnection(WEST, c[0][8], new Door());
+		
+		c[1][0].setConnection(EAST, c[1][1], new Door());
+		c[1][1].setConnection(WEST, c[1][0], new Door());
+		c[1][2].setConnection(EAST, c[1][3], new Door());
+		c[1][3].setConnection(WEST, c[1][2], new Door());
+		c[1][3].setConnection(EAST, c[1][4], new Door());
+		c[1][4].setConnection(WEST, c[1][3], new Door());
+		c[1][4].setConnection(EAST, c[1][5], new Door());
+		c[1][5].setConnection(WEST, c[1][4], new Door());
+		c[1][5].setConnection(EAST, c[1][6], new Door());
+		c[1][6].setConnection(WEST, c[1][5], new Door());
+		c[1][6].setConnection(EAST, c[1][7], new Door());
+		c[1][7].setConnection(WEST, c[1][6], new Door());
+		c[1][7].setConnection(EAST, c[1][8], new Door());
+		c[1][8].setConnection(WEST, c[1][7], new Door());
+		c[1][8].setConnection(EAST, c[1][9], new Door());
+		c[1][9].setConnection(WEST, c[1][8], new Door());
+		
+		c[2][0].setConnection(EAST, c[2][1], new Door());
+		c[2][1].setConnection(WEST, c[2][0], new Door());
+		c[2][1].setConnection(EAST, c[2][2], new Door());
+		c[2][2].setConnection(WEST, c[2][1], new Door()); 
+		c[2][2].setConnection(EAST, c[2][3], new Door());
+		c[2][3].setConnection(WEST, c[2][2], new Door());
+		c[2][3].setConnection(EAST, c[2][4], new Door());
+		c[2][4].setConnection(WEST, c[2][3], new Door());
+		c[2][4].setConnection(EAST, c[2][5], new Door());
+		c[2][5].setConnection(WEST, c[2][4], new Door());
+		c[2][5].setConnection(EAST, c[2][6], new Door());
+		c[2][6].setConnection(WEST, c[2][5], new Door());
+		c[2][7].setConnection(EAST, c[2][8], new Door());
+		c[2][8].setConnection(WEST, c[2][7], new Door());
+		c[2][8].setConnection(EAST, c[2][9], new Door());
+		c[2][9].setConnection(WEST, c[2][8], new Door());
+		
+		c[3][0].setConnection(EAST, c[3][1], new Door());
+		c[3][1].setConnection(WEST, c[3][0], new Door());
+		c[3][1].setConnection(EAST, c[3][2], new Door());
+		c[3][2].setConnection(WEST, c[3][1], new Door()); 
+		c[3][2].setConnection(EAST, c[3][3], new Door());
+		c[3][3].setConnection(WEST, c[3][2], new Door());
+		c[3][3].setConnection(EAST, c[3][4], new Door());
+		c[3][4].setConnection(WEST, c[3][3], new Door());
+		c[3][4].setConnection(EAST, c[3][5], new Door());
+		c[3][5].setConnection(WEST, c[3][4], new Door());
+		c[3][5].setConnection(EAST, c[3][6], new Door());
+		c[3][6].setConnection(WEST, c[3][5], new Door());
+		c[3][6].setConnection(EAST, c[3][7], new Door());
+		c[3][7].setConnection(WEST, c[3][6], new Door());
+		c[3][7].setConnection(EAST, c[3][8], new Door());
+		c[3][8].setConnection(WEST, c[3][7], new Door());
+		c[3][8].setConnection(EAST, c[3][9], new Door());
+		c[3][9].setConnection(WEST, c[3][8], new Door());
+		
+		c[4][0].setConnection(EAST, c[4][1], new Door());
+		c[4][1].setConnection(WEST, c[4][0], new Door());
+		c[4][1].setConnection(EAST, c[4][2], new Door());
+		c[4][2].setConnection(WEST, c[4][1], new Door()); 
+		c[4][2].setConnection(EAST, c[4][3], new Door());
+		c[4][3].setConnection(WEST, c[4][2], new Door());
+		c[4][3].setConnection(EAST, c[4][4], new Door());
+		c[4][4].setConnection(WEST, c[4][3], new Door());
+		c[4][4].setConnection(EAST, c[4][5], new Door());
+		c[4][5].setConnection(WEST, c[4][4], new Door());
+		c[4][5].setConnection(EAST, c[4][6], new Door());
+		c[4][6].setConnection(WEST, c[4][5], new Door());
+		c[4][7].setConnection(EAST, c[4][8], new Door());
+		c[4][8].setConnection(WEST, c[4][7], new Door());
+		c[4][8].setConnection(EAST, c[4][9], new Door());
+		c[4][9].setConnection(WEST, c[4][8], new Door());
+		
+		c[5][0].setConnection(EAST, c[5][1], new Door());
+		c[5][1].setConnection(WEST, c[5][0], new Door());
+		c[5][1].setConnection(EAST, c[5][2], new Door());
+		c[5][2].setConnection(WEST, c[5][1], new Door()); 
+		c[5][2].setConnection(EAST, c[5][3], new Door());
+		c[5][3].setConnection(WEST, c[5][2], new Door());
+		c[5][3].setConnection(EAST, c[5][4], new Door());
+		c[5][4].setConnection(WEST, c[5][3], new Door());
+		c[5][4].setConnection(EAST, c[5][5], new Door());
+		c[5][5].setConnection(WEST, c[5][4], new Door());
+		c[5][5].setConnection(EAST, c[5][6], new Door());
+		c[5][6].setConnection(WEST, c[5][5], new Door());
+		c[5][6].setConnection(EAST, c[5][7], new Door());
+		c[5][7].setConnection(WEST, c[5][6], new Door());
+		c[5][7].setConnection(EAST, c[5][8], new Door());
+		c[5][8].setConnection(WEST, c[5][7], new Door());
+		c[5][8].setConnection(EAST, c[5][9], new Door());
+		c[5][9].setConnection(WEST, c[5][8], new Door());
+		
+		c[6][4].setConnection(EAST, c[6][5], new Door());
+		c[6][5].setConnection(WEST, c[6][4], new Door());
+		c[6][5].setConnection(EAST, c[6][6], new Door());
+		c[6][6].setConnection(WEST, c[6][5], new Door());
+		
+		c[7][3].setConnection(EAST, c[7][4], new Door());
+		c[7][4].setConnection(WEST, c[7][3], new Door());
+		c[7][4].setConnection(EAST, c[7][5], new Door());
+		c[7][5].setConnection(WEST, c[7][4], new Door());
+		c[7][5].setConnection(EAST, c[7][6], new Door());
+		c[7][6].setConnection(WEST, c[7][5], new Door());
+		
+		c[8][4].setConnection(EAST, c[8][5], new Door());
+		c[8][5].setConnection(WEST, c[8][4], new Door());
+		c[8][5].setConnection(EAST, c[8][6], new Door());
+		c[8][6].setConnection(WEST, c[8][5], new Door());
+		
+		c[9][4].setConnection(EAST, c[9][5], new Door());
+		c[9][5].setConnection(WEST, c[9][4], new Door());
+		c[9][5].setConnection(EAST, c[9][6], new Door());
+		c[9][6].setConnection(WEST, c[9][5], new Door());
+		
+		c[1][0].setConnection(SOUTH, c[2][0], new Door());
+		c[2][0].setConnection(NORTH, c[1][0], new Door());
+		c[2][0].setConnection(SOUTH, c[3][0], new Door());
+		c[3][0].setConnection(NORTH, c[2][0], new Door());
+		c[3][0].setConnection(SOUTH, c[4][0], new Door());
+		c[4][0].setConnection(NORTH, c[3][0], new Door());
+		c[4][0].setConnection(SOUTH, c[5][0], new Door());
+		c[5][0].setConnection(NORTH, c[4][0], new Door());
+		
+		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		c[1][1].setConnection(NORTH, c[0][1], new Door());
+		c[2][1].setConnection(SOUTH, c[3][1], new Door());
+		c[3][1].setConnection(NORTH, c[2][1], new Door());
+		c[3][1].setConnection(SOUTH, c[4][1], new Door());
+		c[4][1].setConnection(NORTH, c[3][1], new Door());
+		c[4][1].setConnection(SOUTH, c[5][1], new Door());
+		c[5][1].setConnection(NORTH, c[4][1], new Door());
+		
+		c[0][2].setConnection(SOUTH, c[1][2], new Door());
+		c[1][2].setConnection(NORTH, c[0][2], new Door());
+		c[1][2].setConnection(SOUTH, c[2][2], new Door());
+		c[2][2].setConnection(NORTH, c[1][2], new Door());
+		c[2][2].setConnection(SOUTH, c[3][2], new Door());
+		c[3][2].setConnection(NORTH, c[2][2], new Door());
+		c[3][2].setConnection(SOUTH, c[4][2], new Door());
+		c[4][2].setConnection(NORTH, c[3][2], new Door());
+		c[4][2].setConnection(SOUTH, c[5][2], new Door());
+		c[5][2].setConnection(NORTH, c[4][2], new Door());
+		
+		c[0][3].setConnection(SOUTH, c[1][3], new Door());
+		c[1][3].setConnection(NORTH, c[0][3], new Door());
+		c[1][3].setConnection(SOUTH, c[2][3], new Door());
+		c[2][3].setConnection(NORTH, c[1][3], new Door());
+		c[2][3].setConnection(SOUTH, c[3][3], new Door());
+		c[3][3].setConnection(NORTH, c[2][3], new Door());
+		c[3][3].setConnection(SOUTH, c[4][3], new Door());
+		c[4][3].setConnection(NORTH, c[3][3], new Door());
+		c[4][3].setConnection(SOUTH, c[5][3], new Door());
+		c[5][3].setConnection(NORTH, c[4][3], new Door());
+		
+		c[0][4].setConnection(SOUTH, c[1][4], new Door());
+		c[1][4].setConnection(NORTH, c[0][4], new Door());
+		c[1][4].setConnection(SOUTH, c[2][4], new Door());
+		c[2][4].setConnection(NORTH, c[1][4], new Door());
+		c[2][4].setConnection(SOUTH, c[3][4], new Door());
+		c[3][4].setConnection(NORTH, c[2][4], new Door());		
+		c[3][4].setConnection(SOUTH, c[4][4], new Door());
+		c[4][4].setConnection(NORTH, c[3][4], new Door());
+		c[4][4].setConnection(SOUTH, c[5][4], new Door());
+		c[5][4].setConnection(NORTH, c[4][4], new Door());
+		c[5][4].setConnection(SOUTH, c[6][4], new Door());
+		c[6][4].setConnection(NORTH, c[5][4], new Door());
+		c[6][4].setConnection(SOUTH, c[7][4], new Door());
+		c[7][4].setConnection(NORTH, c[6][4], new Door());
+		c[7][4].setConnection(SOUTH, c[8][4], new Door());
+		c[8][4].setConnection(NORTH, c[7][4], new Door());
+		c[8][4].setConnection(SOUTH, c[9][4], new Door());
+		c[9][4].setConnection(NORTH, c[8][4], new Door());
+		
+		c[0][5].setConnection(SOUTH, c[1][5], new Door());
+		c[1][5].setConnection(NORTH, c[0][5], new Door());
+		c[1][5].setConnection(SOUTH, c[2][5], new Door());
+		c[2][5].setConnection(NORTH, c[1][5], new Door());
+		c[2][5].setConnection(SOUTH, c[3][5], new Door());
+		c[3][5].setConnection(NORTH, c[2][5], new Door());		
+		c[3][5].setConnection(SOUTH, c[4][5], new Door());
+		c[4][5].setConnection(NORTH, c[3][5], new Door());
+		c[4][5].setConnection(SOUTH, c[5][5], new Door());
+		c[5][5].setConnection(NORTH, c[4][5], new Door());
+		c[5][5].setConnection(SOUTH, c[6][5], new Door());
+		c[6][5].setConnection(NORTH, c[5][5], new Door());
+		c[6][5].setConnection(SOUTH, c[7][5], new Door());
+		c[7][5].setConnection(NORTH, c[6][5], new Door());
+		c[7][5].setConnection(SOUTH, c[8][5], new Door());
+		c[8][5].setConnection(NORTH, c[7][5], new Door());
+		c[8][5].setConnection(SOUTH, c[9][5], new Door());
+		c[9][5].setConnection(NORTH, c[8][5], new Door());
+		
+		c[0][6].setConnection(SOUTH, c[1][6], new Door());
+		c[1][6].setConnection(NORTH, c[0][6], new Door());
+		c[1][6].setConnection(SOUTH, c[2][6], new Door());
+		c[2][6].setConnection(NORTH, c[1][6], new Door());
+		c[2][6].setConnection(SOUTH, c[3][6], new Door());
+		c[3][6].setConnection(NORTH, c[2][6], new Door());		
+		c[3][6].setConnection(SOUTH, c[4][6], new Door());
+		c[4][6].setConnection(NORTH, c[3][6], new Door());
+		c[4][6].setConnection(SOUTH, c[5][6], new Door());
+		c[5][6].setConnection(NORTH, c[4][6], new Door());
+		c[5][6].setConnection(SOUTH, c[6][6], new Door());
+		c[6][6].setConnection(NORTH, c[5][6], new Door());
+		c[6][6].setConnection(SOUTH, c[7][6], new Door());
+		c[7][6].setConnection(NORTH, c[6][6], new Door());
+		c[7][6].setConnection(SOUTH, c[8][6], new Door());
+		c[8][6].setConnection(NORTH, c[7][6], new Door());
+		c[8][6].setConnection(SOUTH, c[9][6], new Door());
+		c[9][6].setConnection(NORTH, c[8][6], new Door());
+		
+		c[0][7].setConnection(SOUTH, c[1][7], new Door());
+		c[1][7].setConnection(NORTH, c[0][7], new Door());
+		c[2][7].setConnection(SOUTH, c[3][7], new Door());
+		c[3][7].setConnection(NORTH, c[2][7], new Door());		
+		c[3][7].setConnection(SOUTH, c[4][7], new Door());
+		c[4][7].setConnection(NORTH, c[3][7], new Door());
+		c[6][7].setConnection(SOUTH, c[7][7], new Door());
+		c[7][7].setConnection(NORTH, c[6][7], new Door());
+		c[7][7].setConnection(SOUTH, c[8][7], new Door());
+		c[8][7].setConnection(NORTH, c[7][7], new Door());
+		c[8][7].setConnection(SOUTH, c[9][7], new Door());
+		c[9][7].setConnection(NORTH, c[8][7], new Door());
+		
+		c[0][8].setConnection(SOUTH, c[1][8], new Door());
+		c[1][8].setConnection(NORTH, c[0][8], new Door());
+		c[2][8].setConnection(SOUTH, c[3][8], new Door());
+		c[3][8].setConnection(NORTH, c[2][8], new Door());		
+		c[3][8].setConnection(SOUTH, c[4][8], new Door());
+		c[4][8].setConnection(NORTH, c[3][8], new Door());
+		c[6][8].setConnection(SOUTH, c[7][8], new Door());
+		c[7][8].setConnection(NORTH, c[6][8], new Door());
+		c[7][8].setConnection(SOUTH, c[8][8], new Door());
+		c[8][8].setConnection(NORTH, c[7][8], new Door());
+		c[8][8].setConnection(SOUTH, c[9][8], new Door());
+		c[9][8].setConnection(NORTH, c[8][8], new Door());
+		
+		c[0][9].setConnection(SOUTH, c[1][9], new Door());
+		c[1][9].setConnection(NORTH, c[0][9], new Door());
+		c[2][9].setConnection(SOUTH, c[3][9], new Door());
+		c[3][9].setConnection(NORTH, c[2][9], new Door());		
+		c[3][9].setConnection(SOUTH, c[4][9], new Door());
+		c[4][9].setConnection(NORTH, c[3][9], new Door());
+		c[6][9].setConnection(SOUTH, c[7][9], new Door());
+		c[7][9].setConnection(NORTH, c[6][9], new Door());
+		c[7][9].setConnection(SOUTH, c[8][9], new Door());
+		c[8][9].setConnection(NORTH, c[7][9], new Door());
+		c[8][9].setConnection(SOUTH, c[9][9], new Door());
+		c[9][9].setConnection(NORTH, c[8][9], new Door());
 		
 		c[6][0].setConnection(SOUTH, c[7][0], new Door());
 		c[7][0].setConnection(NORTH, c[6][0], new Door());
@@ -298,7 +567,8 @@ public class CaveRoom {
 		c[8][1].setConnection(EAST, c[8][2], new Door());
 		c[8][2].setConnection(WEST, c[8][1], new Door());
 		
-		//david is cool
+		c[6][2].setConnection(EAST, c[6][3], new Door());
+		c[6][3].setConnection(WEST, c[6][2], new Door());
 		
 		c[8][2].setConnection(EAST, c[8][3], new Door());
 		c[8][3].setConnection(WEST, c[8][2], new Door());
@@ -356,17 +626,18 @@ public class CaveRoom {
 		
 		c[7][2].setConnection(EAST, c[7][3], new Door());
 		c[7][3].setConnection(WEST, c[7][2], new Door());
+		
+		c[0][0].setConnection(EAST, c[0][1], new Door());
+		c[0][1].setConnection(WEST, c[0][0], new Door());
+		
+		c[0][0].setConnection(SOUTH, c[1][0], new Door());
+		c[1][0].setConnection(NORTH, c[0][0], new Door());
 		/** 
 		 * Special requests:
 		 * moving objects in caves
 		 * what happens when you lose?
 		 * can another object move toward you?
 		 */	
-	}
-
-	private void makeConnectionBetweenRooms(CaveRoom r1, CaveRoom r2, int dir, Door d1, Door d2) {
-		r1.setConnection(dir, r2, d1);
-		r2.setConnection(oppositeDirection(dir), r1, d2);
 	}
 
 	public String getDescription() {
@@ -398,6 +669,9 @@ public class CaveRoom {
 		return doors[direction];
 	}
 	
-	
+	public static void unlockRoom(Door door) {
+		door.setOpen(true);
+		door.setLocked(false);
+	}
 
 }

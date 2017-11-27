@@ -63,7 +63,7 @@ public class VictorBackEnd implements RemingtonSupport{
 		}
 	}
 	
-	private String numberOfAdjacentBombs(int row, int col) {
+	public String numberOfAdjacentBombs(int row, int col) {
 		int count = 0;
 		if(row > 0) {
 			//N
@@ -120,14 +120,14 @@ public class VictorBackEnd implements RemingtonSupport{
 	public void flag(int[] coords) {
 		if(minefield[coords[0]][coords[1]].isFlaged()) {
 			minefield[coords[0]][coords[1]].setFlaged(false);
-			minefield[coords[0]][coords[1]].setVisible(false);
+			changeVisibility(coords[0],coords[1], false);
 			flaged--;
 			if(checkIsFlagedBombs(coords)) {
 				correctFlaged--;
 			}
 		}else {
 			minefield[coords[0]][coords[1]].setFlaged(true);
-			minefield[coords[0]][coords[1]].setVisible(true);
+			changeVisibility(coords[0],coords[1], true);
 			flaged++;
 			if(checkIsFlagedBombs(coords)) {
 				correctFlaged++;
@@ -166,5 +166,9 @@ public class VictorBackEnd implements RemingtonSupport{
 
 	public int getCorrectFlaged() {
 		return correctFlaged;
+	}
+	
+	public void changeVisibility(int row, int col, boolean state) {
+		minefield[row][col].setVisible(state);
 	}
 }

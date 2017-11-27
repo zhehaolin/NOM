@@ -11,7 +11,6 @@ public class RemingtonRoom extends CaveRoom{
 
 	public RemingtonRoom(String description) {
 		super(description);
-		this.description = "You see a couple of items scattered across the room.";
 	}
 
 	public void performAction(int direction) {

@@ -50,16 +50,12 @@ public class VictorRoom extends CaveRoom{
 		}
 	}
 
-	private void runMinigame() {
-		
-	}
-
 	public void activateTrap() {
 		if(Math.random() < probability && getContents().equals("X") && !triggered && !passed) {
 			Inventory.changeHP(damage);
 			triggered = true;
 			CaveExplorer.print(descTrapActivate);
-			this.setDescription("This room has coords 2, 3. The trap has been sprung.");
+			this.setDescription("This room has coords 2, 3. This was where you were shot. The fightting has abated");
 		}
 		passed = true;
 	}

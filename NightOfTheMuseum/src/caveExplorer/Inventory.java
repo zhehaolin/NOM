@@ -4,24 +4,27 @@ public class Inventory {
 
 	private String map;
 	
-	private static int hp;
-	private static int gold;
+	private static int keys = 0;
 
 	private boolean gloveofpp;
 	private boolean Strangekey;
 	private boolean hasKey;
+
+	private static int hp;
+	private static boolean magicSquare;
+	private static boolean puzzlestat;
+
+	private static int gold;
 	
 	public Inventory() {
 		updateMap();
-		hasKey = false;
 		hp = 100;
-		gold = 5000;
+		gold = 100;
+		hasKey = false;
 		Strangekey = false;
-		gloveofpp = false;
-	}
-
-	public static int getHp() {
-		return hp;
+		gloveofpp = false;//df
+		magicSquare = false;
+		puzzlestat = false;
 	}
 
 	public void updateMap() {
@@ -63,7 +66,7 @@ public class Inventory {
 			}
 		}
 	}
-
+	
 	public String getDescription() {
 		return map;
 //		return "You have nothing in your inventory.";
@@ -77,19 +80,7 @@ public class Inventory {
 	public boolean haveStrangeKey() {
 		return Strangekey;
 	}
-	public static void changeHP(int change) {
-		hp += change;
-		if(hp > 100) {
-			hp = 100;
-		}
-		if(hp < 0) {
-			hp = 0;
-		}
-	}
-	
-	public static void changeGold(int change) {
-		gold += change;
-	}
+
 
 	public static int getGold() {
 		return gold;
@@ -101,8 +92,50 @@ public class Inventory {
 		}
 		return false;
 	}
+
 	
 	public void gotkey() {
 		hasKey = true;
 	}
+
+	public static int getKeys() {
+		return keys;
+	}
+
+	public static void Obtainkeys() {
+		keys+=1;
+		
+	}
+
+	public static boolean getMS() {
+		return magicSquare;
+	}
+
+	public static void FinishedMagicSquare() {
+		magicSquare = true;
+	}
+
+	public static boolean puzzleGet() {
+		return puzzlestat;
+	}
+	public static void puzzleDone() {
+		puzzlestat = true;
+	}
+
+	public static void changeGold(int treasureAmount) {
+		gold += treasureAmount;
+		
+	}
+
+	public static void changeHP(int damage) {
+		hp+=damage;
+		
+	}
+
+	public static int getHp() {
+		return hp;
+	}
+
 }
+
+//df
