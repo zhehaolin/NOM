@@ -7,6 +7,7 @@ public class JasonBackEnd implements DavidSupport{
 	public int sizeLength;
 	public static int[] chosen;
 	public int magicNumber;
+	public int size;
 	
 	public JasonBackEnd(DavidFrontEnd frontEnd, int size) {
 		table = new int[size][size];
@@ -16,6 +17,7 @@ public class JasonBackEnd implements DavidSupport{
 		magicNumber = size* ((int)Math.pow(size, 2)+1)/2;
 		playing = true;
 		sizeLength = Integer.toString(size).length();
+		this.size = size;
 	}
 	/**
 	 * creates a size x size table using double for loop
@@ -147,11 +149,17 @@ public class JasonBackEnd implements DavidSupport{
 		int x1 = Integer.parseInt(input2.substring(psn2+1,input2.length()));
 		swap(table,x,y,x1,y1);
 	}
+	public boolean isValidCoord(String input) {
+		int psn = commaPos(input);
+		int y = Integer.parseInt(input.substring(0,psn));
+		int x = Integer.parseInt(input.substring(psn+1,input.length()));
+		return x>= 0 && x<size && y >=0 && y<size;
+	}
 	public void analyzeBoard() {
 		playing = !calculateWin();
 	}
 	public boolean isValid(String input) {
-		return input.length() <= 2*sizeLength+1 && isOneComma(input) && isNum(input.substring(0,commaPos(input))) && isNum(input.substring(commaPos(input)+1,input.length()));
+		return input.length() <= 2*sizeLength+1 && isOneComma(input) && isValidCoord(input) && isNum(input.substring(0,commaPos(input))) && isNum(input.substring(commaPos(input)+1,input.length()));
 	}
 	public boolean isOneComma(String input) {
 		boolean comma = false;
