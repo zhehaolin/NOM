@@ -200,7 +200,7 @@ public class CaveRoom {
 		CaveExplorer.caves[0][2] = new RemingtonFrontEnd("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
 		
 		NPCRoom customRoom2 = new DavidFront("There is a strange figure in the corner. Press 'f' to interact.");
-		CaveExplorer.caves[0][4] = customRoom2;		
+		CaveExplorer.caves[8][5] = customRoom2;		
 
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
 		CaveExplorer.caves[0][1] = customRoom3;
