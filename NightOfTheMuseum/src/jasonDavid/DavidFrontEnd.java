@@ -2,11 +2,10 @@ package jasonDavid;
 import java.util.Scanner;
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
-import victorRemington.RemingtonUtility;
 
 public class DavidFrontEnd implements JasonSupport{
 	
-	private JasonBackEnd backend;
+	private static JasonBackEnd backend;
 	private String map;
 
 	
@@ -15,10 +14,17 @@ public class DavidFrontEnd implements JasonSupport{
 	}
 
 	public static void main(String[] arg) {
-		System.out.println("What size?");
+		System.out.println("You look around the room, and you see a display that asks you, what size is your magic square? (Please input an odd number between 1 and 31)");
 		//int size = CaveExplorer.in.nextInt();
 		Scanner sc = new Scanner(System.in);
-		int size = sc.nextInt();
+		while (!sc.hasNextInt() ) {
+			System.out.println("Please type in an odd number between 1 and 31");
+			sc = new Scanner(System.in);
+			if (sc.hasNextInt()) {
+				break;
+			}
+		}
+		int size = getValidSize();
 		DavidFrontEnd demo = new DavidFrontEnd(size);
 		demo.play(size);
 	}
@@ -35,7 +41,7 @@ public class DavidFrontEnd implements JasonSupport{
 			 if(backend.respondToInput(input1,input2)) {
 		    		backend.performSwap(input1, input2);
 		    	}
-			 if (input1.equals("help")) {
+			 if (input1.equals("help")&&backend.isValidCoord(input2)) {
 				 int coord1 = Integer.parseInt(input2.substring(0,1));
 				 int coord2 = Integer.parseInt(input2.substring(2,3));
 				 provideHint(coord2, coord1, size);
@@ -49,16 +55,6 @@ public class DavidFrontEnd implements JasonSupport{
 			 backend.analyzeBoard();
 	}
 		printGameOverMessage();
-	}
-	private void introScreen() {
-		System.out.println("Enter 'p' to play.");
-		String command = DavidUtility.waitForLetterInput("p");
-		if(command.equals("r")){
-			DavidUtility.print("The objective of the game is to clear the board containing hidden 'mines' or bombs without detonating any of them."
-					+" With help from clues(numbers that pop up after putting in a coordinate) about the number of neighboring mines in each field.\n\n      - - press enter - -");
-			in.nextLine();
-			introScreen();
-		}
 	}
 
 	private void provideHint(int x, int y, int size) {
@@ -223,4 +219,12 @@ public class DavidFrontEnd implements JasonSupport{
 		}
 			return false;
 	}
+		public static int getValidSize(){
+		    Scanner sc = new Scanner(System.in);
+		    String size = sc.nextLine();
+		    while(!backend.isNum(size) && Integer.parseInt(size)%2 != 1){
+		        size = sc.nextLine();
+		    }
+		    return Integer.parseInt(size);
+		}
 }
