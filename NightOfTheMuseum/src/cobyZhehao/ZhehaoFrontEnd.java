@@ -9,6 +9,8 @@ public class ZhehaoFrontEnd implements CobySupport {
 	private CobyBackEnd backend;
 	private int movestaken;
 	public static Scanner in;
+	private String cheat;
+	private boolean game;
 	
 	public static final void main(String[] args) {
 		initScanner();
@@ -21,6 +23,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 	}
 	private void play() {
 		new ZhehaoGameIntro().play();
+		game = backend.gameover();
 		menu();
 	}
 
@@ -42,29 +45,43 @@ public class ZhehaoFrontEnd implements CobySupport {
 	public ZhehaoFrontEnd() {
 		backend = new CobyBackEnd(this);
 		movestaken=0;
+		cheat="math";
 	}
 	
 	private void StartGame() {
 		 ZhehaoCobyPlot[][] plots = backend.getPlots();
 		 ZhehaoCobyPlot p = null;
-		 while(backend.gameover()) {
+		 
+		 while(!game) {
 			 updateMap();
 			 displaymovestaken(p);
 			 System.out.println("Which tile do you want to move? ");
-				 displayhints(p);
-				 int[] coords = backend.getCoordInput();
-				 if(coords !=null) {
-					 p = plots[coords[0]][coords[1]];
-					 backend.move(p);
-					 movestaken++;
+			 displayhints(p);
+			 int[] coords = backend.getCoordInput();
+			 if(coords !=null) {
+				 if(coords[0]==9 && coords[1]==9) {
+					 System.out.println("fk cs");
+					 break;
+				 }
+					p = plots[coords[0]][coords[1]];
+					backend.move(p);
+					movestaken++;
 				 }else {
 					 System.out.println("Please enter a valid input");
-				 }
+				}
 				 
 			 }
-			
-		 System.out.println("You solve the puzzle! The door is now unclocked!");
+			 
+			 
+			 
+		 
 	}
+	
+
+	private boolean CheatUsed(String input) {
+		return(input.equals(cheat));
+	}
+
 	private void displaymovestaken(ZhehaoCobyPlot p) {
 		System.out.println("Moves taken: "+movestaken);
 	}
@@ -78,24 +95,49 @@ public class ZhehaoFrontEnd implements CobySupport {
 		
 		System.out.println("Hints:\n"+possiblehint[checkplot(plot)]);
 		
+		
 	}
 	private int checkplot(ZhehaoCobyPlot[][] z) {
 		
 		int[][] answer={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15}};
+		ZhehaoCobyPlot[][] plots = backend.getPlots();
 		int count=0;
 		for(int row = 0; row < z.length; row++) {
 			for(int col = 0; col < z[row].length; col++) {
-				if(Integer.parseInt(z[row][col].getContents())!=answer[row][col] || Integer.parseInt(z[row][col+1].getContents())!=answer[row][col+1]) {
-					return count;
+				
+				if(valid(0,col+1)) {
+					if(z[row][col].getContents().equals(" ") || z[row][col+1].getContents().equals(" ")){
+						if(count>11) {
+							return 10;
+						}else {
+							return count;
+						}
+					}else {
+						if(Integer.parseInt(z[row][col].getContents())!=answer[row][col] || Integer.parseInt(z[row][col+1].getContents())!=answer[row][col+1]) {
+							if(count>11) {
+								return 10;
+							}else {
+								return count;
+							}
+						}else {
+							count++;
+						}
+					}
 				}else {
-					count++;
+					return 10;
 				}
+					
+				
 			}
 		}
 		return count;
-			
+		
 	}
 	
+	private boolean valid(int row, int col) {
+		return row >= 0 && row< backend.getPlots().length && col >= 0 && col < backend.getPlots()[row].length;
+	}
+
 	public void updateMap() {
 		String map = " ";
 	
