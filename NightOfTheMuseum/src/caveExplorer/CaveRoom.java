@@ -187,7 +187,7 @@ public class CaveRoom {
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
 		
-		CaveRoom customRoom = new CobyRoom("There is a statue in front of you. Press 'f' to interact.");
+		CaveRoom customRoom = new CobyRoom("There is a dirty sign in front of you. Press 'f' to interact.");
 
 		CaveExplorer.caves[2][3] = customRoom;
 

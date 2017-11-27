@@ -25,7 +25,7 @@ public class zhehaoRoom extends NPCRoom {
 	public void performAction(int direction) {
 		super.performAction(direction);
 		if(direction == 4) {
-			CaveExplorer.print("In front of you is the Greek exhibit. It is full of ancient Greek Mathematicians. He tells you that there is a special machine at 5,9.");
+			CaveExplorer.print("In front of you is the Greek exhibit. It is full of ancient Greek Mathematicians.");
 		}else {
 			
 				System.out.println("That key does nothing");
