@@ -7,6 +7,7 @@ public class JasonBackEnd implements DavidSupport{
 	public int sizeLength;
 	public static int[] chosen;
 	public int magicNumber;
+	public int size;
 	
 	public JasonBackEnd(DavidFrontEnd frontEnd, int size) {
 		table = new int[size][size];
@@ -16,6 +17,7 @@ public class JasonBackEnd implements DavidSupport{
 		magicNumber = size* ((int)Math.pow(size, 2)+1)/2;
 		playing = true;
 		sizeLength = Integer.toString(size).length();
+		this.size = size;
 	}
 	/**
 	 * creates a size x size table using double for loop
@@ -83,7 +85,6 @@ public class JasonBackEnd implements DavidSupport{
 			}
 		}
 		if (calcDiagonal("left") != magicNumber || calcDiagonal("right") != magicNumber) {
-			System.out.println(calcDiagonal("right"));
 			return false;
 		}
 		return true;
@@ -139,19 +140,26 @@ public class JasonBackEnd implements DavidSupport{
 		}
 		return false;
 	}
-	public void performSwap(String input1, String input2, int psn1, int psn2) {
-		int y = Integer.parseInt(input1.substring(0,psn1))-1;
-		int x = Integer.parseInt(input1.substring(psn1+1,input1.length()))-1;
-		int y1 = Integer.parseInt(input2.substring(0,psn2))-1;
-		int x1 = Integer.parseInt(input2.substring(psn2+1,input2.length()))-1;
+	public void performSwap(String input1, String input2) {
+		int psn1 = commaPos(input1);
+		int psn2 = commaPos(input2);
+		int y = Integer.parseInt(input1.substring(0,psn1));
+		int x = Integer.parseInt(input1.substring(psn1+1,input1.length()));
+		int y1 = Integer.parseInt(input2.substring(0,psn2));
+		int x1 = Integer.parseInt(input2.substring(psn2+1,input2.length()));
 		swap(table,x,y,x1,y1);
-		System.out.println(psn1);
+	}
+	public boolean isValidCoord(String input) {
+		int psn = commaPos(input);
+		int y = Integer.parseInt(input.substring(0,psn));
+		int x = Integer.parseInt(input.substring(psn+1,input.length()));
+		return x>= 0 && x<size && y >=0 && y<size;
 	}
 	public void analyzeBoard() {
-		playing = calculateWin();
+		playing = !calculateWin();
 	}
 	public boolean isValid(String input) {
-		return input.length() <= 2*sizeLength+1 && isOneComma(input) && isNum(input.substring(0,commaPos(input))) && isNum(input.substring(commaPos(input)+1,input.length()));
+		return input.length() <= 2*sizeLength+1 && isOneComma(input) && isValidCoord(input) && isNum(input.substring(0,commaPos(input))) && isNum(input.substring(commaPos(input)+1,input.length()));
 	}
 	public boolean isOneComma(String input) {
 		boolean comma = false;
@@ -175,7 +183,7 @@ public class JasonBackEnd implements DavidSupport{
 		}
 		return -1;
 	}
-	public boolean isNum(String input) {
+	public static boolean isNum(String input) {
 	    boolean isNum = true;
 	    try {
 
@@ -188,3 +196,4 @@ public class JasonBackEnd implements DavidSupport{
 	}
 	
 }
+
