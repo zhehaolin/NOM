@@ -113,4 +113,9 @@ public class Inventory {
 	public static int getKeys() {
 		return keys;
 	}
+
+	public static void Obtainkeys() {
+		keys+=1;
+		
+	}
 }
