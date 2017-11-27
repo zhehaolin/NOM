@@ -55,7 +55,7 @@ public class DavidFrontEnd implements JasonSupport{
         printGameOverMessage();
     }
 
-	private void provideHint(int x, int y, int size) {
+	public void provideHint(int x, int y, int size) {
 		int[][] table = backend.table;
 		int[][] finishedtable = finishedBoard(size);
 		int[] found;

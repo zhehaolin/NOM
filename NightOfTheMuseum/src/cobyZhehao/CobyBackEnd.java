@@ -6,16 +6,18 @@ import caveExplorer.CaveExplorer;
 
 public class CobyBackEnd implements ZhehaoSupport{
 
-	private CobySupport frontend;
+	
+	private ZhehaoFrontEnd frontend;
 	private int[] randNums;
-	private int[][] answer= {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15}};
-	private String[][] starting = {{"1","5","10","9"},{"15"," ","4","14"},{"12","2","8","13"},{"11","7","3","6"}};
-	private int[] blankSpot;
+	private String[][] answer= {{"1","2","3","4"},{"5","6","7","8"},{"9","10","11","12"},{"13","14","15"," "}};
+	//private String[][] starting = {{"1","5","10","9"},{"15"," ","4","14"},{"12","2","8","13"},{"11","7","3","6"}};
+	private String[][] starting = {{"1","2","3","4"},{"5","6","7","8"},{"9","10","11","12"},{"13","14"," ","15"}};
+	private int[] blankSpot = {3,2};
 	public ZhehaoCobyPlot[][] plots;
 	private String keyword = "math";
 	public static Scanner in;
 	
-	public CobyBackEnd(CobySupport frontend) {
+	public CobyBackEnd(ZhehaoFrontEnd frontend) {
 		initScanner();
 		this.frontend = frontend;
 		plots = new ZhehaoCobyPlot[4][4];
@@ -39,43 +41,57 @@ public class CobyBackEnd implements ZhehaoSupport{
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4; j++) {
 				plots[i][j].setContents(starting[i][j]);
-				plots[i][j].setAnswer(starting[i][j]);
-				if(plots[i][j].equals("0")) {
-					plots[i][j] = null;
-					blankSpot[0] = i;
-					blankSpot[1] = j;
-				}
+				plots[i][j].setAnswer(answer[i][j]);
 			}
 		}
 	}
 	
 	public boolean gameover() {
+		int rightCount = 0;
 		for(int i=0;i<answer.length;i++) {
 			for(int j=0;j<answer[i].length; j++) {
-				if(plots[i][j].getContents() != plots[i][j].getAnswer()) {
+				if(!plots[i][j].getContents().equals(plots[i][j].getAnswer())) {
 					return false;
+				}else {
+					rightCount++;
 				}
 			}
 		}
-		return true;
+		if(rightCount == 16) {
+			return true;
+		}
+		return false;
 	}
 
 	private int[] findCoords(String input) {
-		int[] coords = {};
-		int a = Integer.parseInt(input.substring(0,1));
-		int b = Integer.parseInt(input.substring(2,3));
-		coords[0] = a;
-		coords[1] = b;
-		return coords;
+		int[] coords = {0,0};
+		if(input.substring(0,1).equals("9") && input.substring(2,3).equals("9")) {
+			coords[0]=9;
+			coords[1]=9;
+			return coords;
+		
+		}else {
+			int a = Integer.parseInt(input.substring(0,1));
+			int b = Integer.parseInt(input.substring(2,3));
+			coords[0] = a;
+			coords[1] = b;
+			return coords;
+		}
 	}
 
 	public boolean validCoords(String input) {
 		if(input.substring(1,2).equals(",") && input.length() == 3){
-			if(input.substring(0,1) == "0" || input.substring(0,1) == "1" || input.substring(0,1) == "2" || input.substring(0,1) == "3") {
-				if(input.substring(2,3) == "0" || input.substring(2,3) == "1" || input.substring(2,3) == "2" || input.substring(2,3) == "3") {
+			if(input.substring(0,1).equals(blankSpot[0]) && input.substring(2,3).equals(blankSpot[1])){
+				return false;
+			}
+			if(input.substring(0,1).equals("0") || input.substring(0,1).equals("1") || input.substring(0,1).equals("2") || input.substring(0,1).equals("3")) {
+				if(input.substring(2,3).equals("0") || input.substring(2,3).equals("1") || input.substring(2,3).equals("2") || input.substring(2,3).equals("3")) {
 					return true;
 				}
 			}
+		}
+		if(input.substring(0,1).equals("9") && input.substring(2,3).equals("9")) {
+			return true;
 		}
 		return false;
 	}
@@ -85,19 +101,8 @@ public class CobyBackEnd implements ZhehaoSupport{
 		int oneDown = p.getRow()+1;
 		int oneLeft = p.getCol()-1;
 		int oneRight = p.getCol()+1;
-		if(oneUp < 0) {
-			oneUp = 0;
-		}
-		if(oneDown > 3) {
-			oneDown = 3;
-		}
-		if(oneLeft < 0) {
-			oneLeft = 0;
-		}
-		if(oneRight > 3) {
-			oneRight = 3;
-		}
-		if(oneUp == blankSpot[0] || oneDown == blankSpot[0] || oneLeft == blankSpot[1] || oneRight == blankSpot[1]) {
+		if(oneUp == blankSpot[0] && p.getCol() == blankSpot[1]|| oneDown == blankSpot[0] && p.getCol() == blankSpot[1]
+				|| oneLeft == blankSpot[1] && p.getRow() == blankSpot[0] || oneRight == blankSpot[1] && p.getRow() == blankSpot[0]) {
 			return true;
 		}
 		return false;
@@ -107,17 +112,17 @@ public class CobyBackEnd implements ZhehaoSupport{
 		return plots;
 	}
 
-	@Override
 	public int[] getCoordInput() {
 		int[] coords = null;
-		String input = CaveExplorer.in.nextLine();
-		if(validCoords(input)) {
-			coords = findCoords(input);
+		String input = frontend.in.nextLine();
+				if(validCoords(input)) {
+				coords = findCoords(input);
+			}
+			return coords;
+		
 		}
-		return coords;
-	}
+		
 
-	@Override
 	public void move(ZhehaoCobyPlot p) {
 		if(isNextToBlank(p)) {
 			moveIntoBlank(p);
@@ -126,19 +131,16 @@ public class CobyBackEnd implements ZhehaoSupport{
 	
 	//Coords is the coordinates of the new spot being turned into a blank
 	public void moveIntoBlank(ZhehaoCobyPlot p) {
-		String switchingNum = p.getContents();
-		plots[blankSpot[0]][blankSpot[1]].setContents(switchingNum);
-		p.setContents(null);
+		plots[blankSpot[0]][blankSpot[1]].setContents(p.getContents());
+		p.setContentsNull();
 		blankSpot[0] = p.getRow();
 		blankSpot[1] = p.getCol();
 	}
 	
 	public boolean keyWordUsed() {
-		if(CaveExplorer.in.nextLine() == keyword) {
+		if(frontend.in.nextLine().equals(keyword)) {
 			return true;
 		}
 		return false;
 	}
-	
-
 }
