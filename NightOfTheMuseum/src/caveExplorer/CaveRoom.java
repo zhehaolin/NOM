@@ -218,7 +218,7 @@ public class CaveRoom {
 
 		Door CZRoom = new Door();
 		CZRoom.setOpen(false);
-		CZRoom.setLocked(true);
+		CZRoom.setLocked(false);
 		c[3][7].setConnection(EAST, c[3][8], CZRoom);
 		c[3][8].setConnection(WEST, c[3][7], CZRoom);
 		
@@ -230,7 +230,7 @@ public class CaveRoom {
 		
 		Door lockedDoor = new Door();
 		lockedDoor.setOpen(false);
-		lockedDoor.setLocked(true);
+		lockedDoor.setLocked(false);
 		c[7][3].setConnection(EAST, c[7][4], lockedDoor);
 		c[7][4].setConnection(WEST, c[7][3], lockedDoor);
 		
@@ -644,5 +644,9 @@ public class CaveRoom {
 		return doors[direction];
 	}
 	
+	public static void unlockRoom(Door door) {
+		door.setOpen(true);
+		door.setLocked(false);
+	}
 
 }
