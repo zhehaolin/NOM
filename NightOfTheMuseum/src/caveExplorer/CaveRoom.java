@@ -207,7 +207,7 @@ public class CaveRoom {
 //		CaveExplorer.npcs[0].setposition(9, 2);
 		
 		MiniStarter starterNPC=new MiniStarter();
-		starterNPC.setposition(9, 2);
+		starterNPC.setposition(3, 8);
 		CaveExplorer.npcs=new NPC[1];
 		CaveExplorer.npcs[0]=starterNPC;
 		//4. Set your starting room:
