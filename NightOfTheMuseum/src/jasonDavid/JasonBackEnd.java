@@ -183,7 +183,7 @@ public class JasonBackEnd implements DavidSupport{
 		}
 		return -1;
 	}
-	public boolean isNum(String input) {
+	public static boolean isNum(String input) {
 	    boolean isNum = true;
 	    try {
 
