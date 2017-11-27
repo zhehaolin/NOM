@@ -206,10 +206,13 @@ public class CaveRoom {
 //		CaveExplorer.npcs[0] = new NPC();
 //		CaveExplorer.npcs[0].setposition(9, 2);
 		
-		MiniStarter starterNPC=new MiniStarter();
-		starterNPC.setposition(3, 8);
+		MiniStarter starterNPC=new MiniStarter("There is a monster moving. Type 'e' to in","You already challenged the monster");
+		starterNPC.setposition(3,8);
 		CaveExplorer.npcs=new NPC[1];
 		CaveExplorer.npcs[0]=starterNPC;
+		//4. Set your starting room:
+		CaveExplorer.currentRoom = CaveExplorer.caves[9][4];
+		CaveExplorer.currentRoom.enter();
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[9][1];
 		CaveExplorer.currentRoom.enter();
