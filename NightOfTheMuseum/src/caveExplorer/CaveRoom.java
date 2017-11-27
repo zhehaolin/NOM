@@ -240,26 +240,265 @@ public class CaveRoom {
 		c[9][0].setConnection(EAST, c[9][1], bathroom);
 		c[9][1].setConnection(WEST, c[9][0], bathroom);
 		
-		c[0][3].setConnection(SOUTH, c[1][3], new Door());
-		c[1][3].setConnection(NORTH, c[0][3], new Door()); 
-		
-		c[1][3].setConnection(SOUTH, c[2][3], new Door());
-		c[2][3].setConnection(NORTH, c[1][3], new Door()); 
-		
-		c[3][2].setConnection(EAST, c[3][3], new Door());
-		c[3][3].setConnection(WEST, c[3][2], new Door());
-		
-		c[2][3].setConnection(SOUTH, c[3][3], new Door());
-		c[3][3].setConnection(NORTH, c[2][3], new Door());
-		
-		c[0][1].setConnection(EAST, c[0][2], new Door());
-		c[0][2].setConnection(WEST, c[0][1], new Door());
-		
 		c[0][2].setConnection(EAST, c[0][3], new Door());
 		c[0][3].setConnection(WEST, c[0][2], new Door());
-		
 		c[0][3].setConnection(EAST, c[0][4], new Door());
 		c[0][4].setConnection(WEST, c[0][3], new Door());
+		c[0][4].setConnection(EAST, c[0][5], new Door());
+		c[0][5].setConnection(WEST, c[0][4], new Door());
+		c[0][5].setConnection(EAST, c[0][6], new Door());
+		c[0][6].setConnection(WEST, c[0][5], new Door());
+		c[0][6].setConnection(EAST, c[0][7], new Door());
+		c[0][7].setConnection(WEST, c[0][6], new Door());
+		c[0][7].setConnection(EAST, c[0][8], new Door());
+		c[0][8].setConnection(WEST, c[0][7], new Door());
+		c[0][8].setConnection(EAST, c[0][9], new Door());
+		c[0][9].setConnection(WEST, c[0][8], new Door());
+		
+		c[1][0].setConnection(EAST, c[1][1], new Door());
+		c[1][1].setConnection(WEST, c[1][0], new Door());
+		c[1][2].setConnection(EAST, c[1][3], new Door());
+		c[1][3].setConnection(WEST, c[1][2], new Door());
+		c[1][3].setConnection(EAST, c[1][4], new Door());
+		c[1][4].setConnection(WEST, c[1][3], new Door());
+		c[1][4].setConnection(EAST, c[1][5], new Door());
+		c[1][5].setConnection(WEST, c[1][4], new Door());
+		c[1][5].setConnection(EAST, c[1][6], new Door());
+		c[1][6].setConnection(WEST, c[1][5], new Door());
+		c[1][6].setConnection(EAST, c[1][7], new Door());
+		c[1][7].setConnection(WEST, c[1][6], new Door());
+		c[1][7].setConnection(EAST, c[1][8], new Door());
+		c[1][8].setConnection(WEST, c[1][7], new Door());
+		c[1][8].setConnection(EAST, c[1][9], new Door());
+		c[1][9].setConnection(WEST, c[1][8], new Door());
+		
+		c[2][0].setConnection(EAST, c[2][1], new Door());
+		c[2][1].setConnection(WEST, c[2][0], new Door());
+		c[2][1].setConnection(EAST, c[2][2], new Door());
+		c[2][2].setConnection(WEST, c[2][1], new Door()); 
+		c[2][2].setConnection(EAST, c[2][3], new Door());
+		c[2][3].setConnection(WEST, c[2][2], new Door());
+		c[2][3].setConnection(EAST, c[2][4], new Door());
+		c[2][4].setConnection(WEST, c[2][3], new Door());
+		c[2][4].setConnection(EAST, c[2][5], new Door());
+		c[2][5].setConnection(WEST, c[2][4], new Door());
+		c[2][5].setConnection(EAST, c[2][6], new Door());
+		c[2][6].setConnection(WEST, c[2][5], new Door());
+		c[2][7].setConnection(EAST, c[2][8], new Door());
+		c[2][8].setConnection(WEST, c[2][7], new Door());
+		c[2][8].setConnection(EAST, c[2][9], new Door());
+		c[2][9].setConnection(WEST, c[2][8], new Door());
+		
+		c[3][0].setConnection(EAST, c[3][1], new Door());
+		c[3][1].setConnection(WEST, c[3][0], new Door());
+		c[3][1].setConnection(EAST, c[3][2], new Door());
+		c[3][2].setConnection(WEST, c[3][1], new Door()); 
+		c[3][2].setConnection(EAST, c[3][3], new Door());
+		c[3][3].setConnection(WEST, c[3][2], new Door());
+		c[3][3].setConnection(EAST, c[3][4], new Door());
+		c[3][4].setConnection(WEST, c[3][3], new Door());
+		c[3][4].setConnection(EAST, c[3][5], new Door());
+		c[3][5].setConnection(WEST, c[3][4], new Door());
+		c[3][5].setConnection(EAST, c[3][6], new Door());
+		c[3][6].setConnection(WEST, c[3][5], new Door());
+		c[3][6].setConnection(EAST, c[3][7], new Door());
+		c[3][7].setConnection(WEST, c[3][6], new Door());
+		c[3][7].setConnection(EAST, c[3][8], new Door());
+		c[3][8].setConnection(WEST, c[3][7], new Door());
+		c[3][8].setConnection(EAST, c[3][9], new Door());
+		c[3][9].setConnection(WEST, c[3][8], new Door());
+		
+		c[4][0].setConnection(EAST, c[4][1], new Door());
+		c[4][1].setConnection(WEST, c[4][0], new Door());
+		c[4][1].setConnection(EAST, c[4][2], new Door());
+		c[4][2].setConnection(WEST, c[4][1], new Door()); 
+		c[4][2].setConnection(EAST, c[4][3], new Door());
+		c[4][3].setConnection(WEST, c[4][2], new Door());
+		c[4][3].setConnection(EAST, c[4][4], new Door());
+		c[4][4].setConnection(WEST, c[4][3], new Door());
+		c[4][4].setConnection(EAST, c[4][5], new Door());
+		c[4][5].setConnection(WEST, c[4][4], new Door());
+		c[4][5].setConnection(EAST, c[4][6], new Door());
+		c[4][6].setConnection(WEST, c[4][5], new Door());
+		c[4][7].setConnection(EAST, c[4][8], new Door());
+		c[4][8].setConnection(WEST, c[4][7], new Door());
+		c[4][8].setConnection(EAST, c[4][9], new Door());
+		c[4][9].setConnection(WEST, c[4][8], new Door());
+		
+		c[5][0].setConnection(EAST, c[5][1], new Door());
+		c[5][1].setConnection(WEST, c[5][0], new Door());
+		c[5][1].setConnection(EAST, c[5][2], new Door());
+		c[5][2].setConnection(WEST, c[5][1], new Door()); 
+		c[5][2].setConnection(EAST, c[5][3], new Door());
+		c[5][3].setConnection(WEST, c[5][2], new Door());
+		c[5][3].setConnection(EAST, c[5][4], new Door());
+		c[5][4].setConnection(WEST, c[5][3], new Door());
+		c[5][4].setConnection(EAST, c[5][5], new Door());
+		c[5][5].setConnection(WEST, c[5][4], new Door());
+		c[5][5].setConnection(EAST, c[5][6], new Door());
+		c[5][6].setConnection(WEST, c[5][5], new Door());
+		c[5][6].setConnection(EAST, c[5][7], new Door());
+		c[5][7].setConnection(WEST, c[5][6], new Door());
+		c[5][7].setConnection(EAST, c[5][8], new Door());
+		c[5][8].setConnection(WEST, c[5][7], new Door());
+		c[5][8].setConnection(EAST, c[5][9], new Door());
+		c[5][9].setConnection(WEST, c[5][8], new Door());
+		
+		c[6][4].setConnection(EAST, c[6][5], new Door());
+		c[6][5].setConnection(WEST, c[6][4], new Door());
+		c[6][5].setConnection(EAST, c[6][6], new Door());
+		c[6][6].setConnection(WEST, c[6][6], new Door());
+		
+		c[7][3].setConnection(EAST, c[7][4], new Door());
+		c[7][4].setConnection(WEST, c[7][3], new Door());
+		c[7][4].setConnection(EAST, c[7][5], new Door());
+		c[7][5].setConnection(WEST, c[7][4], new Door());
+		c[7][5].setConnection(EAST, c[7][6], new Door());
+		c[7][6].setConnection(WEST, c[7][6], new Door());
+		
+		c[8][4].setConnection(EAST, c[8][5], new Door());
+		c[8][5].setConnection(WEST, c[8][4], new Door());
+		c[8][5].setConnection(EAST, c[8][6], new Door());
+		c[8][6].setConnection(WEST, c[8][6], new Door());
+		
+		c[9][4].setConnection(EAST, c[9][5], new Door());
+		c[9][5].setConnection(WEST, c[9][4], new Door());
+		c[9][5].setConnection(EAST, c[9][6], new Door());
+		c[9][6].setConnection(WEST, c[9][6], new Door());
+		
+		c[2][0].setConnection(SOUTH, c[3][0], new Door());
+		c[3][0].setConnection(NORTH, c[2][0], new Door());
+		c[3][0].setConnection(SOUTH, c[4][0], new Door());
+		c[4][0].setConnection(NORTH, c[3][0], new Door());
+		c[4][0].setConnection(SOUTH, c[5][0], new Door());
+		c[5][0].setConnection(NORTH, c[4][0], new Door());
+		
+		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		c[1][1].setConnection(NORTH, c[0][1], new Door());
+		c[2][1].setConnection(SOUTH, c[3][1], new Door());
+		c[3][1].setConnection(NORTH, c[2][1], new Door());
+		c[3][1].setConnection(SOUTH, c[4][1], new Door());
+		c[4][1].setConnection(NORTH, c[3][1], new Door());
+		c[4][1].setConnection(SOUTH, c[5][1], new Door());
+		c[5][1].setConnection(NORTH, c[4][1], new Door());
+		
+		c[0][2].setConnection(SOUTH, c[1][2], new Door());
+		c[1][2].setConnection(NORTH, c[0][2], new Door());
+		c[1][2].setConnection(SOUTH, c[2][2], new Door());
+		c[2][2].setConnection(NORTH, c[1][2], new Door());
+		c[2][2].setConnection(SOUTH, c[3][2], new Door());
+		c[3][2].setConnection(NORTH, c[2][2], new Door());
+		c[3][2].setConnection(SOUTH, c[4][2], new Door());
+		c[4][2].setConnection(NORTH, c[3][2], new Door());
+		c[4][2].setConnection(SOUTH, c[5][2], new Door());
+		c[5][2].setConnection(NORTH, c[4][2], new Door());
+		
+		c[0][3].setConnection(SOUTH, c[1][3], new Door());
+		c[1][3].setConnection(NORTH, c[0][3], new Door());
+		c[1][3].setConnection(SOUTH, c[2][3], new Door());
+		c[2][3].setConnection(NORTH, c[1][3], new Door());
+		c[2][3].setConnection(SOUTH, c[3][3], new Door());
+		c[3][3].setConnection(NORTH, c[2][3], new Door());
+		c[3][3].setConnection(SOUTH, c[4][3], new Door());
+		c[4][3].setConnection(NORTH, c[3][3], new Door());
+		c[4][3].setConnection(SOUTH, c[5][3], new Door());
+		c[5][3].setConnection(NORTH, c[4][3], new Door());
+		
+		c[0][4].setConnection(SOUTH, c[1][4], new Door());
+		c[1][4].setConnection(NORTH, c[0][4], new Door());
+		c[1][4].setConnection(SOUTH, c[2][4], new Door());
+		c[2][4].setConnection(NORTH, c[1][4], new Door());
+		c[2][4].setConnection(SOUTH, c[3][4], new Door());
+		c[3][4].setConnection(NORTH, c[2][4], new Door());		
+		c[3][4].setConnection(SOUTH, c[4][4], new Door());
+		c[4][4].setConnection(NORTH, c[3][4], new Door());
+		c[4][4].setConnection(SOUTH, c[5][4], new Door());
+		c[5][4].setConnection(NORTH, c[4][4], new Door());
+		c[5][4].setConnection(SOUTH, c[6][4], new Door());
+		c[6][4].setConnection(NORTH, c[5][4], new Door());
+		c[6][4].setConnection(SOUTH, c[7][4], new Door());
+		c[7][4].setConnection(NORTH, c[6][4], new Door());
+		c[7][4].setConnection(SOUTH, c[8][4], new Door());
+		c[8][4].setConnection(NORTH, c[7][4], new Door());
+		c[8][4].setConnection(SOUTH, c[9][4], new Door());
+		c[9][4].setConnection(NORTH, c[8][4], new Door());
+		
+		c[0][5].setConnection(SOUTH, c[1][5], new Door());
+		c[1][5].setConnection(NORTH, c[0][5], new Door());
+		c[1][5].setConnection(SOUTH, c[2][5], new Door());
+		c[2][5].setConnection(NORTH, c[1][5], new Door());
+		c[2][5].setConnection(SOUTH, c[3][5], new Door());
+		c[3][5].setConnection(NORTH, c[2][5], new Door());		
+		c[3][5].setConnection(SOUTH, c[4][5], new Door());
+		c[4][5].setConnection(NORTH, c[3][5], new Door());
+		c[4][5].setConnection(SOUTH, c[5][5], new Door());
+		c[5][5].setConnection(NORTH, c[4][5], new Door());
+		c[5][5].setConnection(SOUTH, c[6][5], new Door());
+		c[6][5].setConnection(NORTH, c[5][5], new Door());
+		c[6][5].setConnection(SOUTH, c[7][5], new Door());
+		c[7][5].setConnection(NORTH, c[6][5], new Door());
+		c[7][5].setConnection(SOUTH, c[8][5], new Door());
+		c[8][5].setConnection(NORTH, c[7][5], new Door());
+		c[8][5].setConnection(SOUTH, c[9][5], new Door());
+		c[9][5].setConnection(NORTH, c[8][5], new Door());
+		
+		c[0][6].setConnection(SOUTH, c[1][6], new Door());
+		c[1][6].setConnection(NORTH, c[0][6], new Door());
+		c[1][6].setConnection(SOUTH, c[2][6], new Door());
+		c[2][6].setConnection(NORTH, c[1][6], new Door());
+		c[2][6].setConnection(SOUTH, c[3][6], new Door());
+		c[3][6].setConnection(NORTH, c[2][6], new Door());		
+		c[3][6].setConnection(SOUTH, c[4][6], new Door());
+		c[4][6].setConnection(NORTH, c[3][6], new Door());
+		c[4][6].setConnection(SOUTH, c[5][6], new Door());
+		c[5][6].setConnection(NORTH, c[4][6], new Door());
+		c[5][6].setConnection(SOUTH, c[6][6], new Door());
+		c[6][6].setConnection(NORTH, c[5][6], new Door());
+		c[6][6].setConnection(SOUTH, c[7][6], new Door());
+		c[7][6].setConnection(NORTH, c[6][6], new Door());
+		c[7][6].setConnection(SOUTH, c[8][6], new Door());
+		c[8][6].setConnection(NORTH, c[7][6], new Door());
+		c[8][6].setConnection(SOUTH, c[9][6], new Door());
+		c[9][6].setConnection(NORTH, c[8][6], new Door());
+		
+		c[0][7].setConnection(SOUTH, c[1][7], new Door());
+		c[1][7].setConnection(NORTH, c[0][7], new Door());
+		c[2][7].setConnection(SOUTH, c[3][7], new Door());
+		c[3][7].setConnection(NORTH, c[2][7], new Door());		
+		c[3][7].setConnection(SOUTH, c[4][7], new Door());
+		c[4][7].setConnection(NORTH, c[3][7], new Door());
+		c[6][7].setConnection(SOUTH, c[7][7], new Door());
+		c[7][7].setConnection(NORTH, c[6][7], new Door());
+		c[7][7].setConnection(SOUTH, c[8][7], new Door());
+		c[8][7].setConnection(NORTH, c[7][7], new Door());
+		c[8][7].setConnection(SOUTH, c[9][7], new Door());
+		c[9][7].setConnection(NORTH, c[8][7], new Door());
+		
+		c[0][8].setConnection(SOUTH, c[1][8], new Door());
+		c[1][8].setConnection(NORTH, c[0][8], new Door());
+		c[2][8].setConnection(SOUTH, c[3][8], new Door());
+		c[3][8].setConnection(NORTH, c[2][8], new Door());		
+		c[3][8].setConnection(SOUTH, c[4][8], new Door());
+		c[4][8].setConnection(NORTH, c[3][8], new Door());
+		c[6][8].setConnection(SOUTH, c[7][8], new Door());
+		c[7][8].setConnection(NORTH, c[6][8], new Door());
+		c[7][8].setConnection(SOUTH, c[8][8], new Door());
+		c[8][8].setConnection(NORTH, c[7][8], new Door());
+		c[8][8].setConnection(SOUTH, c[9][8], new Door());
+		c[9][8].setConnection(NORTH, c[8][8], new Door());
+		
+		c[0][9].setConnection(SOUTH, c[1][9], new Door());
+		c[1][9].setConnection(NORTH, c[0][9], new Door());
+		c[2][9].setConnection(SOUTH, c[3][9], new Door());
+		c[3][9].setConnection(NORTH, c[2][9], new Door());		
+		c[3][9].setConnection(SOUTH, c[4][9], new Door());
+		c[4][9].setConnection(NORTH, c[3][9], new Door());
+		c[6][9].setConnection(SOUTH, c[7][9], new Door());
+		c[7][9].setConnection(NORTH, c[6][9], new Door());
+		c[7][9].setConnection(SOUTH, c[8][9], new Door());
+		c[8][9].setConnection(NORTH, c[7][9], new Door());
+		c[8][9].setConnection(SOUTH, c[9][9], new Door());
+		c[9][9].setConnection(NORTH, c[8][9], new Door());
 		
 		c[6][0].setConnection(SOUTH, c[7][0], new Door());
 		c[7][0].setConnection(NORTH, c[6][0], new Door());
@@ -361,6 +600,12 @@ public class CaveRoom {
 		
 		c[7][2].setConnection(EAST, c[7][3], new Door());
 		c[7][3].setConnection(WEST, c[7][2], new Door());
+		
+		c[0][0].setConnection(EAST, c[0][1], new Door());
+		c[0][1].setConnection(WEST, c[0][0], new Door());
+		
+		c[0][0].setConnection(SOUTH, c[1][0], new Door());
+		c[1][0].setConnection(NORTH, c[0][0], new Door());
 		/** 
 		 * Special requests:
 		 * moving objects in caves
