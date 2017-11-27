@@ -1,5 +1,5 @@
 package jasonDavid;
 
 public interface JasonSupport {
-	int getValidSize();
+	void provideHint(int x, int y, int size);
 }
