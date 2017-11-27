@@ -3,6 +3,7 @@ package cobyZhehao;
 import java.util.Scanner;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.Inventory;
 
 public class ZhehaoFrontEnd implements CobySupport {
 
@@ -13,9 +14,14 @@ public class ZhehaoFrontEnd implements CobySupport {
 	private boolean game;
 	
 	public static final void main(String[] args) {
+		if(Inventory.puzzleGet() == false) {
 		initScanner();
 		ZhehaoFrontEnd test = new ZhehaoFrontEnd();
 		test.play();
+		}
+		else {
+			System.out.println("You already finished this puzzle");
+		}
 	}
 	
 	public static void initScanner(){
@@ -60,7 +66,8 @@ public class ZhehaoFrontEnd implements CobySupport {
 			 int[] coords = backend.getCoordInput();
 			 if(coords !=null) {
 				 if(coords[0]==9 && coords[1]==9) {
-					 System.out.println("fk cs");
+					 System.out.println("You solved the puzzle. You get a key.");
+					 Inventory.Obtainkeys();
 					 break;
 				 }
 					p = plots[coords[0]][coords[1]];
@@ -71,6 +78,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 				}
 				 
 			 }
+		 Inventory.puzzleDone();
 			 
 			 
 			 

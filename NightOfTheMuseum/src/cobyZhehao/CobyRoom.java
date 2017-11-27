@@ -6,25 +6,20 @@ import caveExplorer.Inventory;
 
 public class CobyRoom extends CaveRoom{
 
-	private boolean isEaten = false;
+	private boolean isWiped = false;
 
 	public CobyRoom(String description) {
 		super(description);
 	}
 
 	public void performAction(int direction) {
+		boolean used = false;
 		if(direction == 4) {
-			if(isEaten) {
-				CaveExplorer.print("You find a sandwich wrapper at the base of the statue.");
+			if(isWiped) {
+				CaveExplorer.print("The sign says 'Bring 3 keys ..' the rest is not readable.");
 			} else {
-				CaveExplorer.print("You look behind the statue. You find a sandwich!");
-				if(CaveExplorer.inventory.isHealthy() == true) {
-					CaveExplorer.print("You're hp is full so you decide to leave it there.");
-				}else {
-					CaveExplorer.print("You ate the sandwich and gained 10 hp!");
-					Inventory.changeHP(10);
-					isEaten = true;
-				}
+				CaveExplorer.print("You wipe the filth off the sign. You see some words on the sign. Press 'f' to read the sign.");
+				isWiped = true;
 			}
 		} else {
 			super.performAction(direction);

@@ -1,7 +1,10 @@
 package caveExplorer;
 
+
 import cobyZhehao.CobyRoom;
+import cobyZhehao.CheatRoom;
 import cobyZhehao.MiniStarter;
+import cobyZhehao.keyRoom;
 import cobyZhehao.zhehaoRoom;
 import victorRemington.RemingtonFrontEnd;
 import victorRemington.VictorRoom;
@@ -11,14 +14,8 @@ import jasonDavid.EndGameRoom;
 import jasonDavid.JasonDavidStartRoom;
 import jasonDavid.JasonNPC;
 import jasonDavid.JasonRoom;
-import cobyZhehao.zhehaoRoom;
 import victorRemington.RemingtonRoom;
 import victorRemington.VictorRemingtonPuzzleRoom;
-import victorRemington.VictorRoom;
-import jasonDavid.DavidFront;
-import jasonDavid.DavidNPC;
-import jasonDavid.JasonNPC;
-import jasonDavid.JasonRoom;
 
 public class CaveRoom {
 
@@ -35,6 +32,7 @@ public class CaveRoom {
 	public static final int EAST = 1;
 	public static final int SOUTH =2;
 	public static final int WEST = 3;
+	public static Door bathroom = null;
 	
 	
 	public CaveRoom(String description) {
@@ -193,7 +191,7 @@ public class CaveRoom {
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
 		
-		CaveRoom customRoom = new CobyRoom("There is a statue in front of you. Press 'f' to interact.");
+		CaveRoom customRoom = new CobyRoom("There is a sign in front of you. Press 'f' to interact.");
 
 		CaveExplorer.caves[2][3] = customRoom;
 
@@ -206,20 +204,28 @@ public class CaveRoom {
 		CaveExplorer.caves[0][2] = new RemingtonRoom("There are a variety of artifacts on the floor.");
 		
 		NPCRoom customRoom2 = new DavidFront("There is a strange figure in the corner. Press 'f' to interact.");
-		CaveExplorer.caves[0][4] = customRoom2;		
+		CaveExplorer.caves[8][5] = customRoom2;		
 
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
 		CaveExplorer.caves[0][1] = customRoom3;
+
 //df
 		VictorRemingtonPuzzleRoom minesweeperRoom = new VictorRemingtonPuzzleRoom("Minesweeper");
 		CaveExplorer.caves[7][1] = minesweeperRoom;
+
 		JasonDavidStartRoom startRoom = new JasonDavidStartRoom("Magic Square");
 		CaveExplorer.caves[9][9] = startRoom;
 		CaveExplorer.npcs=new NPC[1];
 		EndGameRoom endgame = new EndGameRoom("Game End");
 		CaveExplorer.caves[9][0] = endgame;
 		
-		MiniStarter starterNPC=new MiniStarter("There is a monster moving. Type 'e' to in","You already challenged the monster");
+		keyRoom OpenFinal = new keyRoom("Open Final");
+		CaveExplorer.caves[5][9] = OpenFinal;
+		
+		CheatRoom cheat = new CheatRoom("WARNING: This is just to cheat and get all 3 keys. Press 'e' to continue.");
+		CaveExplorer.caves[0][9] = cheat;
+
+		MiniStarter starterNPC=new MiniStarter("There is a math genius in front of you. Type 'e' to ineract.","You already finished the puzzle.");
 		starterNPC.setposition(3,8);
 		
 		CaveExplorer.npcs[0]=starterNPC;
@@ -247,7 +253,7 @@ public class CaveRoom {
 		c[7][3].setConnection(EAST, c[7][4], lockedDoor);
 		c[7][4].setConnection(WEST, c[7][3], lockedDoor);
 		
-		Door bathroom = new Door();
+		bathroom = new Door();
 		bathroom.setOpen(false);
 		bathroom.setLocked(true);
 		c[9][0].setConnection(EAST, c[9][1], bathroom);
@@ -360,25 +366,27 @@ public class CaveRoom {
 		c[6][4].setConnection(EAST, c[6][5], new Door());
 		c[6][5].setConnection(WEST, c[6][4], new Door());
 		c[6][5].setConnection(EAST, c[6][6], new Door());
-		c[6][6].setConnection(WEST, c[6][6], new Door());
+		c[6][6].setConnection(WEST, c[6][5], new Door());
 		
 		c[7][3].setConnection(EAST, c[7][4], new Door());
 		c[7][4].setConnection(WEST, c[7][3], new Door());
 		c[7][4].setConnection(EAST, c[7][5], new Door());
 		c[7][5].setConnection(WEST, c[7][4], new Door());
 		c[7][5].setConnection(EAST, c[7][6], new Door());
-		c[7][6].setConnection(WEST, c[7][6], new Door());
+		c[7][6].setConnection(WEST, c[7][5], new Door());
 		
 		c[8][4].setConnection(EAST, c[8][5], new Door());
 		c[8][5].setConnection(WEST, c[8][4], new Door());
 		c[8][5].setConnection(EAST, c[8][6], new Door());
-		c[8][6].setConnection(WEST, c[8][6], new Door());
+		c[8][6].setConnection(WEST, c[8][5], new Door());
 		
 		c[9][4].setConnection(EAST, c[9][5], new Door());
 		c[9][5].setConnection(WEST, c[9][4], new Door());
 		c[9][5].setConnection(EAST, c[9][6], new Door());
-		c[9][6].setConnection(WEST, c[9][6], new Door());
+		c[9][6].setConnection(WEST, c[9][5], new Door());
 		
+		c[1][0].setConnection(SOUTH, c[2][0], new Door());
+		c[2][0].setConnection(NORTH, c[1][0], new Door());
 		c[2][0].setConnection(SOUTH, c[3][0], new Door());
 		c[3][0].setConnection(NORTH, c[2][0], new Door());
 		c[3][0].setConnection(SOUTH, c[4][0], new Door());

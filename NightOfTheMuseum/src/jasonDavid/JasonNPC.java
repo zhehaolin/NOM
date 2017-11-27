@@ -9,15 +9,15 @@ public class JasonNPC extends NPC{
 	 
 	public void interact() {
 		int ranNum = JasonRoom.randomNum(0, 1);
-		chooseMove(ranNum);
 		CaveExplorer.print(responses[ranNum]);
+		chooseMove(ranNum);
 	}
 	public void chooseMove(int num) {
 		if (num == 0) {
-			Inventory.changeGold(-500);
+			System.out.println("You were too broke to be robbed.");
 		}
 		else if (num==1) {
-			Inventory.changeGold(500);
+			System.out.println("It was garbage anyways.");
 		}
 	}
 }

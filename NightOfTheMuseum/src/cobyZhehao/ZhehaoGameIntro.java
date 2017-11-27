@@ -14,7 +14,7 @@ public class ZhehaoGameIntro {
 	}
 
 	private void displaystartingscreen() {
-		System.out.println("The only way to leave this room is to solve this swap puzzle.");
+		System.out.println("The only way to get this key is to solve this swap puzzle.");
 		
 	}
 
