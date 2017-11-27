@@ -211,7 +211,7 @@ public class CaveRoom {
 		EndGameRoom endgame = new EndGameRoom("Game End");
 		CaveExplorer.caves[9][0] = endgame;
 		
-		MiniStarter starterNPC=new MiniStarter("There is a monster moving. Type 'e' to in","You already challenged the monster");
+		MiniStarter starterNPC=new MiniStarter("There is a monster moving. Type 'e' to ineract.","You already challenged the monster");
 		starterNPC.setposition(3,8);
 		CaveExplorer.npcs=new NPC[1];
 		CaveExplorer.npcs[0]=starterNPC;

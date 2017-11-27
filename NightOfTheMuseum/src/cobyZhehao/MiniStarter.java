@@ -20,6 +20,9 @@ public class MiniStarter extends NPC {
 	public String getActiveDescription() {
 		return activeDescription;
 	}
+	public void act() {
+		setposition(3,8);
+	}
 
 
 
