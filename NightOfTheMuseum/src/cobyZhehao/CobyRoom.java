@@ -13,11 +13,12 @@ public class CobyRoom extends CaveRoom{
 	}
 
 	public void performAction(int direction) {
+		boolean used = false;
 		if(direction == 4) {
 			if(isWiped) {
 				CaveExplorer.print("The sign says 'Bring 3 keys ..' the rest is not readable.");
 			} else {
-				CaveExplorer.print("You wipe the filth off the sign. You see some words on the sign.");
+				CaveExplorer.print("You wipe the filth off the sign. You see some words on the sign. Press 'f' to read the sign.");
 				isWiped = true;
 			}
 		} else {

@@ -17,7 +17,7 @@ public class keyRoom extends CaveRoom{
 				CaveRoom.unlockRoom(CaveRoom.bathroom);
 				CaveExplorer.print("You put one of your keys into each slots. The door opens in front of you!");
 			} else {
-				CaveExplorer.print("You find 3 keys slots in a strange machine.");
+				CaveExplorer.print("You find 3 keys slots in a strange machine. You currently have " + Inventory.getKeys() + " keys.");
 			}
 		} else {
 			super.performAction(direction);
