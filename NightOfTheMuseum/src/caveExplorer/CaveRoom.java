@@ -187,7 +187,7 @@ public class CaveRoom {
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
 		
-		CaveRoom customRoom = new CobyRoom("There is a dirty sign in front of you. Press 'f' to interact.");
+		CaveRoom customRoom = new CobyRoom("There is a sign in front of you. Press 'f' to interact.");
 
 		CaveExplorer.caves[2][3] = customRoom;
 
@@ -215,7 +215,7 @@ public class CaveRoom {
 		keyRoom OpenFinal = new keyRoom("Open Final");
 		CaveExplorer.caves[5][9] = OpenFinal;
 
-		MiniStarter starterNPC=new MiniStarter("There is a math genius in front of you. Type 'e' to ineract.","You already challenged the monster");
+		MiniStarter starterNPC=new MiniStarter("There is a math genius in front of you. Type 'e' to ineract.","You already finished the puzzle.");
 		starterNPC.setposition(3,8);
 		CaveExplorer.npcs=new NPC[1];
 		CaveExplorer.npcs[0]=starterNPC;
@@ -375,6 +375,8 @@ public class CaveRoom {
 		c[9][5].setConnection(EAST, c[9][6], new Door());
 		c[9][6].setConnection(WEST, c[9][5], new Door());
 		
+		c[1][0].setConnection(SOUTH, c[2][0], new Door());
+		c[2][0].setConnection(NORTH, c[1][0], new Door());
 		c[2][0].setConnection(SOUTH, c[3][0], new Door());
 		c[3][0].setConnection(NORTH, c[2][0], new Door());
 		c[3][0].setConnection(SOUTH, c[4][0], new Door());
