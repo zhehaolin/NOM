@@ -68,7 +68,7 @@ public class RemingtonFrontEnd implements VictorSupport{
 			System.out.print(revealAll());
 			System.out.print("\n\nYou won!");
 			passed = true;
-			Inventory.addKey();
+			Inventory.Obtainkeys();
 		}
 	}
 
