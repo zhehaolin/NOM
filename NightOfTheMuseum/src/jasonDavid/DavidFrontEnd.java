@@ -17,45 +17,43 @@ public class DavidFrontEnd implements JasonSupport{
 		System.out.println("You look around the room, and you see a display that asks you, what size is your magic square? (Please input an odd number between 1 and 31)");
 		//int size = CaveExplorer.in.nextInt();
 		Scanner sc = new Scanner(System.in);
-		while (!sc.hasNextInt() ) {
-			System.out.println("Please type in an odd number between 1 and 31");
-			sc = new Scanner(System.in);
-			if (sc.hasNextInt()) {
-				break;
-			}
-		}
 		int size = getValidSize();
 		DavidFrontEnd demo = new DavidFrontEnd(size);
 		demo.play(size);
 	}
-	public void play(int size) {	
-		while(backend.stillPlaying()) {
-			backend.analyzeBoard();
-			 displayBoard();
-			 if (backend.playing == false) {
-					break;
-				}
-			 Scanner sc = new Scanner(System.in);
-			 String input1 = sc.nextLine();
-			 String input2 = sc.nextLine();
-			 if(backend.respondToInput(input1,input2)) {
-		    		backend.performSwap(input1, input2);
-		    	}
-			 if (input1.equals("help")&&backend.isValidCoord(input2)) {
-				 int coord1 = Integer.parseInt(input2.substring(0,1));
-				 int coord2 = Integer.parseInt(input2.substring(2,3));
-				 provideHint(coord2, coord1, size);
-			 }
-		     else { 
-		    	 if(!backend.respondToInput(input1,input2)) {
-			    	 System.out.println("Please type in either coordinates in this format ('x,y') or type 'help' and the selected coord after.");
-		     }
-		    
-		     }
-			 backend.analyzeBoard();
-	}
-		printGameOverMessage();
-	}
+	public void play(int size) {
+        while(backend.stillPlaying()) {
+            backend.analyzeBoard();
+             displayBoard();
+             if (backend.playing == false) {
+                    break;
+                }
+             Scanner sc = new Scanner(System.in);
+             String input1 = sc.nextLine();
+             if (input1.equals("getgood")) {
+                 backend.playing = false;
+             }
+             else {
+                 String input2 = sc.nextLine();
+                 if(backend.respondToInput(input1,input2)) {
+                        backend.performSwap(input1, input2);
+                    }
+                 if (input1.equals("help")&&backend.isValidCoord(input2)) {
+                     int coord1 = Integer.parseInt(input2.substring(0,1));
+                     int coord2 = Integer.parseInt(input2.substring(2,3));
+                     provideHint(coord2, coord1, size);
+                 }
+                 else { 
+                     if(!backend.respondToInput(input1,input2)) {
+                         System.out.println("Please type in valid coordinates in this format ('x,y') or type 'help' and the selected coord after.");
+                 }
+
+                 }
+                 backend.analyzeBoard();
+             }
+    }
+        printGameOverMessage();
+    }
 
 	private void provideHint(int x, int y, int size) {
 		int[][] table = backend.table;
@@ -219,12 +217,13 @@ public class DavidFrontEnd implements JasonSupport{
 		}
 			return false;
 	}
-		public static int getValidSize(){
-		    Scanner sc = new Scanner(System.in);
-		    String size = sc.nextLine();
-		    while(!backend.isNum(size) && Integer.parseInt(size)%2 != 1){
-		        size = sc.nextLine();
-		    }
-		    return Integer.parseInt(size);
-		}
+	public static int getValidSize(){
+        Scanner sc = new Scanner(System.in);
+        String size = sc.nextLine();
+        while(!JasonBackEnd.isNum(size) || Integer.parseInt(size)%2 != 1){
+                System.out.println("Try again");
+                size = sc.nextLine();
+        }
+        return Integer.parseInt(size);
+    }
 }
