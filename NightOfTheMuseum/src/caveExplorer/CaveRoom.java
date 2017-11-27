@@ -207,19 +207,19 @@ public class CaveRoom {
 //		CaveExplorer.npcs[0] = new NPC();
 //		CaveExplorer.npcs[0].setposition(9, 2);
 		
-		MiniStarter starterNPC=new MiniStarter();
-		starterNPC.setposition(9, 2);
+		MiniStarter starterNPC=new MiniStarter("There is a monster moving. Type 'e' to in","You already challenged the monster");
+		starterNPC.setposition(3,8);
 		CaveExplorer.npcs=new NPC[1];
 		CaveExplorer.npcs[0]=starterNPC;
 		//4. Set your starting room:
-		CaveExplorer.currentRoom = CaveExplorer.caves[9][1];
+		CaveExplorer.currentRoom = CaveExplorer.caves[9][4];
 		CaveExplorer.currentRoom.enter();
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
 
 		Door CZRoom = new Door();
 		CZRoom.setOpen(false);
-		CZRoom.setLocked(true);
+		CZRoom.setLocked(false);
 		c[3][7].setConnection(EAST, c[3][8], CZRoom);
 		c[3][8].setConnection(WEST, c[3][7], CZRoom);
 		
@@ -231,7 +231,7 @@ public class CaveRoom {
 		
 		Door lockedDoor = new Door();
 		lockedDoor.setOpen(false);
-		lockedDoor.setLocked(true);
+		lockedDoor.setLocked(false);
 		c[7][3].setConnection(EAST, c[7][4], lockedDoor);
 		c[7][4].setConnection(WEST, c[7][3], lockedDoor);
 		
@@ -645,5 +645,9 @@ public class CaveRoom {
 		return doors[direction];
 	}
 	
+	public static void unlockRoom(Door door) {
+		door.setOpen(true);
+		door.setLocked(false);
+	}
 
 }
