@@ -198,7 +198,7 @@ public class CaveRoom {
 		CaveExplorer.caves[3][6] = new zhehaoRoom("There is a sign in front. Press 'f' to interact");
 		
 		CaveExplorer.caves[7][2] = new VictorRoom("You are in the middle of a battlefield. You see a supply cache. Press 'f' to try and get it.", 0.5, -20,
-				"You got the cache already", "You were struck by a bullet. The cache was desrtoyed by an explosive. You are hit by a bullet", 10);
+				"You got the cache already", "You were unlucky and tripped. The cache was desrtoyed by an explosive. You are hit by a bullet", 10);
 
 		
 		CaveExplorer.caves[0][2] = new RemingtonRoom("There are a variety of artifacts on the floor.");

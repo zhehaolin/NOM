@@ -132,6 +132,10 @@ public class Inventory {
 		
 	}
 
+	public static int getHp() {
+		return hp;
+	}
+
 }
 
 //df

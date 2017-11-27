@@ -26,6 +26,8 @@ public class CaveExplorer {
 			npcActions();
 			print(inventory.getDescription());
 			print(currentRoom.getDescription());
+			CaveExplorer.print("You have " + Inventory.getHp() + " Hp.");
+			CaveExplorer.print("You have " + Inventory.getGold() + " gold.");
 			print("What would you like to do?");
 			String input = in.nextLine();
 			currentRoom.interpretInput(input);
