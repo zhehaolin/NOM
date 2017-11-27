@@ -27,6 +27,7 @@ public class CaveRoom {
 	public static final int EAST = 1;
 	public static final int SOUTH =2;
 	public static final int WEST = 3;
+	public static Door bathroom = null;
 	
 	
 	public CaveRoom(String description) {
@@ -238,7 +239,7 @@ public class CaveRoom {
 		c[7][3].setConnection(EAST, c[7][4], lockedDoor);
 		c[7][4].setConnection(WEST, c[7][3], lockedDoor);
 		
-		Door bathroom = new Door();
+		bathroom = new Door();
 		bathroom.setOpen(false);
 		bathroom.setLocked(true);
 		c[9][0].setConnection(EAST, c[9][1], bathroom);
