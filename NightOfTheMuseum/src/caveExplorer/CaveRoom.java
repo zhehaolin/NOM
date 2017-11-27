@@ -1,8 +1,7 @@
 package caveExplorer;
 
-
-import cobyZhehao.CobyRoom;
 import cobyZhehao.CheatRoom;
+import cobyZhehao.CobyRoom;
 import cobyZhehao.MiniStarter;
 import cobyZhehao.keyRoom;
 import cobyZhehao.zhehaoRoom;
@@ -189,9 +188,13 @@ public class CaveRoom {
 			}
 		}
 
+		CaveRoom customRoom = new CobyRoom("There is a sign in front of you. Press 'f' to interact.");
+
+
 
 		CaveExplorer.caves[3][6] = new zhehaoRoom("There is a sign in front. Press 'f' to interact");
 		
+
 		CaveExplorer.caves[7][2] = new VictorRoom("You are in the middle of a battlefield. You see a supply cache. Press 'f' to try and get it.", 0.5, -20,
 				"You got the cache already", "You were unlucky and tripped. The cache was desrtoyed by an explosive. You are hit by a bullet", 10);
 
@@ -201,12 +204,11 @@ public class CaveRoom {
 		CaveRoom customRoom1 = new CobyRoom("Room");
 		CaveExplorer.caves[1][1] = customRoom1;
 		
-
-
 		DavidFront customRoom2 = new DavidFront("There is a strange figure in the corner. Press 'f' to interact.");
 		CaveExplorer.caves[8][5] = customRoom2;		
 
->>
+
+
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
 		CaveExplorer.caves[0][1] = customRoom3;
 
@@ -467,7 +469,7 @@ public class CaveRoom {
 		c[8][5].setConnection(NORTH, c[7][5], new Door());
 		c[8][5].setConnection(SOUTH, c[9][5], new Door());
 		c[9][5].setConnection(NORTH, c[8][5], new Door());
-		
+
 		c[0][6].setConnection(SOUTH, c[1][6], new Door());
 		c[1][6].setConnection(NORTH, c[0][6], new Door());
 		c[1][6].setConnection(SOUTH, c[2][6], new Door());
@@ -624,7 +626,11 @@ public class CaveRoom {
 		c[7][2].setConnection(WEST, c[7][1], new Door());
 		c[7][1].setConnection(EAST, c[7][2], new Door());
 		
+
 		c[7][2].setConnection(EAST, c[7][3], new Door());
+
+		c[7][2].setConnection(EAST, c[7][3], new Door());
+
 		c[7][3].setConnection(WEST, c[7][2], new Door());
 		
 		c[0][0].setConnection(EAST, c[0][1], new Door());
@@ -639,6 +645,7 @@ public class CaveRoom {
 		 * can another object move toward you?
 		 */	
 	}
+
 
 	public String getDescription() {
 		return description + "\n"+directions;

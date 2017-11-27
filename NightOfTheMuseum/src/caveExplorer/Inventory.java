@@ -82,6 +82,7 @@ public class Inventory {
 	}
 
 
+
 	public static int getGold() {
 		return gold;
 	}
@@ -93,9 +94,12 @@ public class Inventory {
 		return false;
 	}
 
+
 	
 	public void gotkey() {
+
 		hasKey = true;
+
 	}
 
 	public static int getKeys() {
@@ -122,6 +126,7 @@ public class Inventory {
 		puzzlestat = true;
 	}
 
+
 	public static void changeGold(int treasureAmount) {
 		gold += treasureAmount;
 		
@@ -135,6 +140,7 @@ public class Inventory {
 	public static int getHp() {
 		return hp;
 	}
+
 
 }
 
