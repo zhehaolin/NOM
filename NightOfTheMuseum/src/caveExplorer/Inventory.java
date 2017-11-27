@@ -9,12 +9,14 @@ public class Inventory {
 	private boolean gloveofpp;
 	private boolean Strangekey;
 	private boolean hasKey;
+	private static boolean magicSquare;
 	
 	public Inventory() {
 		updateMap();
 		hasKey = false;
 		Strangekey = false;
-		gloveofpp = false;
+		gloveofpp = false;//df
+		magicSquare = false;
 	}
 
 	public void updateMap() {
@@ -83,6 +85,14 @@ public class Inventory {
 	public static void Obtainkeys() {
 		keys+=1;
 		
+	}
+
+	public static boolean getMS() {
+		return magicSquare;
+	}
+
+	public static void FinishedMagicSquare() {
+		magicSquare = true;
 	}
 }
 

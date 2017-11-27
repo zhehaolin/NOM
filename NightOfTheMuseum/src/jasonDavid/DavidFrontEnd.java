@@ -99,7 +99,7 @@ public class DavidFrontEnd implements JasonSupport{
         return magic;
     }
 		
-	
+	//df
 	private void printGameOverMessage() {
 		System.out.println("\nClick! A sound ringed loudly signifying the completion of the puzzle.");
 	}
