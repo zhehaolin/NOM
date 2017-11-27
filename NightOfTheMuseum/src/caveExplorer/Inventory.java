@@ -80,8 +80,8 @@ public class Inventory {
 		return keys;
 	}
 
-	public static void Obtainkeys() {
-		keys+=1;
+	public static void obtainKey() {
+		keys++;
 		
 	}
 }
