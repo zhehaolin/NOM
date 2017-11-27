@@ -2,6 +2,7 @@ package caveExplorer;
 
 import cobyZhehao.CobyRoom;
 import cobyZhehao.MiniStarter;
+import cobyZhehao.keyRoom;
 import cobyZhehao.zhehaoRoom;
 import victorRemington.RemingtonFrontEnd;
 import victorRemington.VictorRoom;
@@ -211,6 +212,9 @@ public class CaveRoom {
 		EndGameRoom endgame = new EndGameRoom("Game End");
 		CaveExplorer.caves[9][0] = endgame;
 		
+		keyRoom OpenFinal = new keyRoom("Open Final");
+		CaveExplorer.caves[5][9] = OpenFinal;
+
 		MiniStarter starterNPC=new MiniStarter("There is a math genius in front of you. Type 'e' to ineract.","You already challenged the monster");
 		starterNPC.setposition(3,8);
 		CaveExplorer.npcs=new NPC[1];

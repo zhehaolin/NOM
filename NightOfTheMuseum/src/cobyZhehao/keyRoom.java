@@ -23,4 +23,7 @@ public class keyRoom extends CaveRoom{
 			super.performAction(direction);
 		}
 	}
+	public String getContents() {
+		return "F";
+	}
 }
