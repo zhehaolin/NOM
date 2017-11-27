@@ -78,6 +78,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 				}
 				 
 			 }
+		 Inventory.puzzleDone();
 			 
 			 
 			 
