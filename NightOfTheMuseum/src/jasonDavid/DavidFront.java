@@ -24,8 +24,7 @@ public class DavidFront extends NPCRoom {
 				System.out.println("The stranger has nothing important left to steal.");
 			}
 			if(CaveExplorer.inventory.haveGlove() == false) {
-				System.out.println("The stranger catches your hand as you try to pick pocket his jacket. He pushes you away. (-10 hp)");
-				Inventory.changeHP(-10);
+				System.out.println("The stranger catches your hand as you try to pick pocket his jacket. He pushes you away.");
 			}
 			else {
 				System.out.println("You successfully pickpocket the stranger with the majestic powers of your gloves. (Strange Key has been obtained)");

@@ -2,6 +2,7 @@ package jasonDavid;
 import java.util.Scanner;
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
+import caveExplorer.Inventory;
 
 public class DavidFrontEnd implements JasonSupport{
 	
@@ -53,6 +54,7 @@ public class DavidFrontEnd implements JasonSupport{
              }
     }
         printGameOverMessage();
+        Inventory.Obtainkeys();
     }
 
 	public void provideHint(int x, int y, int size) {

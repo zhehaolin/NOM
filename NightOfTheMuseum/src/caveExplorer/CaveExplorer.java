@@ -38,7 +38,6 @@ public class CaveExplorer {
 				if(n!=null) {
 					n.act();
 				}
-
 			}
 		}
 		inventory.updateMap();
