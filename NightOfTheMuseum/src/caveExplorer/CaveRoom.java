@@ -7,6 +7,7 @@ import victorRemington.RemingtonFrontEnd;
 import victorRemington.VictorRoom;
 import jasonDavid.DavidFront;
 import jasonDavid.DavidNPC;
+import jasonDavid.EndGameRoom;
 import jasonDavid.JasonDavidStartRoom;
 import jasonDavid.JasonNPC;
 import jasonDavid.JasonRoom;
@@ -206,6 +207,7 @@ public class CaveRoom {
 //		CaveExplorer.npcs = new NPC[1];
 //		CaveExplorer.npcs[0] = new NPC();
 //		CaveExplorer.npcs[0].setposition(9, 2);
+		EndGameRoom endgame = new EndGameRoom("Game End");
 		
 		MiniStarter starterNPC=new MiniStarter("There is a monster moving. Type 'e' to in","You already challenged the monster");
 		starterNPC.setposition(3,8);
