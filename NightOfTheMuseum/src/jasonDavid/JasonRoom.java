@@ -42,5 +42,7 @@ public class JasonRoom extends NPCRoom{
 		CaveExplorer.currentRoom = CaveExplorer.caves[num1][num2];
 		CaveExplorer.currentRoom.enter();
 	}
-	
+	public String getContents() {
+		return "J";
+	}
 }
