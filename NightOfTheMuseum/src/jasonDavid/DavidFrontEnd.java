@@ -15,12 +15,17 @@ public class DavidFrontEnd implements JasonSupport{
 	}
 
 	public static void main(String[] arg) {
+		//df
+		if (!Inventory.getMS()) {
 		System.out.println("You look around the room, and you see a display that asks you, what size is your magic square? (Please input an odd number between 1 and 31)");
 		//int size = CaveExplorer.in.nextInt();
 		Scanner sc = new Scanner(System.in);
 		int size = getValidSize();
 		DavidFrontEnd demo = new DavidFrontEnd(size);
 		demo.play(size);
+		}else {
+			System.out.println("You've done this puzzle already");
+		}
 	}
 	public void play(int size) {
         while(backend.stillPlaying()) {
@@ -55,6 +60,7 @@ public class DavidFrontEnd implements JasonSupport{
     }
         printGameOverMessage();
         Inventory.Obtainkeys();
+        Inventory.FinishedMagicSquare();
     }
 
 	public void provideHint(int x, int y, int size) {
