@@ -10,7 +10,7 @@ public class Inventory {
 	private boolean Strangekey;
 	private boolean hasKey;
 
-	private int hp;
+	private static int hp;
 	private static boolean magicSquare;
 	private static boolean puzzlestat;
 
@@ -120,6 +120,16 @@ public class Inventory {
 	}
 	public static void puzzleDone() {
 		puzzlestat = true;
+	}
+
+	public static void changeGold(int treasureAmount) {
+		gold += treasureAmount;
+		
+	}
+
+	public static void changeHP(int damage) {
+		hp+=damage;
+		
 	}
 
 }
