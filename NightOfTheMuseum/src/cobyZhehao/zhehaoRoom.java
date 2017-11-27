@@ -35,9 +35,11 @@ public class zhehaoRoom extends NPCRoom {
 	public String validKeys(){
 		return "wdsafe";	
 	}
+	
 	public void printAllowedEntry() {
 		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you can type 'f' to read.");
 	}
+	
 	public String getContents() {
 		return "Z";
 	}
