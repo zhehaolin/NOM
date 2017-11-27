@@ -23,7 +23,11 @@ public class DavidFrontEnd implements JasonSupport{
 	}
 	public void play(int size) {	
 		while(backend.stillPlaying()) {
+			backend.analyzeBoard();
 			 displayBoard();
+			 if (backend.playing == false) {
+					break;
+				}
 			 Scanner sc = new Scanner(System.in);
 			 String input1 = sc.nextLine();
 			 String input2 = sc.nextLine();
@@ -39,10 +43,12 @@ public class DavidFrontEnd implements JasonSupport{
 		    	 if(!backend.respondToInput(input1,input2)) {
 			    	 System.out.println("Please type in either coordinates in this format ('x,y') or type 'help' and the selected coord after.");
 		     }
-		      //backend.analyzeBoard();
+		    
 		     }
-		  // printGameOverMessage();
-	}}
+			 backend.analyzeBoard();
+	}
+		printGameOverMessage();
+	}
 
 	private void provideHint(int x, int y, int size) {
 		int[][] table = backend.table;
@@ -82,7 +88,7 @@ public class DavidFrontEnd implements JasonSupport{
 		
 	
 	private void printGameOverMessage() {
-		System.out.println("Click! A sound ringed loudly signifying the completion of the puzzle.");
+		System.out.println("\nClick! A sound ringed loudly signifying the completion of the puzzle.");
 	}
 
 	private String getValidUserInput() {
