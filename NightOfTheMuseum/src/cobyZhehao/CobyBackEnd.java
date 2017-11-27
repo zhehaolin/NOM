@@ -79,7 +79,8 @@ public class CobyBackEnd implements ZhehaoSupport{
 	}
 
 	public boolean validCoords(String input) {
-		if(input.substring(1,2).equals(",") && input.length() == 3){
+		if(input.length() == 3) {
+		if(input.substring(1,2).equals(",")){
 			if(input.substring(0,1).equals(blankSpot[0]) && input.substring(2,3).equals(blankSpot[1])){
 				return false;
 			}
@@ -88,6 +89,7 @@ public class CobyBackEnd implements ZhehaoSupport{
 					return true;
 				}
 			}
+		}
 		}
 		if(input.substring(0,1).equals("9") && input.substring(2,3).equals("9")) {
 			return true;
