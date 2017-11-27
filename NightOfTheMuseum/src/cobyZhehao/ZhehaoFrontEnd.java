@@ -9,6 +9,8 @@ public class ZhehaoFrontEnd implements CobySupport {
 	private CobyBackEnd backend;
 	private int movestaken;
 	public static Scanner in;
+	private String cheat;
+	private boolean game;
 	
 	public static final void main(String[] args) {
 		initScanner();
@@ -21,6 +23,7 @@ public class ZhehaoFrontEnd implements CobySupport {
 	}
 	private void play() {
 		new ZhehaoGameIntro().play();
+		game = backend.gameover();
 		menu();
 	}
 
@@ -42,36 +45,42 @@ public class ZhehaoFrontEnd implements CobySupport {
 	public ZhehaoFrontEnd() {
 		backend = new CobyBackEnd(this);
 		movestaken=0;
+		cheat="math";
 	}
 	
 	private void StartGame() {
 		 ZhehaoCobyPlot[][] plots = backend.getPlots();
 		 ZhehaoCobyPlot p = null;
-		 while(!backend.gameover()) {
+		 
+		 while(!game) {
 			 updateMap();
 			 displaymovestaken(p);
 			 System.out.println("Which tile do you want to move? ");
-				 displayhints(p);
-				 int[] coords = backend.getCoordInput();
-				 //if(backend.keyWordUsed()) {
-				//	 System.out.println("You solve the puzzle! The door is now unclocked!");
-				//	 break;
-				// }else {
-					 if(coords !=null) {
-						 p = plots[coords[0]][coords[1]];
-						 backend.move(p);
-						 movestaken++;
-					 }else {
-						 System.out.println("Please enter a valid input");
-					 }
-				// }
-				
+			 displayhints(p);
+			 int[] coords = backend.getCoordInput();
+			 if(coords !=null) {
+				 if(coords[0]==9 && coords[1]==9) {
+					 System.out.println("fk cs");
+					 break;
+				 }
+					p = plots[coords[0]][coords[1]];
+					backend.move(p);
+					movestaken++;
+				 }else {
+					 System.out.println("Please enter a valid input");
+				}
 				 
 			 }
-			
-		 System.out.println("You solve the puzzle! The door is now unclocked!");
+			 
+			 
+			 
+		 
 	}
 	
+
+	private boolean CheatUsed(String input) {
+		return(input.equals(cheat));
+	}
 
 	private void displaymovestaken(ZhehaoCobyPlot p) {
 		System.out.println("Moves taken: "+movestaken);
@@ -165,3 +174,4 @@ public class ZhehaoFrontEnd implements CobySupport {
 		System.out.print(map);
 	}
 }
+
