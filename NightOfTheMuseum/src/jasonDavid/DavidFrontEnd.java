@@ -27,17 +27,22 @@ public class DavidFrontEnd implements JasonSupport{
 			 Scanner sc = new Scanner(System.in);
 			 String input1 = sc.nextLine();
 			 String input2 = sc.nextLine();
-		     if(!backend.respondToInput(input1,input2)) {
-		    	 System.out.println("Would you like a hint?");
-		    	 int input3 = sc.nextInt();
-		     }else {
-		    	backend.respondToInput(input1,input2); 
-		    	displayBoard();
+			 if(backend.respondToInput(input1,input2)) {
+		    		backend.performSwap(input1, input2);
+		    	}
+			 if (input1.equals("help")) {
+				 int coord1 = Integer.parseInt(input2.substring(0,1));
+				 int coord2 = Integer.parseInt(input2.substring(2,3));
+				 provideHint(coord2, coord1, size);
+			 }
+		     else { 
+		    	 if(!backend.respondToInput(input1,input2)) {
+			    	 System.out.println("Please type in either coordinates in this format ('x,y') or type 'help' and the selected coord after.");
 		     }
 		      //backend.analyzeBoard();
-		    }
+		     }
 		  // printGameOverMessage();
-	}
+	}}
 
 	private void provideHint(int x, int y, int size) {
 		int[][] table = backend.table;
