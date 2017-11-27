@@ -109,11 +109,6 @@ public class JasonBackEnd implements DavidSupport{
 		}
 		return count;
 	}
-	 /**
-	  * Returns the sum of the diagonals
-	  * @param start
-	  * @return
-	  */
 	public int calcDiagonal(String start) {
 		int count =0;
 		if (start.equals("left")) {
@@ -166,11 +161,6 @@ public class JasonBackEnd implements DavidSupport{
 	public boolean isValid(String input) {
 		return input.length() <= 2*sizeLength+1 && isOneComma(input) && isValidCoord(input) && isNum(input.substring(0,commaPos(input))) && isNum(input.substring(commaPos(input)+1,input.length()));
 	}
-	/**
-	 * Checks to see if there is only one comma
-	 * @param input
-	 * @return
-	 */
 	public boolean isOneComma(String input) {
 		boolean comma = false;
 		for (int i=0; i<input.length(); i++) {
@@ -185,11 +175,6 @@ public class JasonBackEnd implements DavidSupport{
 		}
 		return comma;
 	}
-	/**
-	 * Returns comma position
-	 * @param input
-	 * @return
-	 */
 	public int commaPos(String input) {
 		for (int i=0; i < input.length(); i++) {
 			if (input.substring(i,i+1).equals(",")) {
@@ -198,11 +183,6 @@ public class JasonBackEnd implements DavidSupport{
 		}
 		return -1;
 	}
-	/**
-	 * Checks to see if the input is a number
-	 * @param input
-	 * @return
-	 */
 	public static boolean isNum(String input) {
 	    boolean isNum = true;
 	    try {
@@ -215,4 +195,5 @@ public class JasonBackEnd implements DavidSupport{
 	    return isNum;
 	}
 	
-}//
+}
+

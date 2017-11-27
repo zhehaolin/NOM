@@ -2,6 +2,7 @@ package jasonDavid;
 import java.util.Scanner;
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
+import caveExplorer.Inventory;
 
 public class DavidFrontEnd implements JasonSupport{
 	
@@ -14,12 +15,17 @@ public class DavidFrontEnd implements JasonSupport{
 	}
 
 	public static void main(String[] arg) {
+		//df
+		if (!Inventory.getMS()) {
 		System.out.println("You look around the room, and you see a display that asks you, what size is your magic square? (Please input an odd number between 1 and 31)");
 		//int size = CaveExplorer.in.nextInt();
 		Scanner sc = new Scanner(System.in);
 		int size = getValidSize();
 		DavidFrontEnd demo = new DavidFrontEnd(size);
 		demo.play(size);
+		}else {
+			System.out.println("You've done this puzzle already");
+		}
 	}
 	public void play(int size) {
         while(backend.stillPlaying()) {
@@ -47,12 +53,13 @@ public class DavidFrontEnd implements JasonSupport{
                      if(!backend.respondToInput(input1,input2)) {
                          System.out.println("Please type in valid coordinates in this format ('x,y') or type 'help' and the selected coord after.");
                  }
-
                  }
                  backend.analyzeBoard();
              }
     }
         printGameOverMessage();
+        Inventory.Obtainkeys();
+        Inventory.FinishedMagicSquare();
     }
 
 	public void provideHint(int x, int y, int size) {
@@ -67,7 +74,7 @@ public class DavidFrontEnd implements JasonSupport{
 					System.out.println("Swapped "+y+","+x+" and "+i+","+j);
 					break loop;
 				}
-			}
+			}//df
 		}
 		}
 		}
@@ -91,7 +98,7 @@ public class DavidFrontEnd implements JasonSupport{
         return magic;
     }
 		
-	
+	//df
 	private void printGameOverMessage() {
 		System.out.println("\nClick! A sound ringed loudly signifying the completion of the puzzle.");
 	}
@@ -225,5 +232,5 @@ public class DavidFrontEnd implements JasonSupport{
                 size = sc.nextLine();
         }
         return Integer.parseInt(size);
-	}
+    }
 }
