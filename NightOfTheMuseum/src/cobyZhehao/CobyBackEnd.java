@@ -10,11 +10,9 @@ public class CobyBackEnd implements ZhehaoSupport{
 	private ZhehaoFrontEnd frontend;
 	private int[] randNums;
 	private String[][] answer= {{"1","2","3","4"},{"5","6","7","8"},{"9","10","11","12"},{"13","14","15"," "}};
-	private String[][] starting = {{"1","5","10","9"},{"15"," ","4","14"},{"12","2","8","13"},{"11","7","3","6"}};
-	private int[] blankSpot = {1,1};
-	//Underneath is to test
-	//private String[][] starting = {{"1","2","3","4"},{"5","6","7","8"},{"9","10","11","12"},{"13","14"," ","15"}};
-	//private int[] blankSpot = {3,2};
+	//private String[][] starting = {{"1","5","10","9"},{"15"," ","4","14"},{"12","2","8","13"},{"11","7","3","6"}};
+	private String[][] starting = {{"1","2","3","4"},{"5","6","7","8"},{"9","10","11","12"},{"13","14"," ","15"}};
+	private int[] blankSpot = {3,2};
 	public ZhehaoCobyPlot[][] plots;
 	private String keyword = "math";
 	public static Scanner in;
@@ -67,11 +65,18 @@ public class CobyBackEnd implements ZhehaoSupport{
 
 	private int[] findCoords(String input) {
 		int[] coords = {0,0};
-		int a = Integer.parseInt(input.substring(0,1));
-		int b = Integer.parseInt(input.substring(2,3));
-		coords[0] = a;
-		coords[1] = b;
-		return coords;
+		if(input.substring(0,1).equals("9") && input.substring(2,3).equals("9")) {
+			coords[0]=9;
+			coords[1]=9;
+			return coords;
+		
+		}else {
+			int a = Integer.parseInt(input.substring(0,1));
+			int b = Integer.parseInt(input.substring(2,3));
+			coords[0] = a;
+			coords[1] = b;
+			return coords;
+		}
 	}
 
 	public boolean validCoords(String input) {
@@ -84,6 +89,9 @@ public class CobyBackEnd implements ZhehaoSupport{
 					return true;
 				}
 			}
+		}
+		if(input.substring(0,1).equals("9") && input.substring(2,3).equals("9")) {
+			return true;
 		}
 		return false;
 	}
@@ -107,11 +115,13 @@ public class CobyBackEnd implements ZhehaoSupport{
 	public int[] getCoordInput() {
 		int[] coords = null;
 		String input = frontend.in.nextLine();
-		if(validCoords(input)) {
-			coords = findCoords(input);
+				if(validCoords(input)) {
+				coords = findCoords(input);
+			}
+			return coords;
+		
 		}
-		return coords;
-	}
+		
 
 	public void move(ZhehaoCobyPlot p) {
 		if(isNextToBlank(p)) {
@@ -126,4 +136,12 @@ public class CobyBackEnd implements ZhehaoSupport{
 		blankSpot[0] = p.getRow();
 		blankSpot[1] = p.getCol();
 	}
-}
+	
+	public boolean keyWordUsed() {
+		if(frontend.in.nextLine().equals(keyword)) {
+			return true;
+		}
+		return false;
+	}
+
+	
