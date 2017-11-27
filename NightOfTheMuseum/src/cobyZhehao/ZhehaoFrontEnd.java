@@ -14,9 +14,14 @@ public class ZhehaoFrontEnd implements CobySupport {
 	private boolean game;
 	
 	public static final void main(String[] args) {
+		if(Inventory.puzzleGet() == false) {
 		initScanner();
 		ZhehaoFrontEnd test = new ZhehaoFrontEnd();
 		test.play();
+		}
+		else {
+			System.out.println("You already finished this puzzle");
+		}
 	}
 	
 	public static void initScanner(){

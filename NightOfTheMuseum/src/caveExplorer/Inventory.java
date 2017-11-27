@@ -10,6 +10,7 @@ public class Inventory {
 	private boolean Strangekey;
 	private boolean hasKey;
 	private static boolean magicSquare;
+	private static boolean puzzlestat;
 	
 	public Inventory() {
 		updateMap();
@@ -17,6 +18,7 @@ public class Inventory {
 		Strangekey = false;
 		gloveofpp = false;//df
 		magicSquare = false;
+		puzzlestat = false;
 	}
 
 	public void updateMap() {
@@ -93,6 +95,13 @@ public class Inventory {
 
 	public static void FinishedMagicSquare() {
 		magicSquare = true;
+	}
+
+	public static boolean puzzleGet() {
+		return puzzlestat;
+	}
+	public static void puzzleDone() {
+		puzzlestat = true;
 	}
 }
 
