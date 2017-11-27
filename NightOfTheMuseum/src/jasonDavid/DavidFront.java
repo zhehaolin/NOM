@@ -1,11 +1,13 @@
 package jasonDavid;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.CaveRoom;
 import caveExplorer.Inventory;
-import caveExplorer.NPCRoom;
 
 
-public class DavidFront extends NPCRoom {
+
+
+public class DavidFront extends CaveRoom {
 
 	private DavidNPC Strangeman = new DavidNPC();
 	

@@ -182,9 +182,9 @@ public class CaveRoom {
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
 		
-		CaveRoom customRoom = new CobyRoom("There is a statue in front of you. Press 'f' to interact.");
+		//CaveRoom customRoom = new CobyRoom("There is a statue in front of you. Press 'f' to interact.");
 
-		CaveExplorer.caves[2][3] = customRoom;
+		//CaveExplorer.caves[2][3] = customRoom;
 
 		CaveExplorer.caves[3][2] = new zhehaoRoom("There is a statue in front of you. Press 'f' to interact");
 		
@@ -193,11 +193,18 @@ public class CaveRoom {
 		
 		CaveExplorer.caves[0][2] = new RemingtonRoom("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
 		
-		NPCRoom customRoom2 = new DavidFront("There is a strange figure in the corner. Press 'f' to interact.");
-		CaveExplorer.caves[0][4] = customRoom2;		
+		//--- WE WILL DO LATER
+
+		
+		CaveRoom customRoom = new CobyRoom("Room");
+		CaveExplorer.caves[1][1] = customRoom;
+		
+		CaveRoom customRoom2 = new DavidFront("Room");
+		CaveExplorer.caves[0][3] = customRoom2;
 
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
 		CaveExplorer.caves[0][1] = customRoom3;
+
 
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[9][1];
@@ -291,8 +298,7 @@ public class CaveRoom {
 		c[8][1].setConnection(EAST, c[8][2], new Door());
 		c[8][2].setConnection(WEST, c[8][1], new Door());
 		
-		c[6][2].setConnection(EAST, c[6][3], new Door());
-		c[6][3].setConnection(WEST, c[6][2], new Door());
+		//david is cool
 		
 		c[8][2].setConnection(EAST, c[8][3], new Door());
 		c[8][3].setConnection(WEST, c[8][2], new Door());
@@ -358,6 +364,10 @@ public class CaveRoom {
 		 */	
 	}
 
+	private void makeConnectionBetweenRooms(CaveRoom r1, CaveRoom r2, int dir, Door d1, Door d2) {
+		r1.setConnection(dir, r2, d1);
+		r2.setConnection(oppositeDirection(dir), r1, d2);
+	}
 
 	public String getDescription() {
 		return description + "\n"+directions;

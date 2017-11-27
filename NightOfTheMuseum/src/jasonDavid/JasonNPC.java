@@ -10,4 +10,4 @@ public class JasonNPC extends NPC{
 		CaveExplorer.print("Haha!");
 		Inventory.changeGold(-500);
 	}
-}
+}//
