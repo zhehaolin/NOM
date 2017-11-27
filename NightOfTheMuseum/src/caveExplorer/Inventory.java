@@ -7,7 +7,7 @@ public class Inventory {
 	private static int hp;
 	private static int gold;
 	private static int keys = 3;
-
+//sd
 	private boolean gloveofpp;
 	private boolean Strangekey;
 	private boolean hasKey;
