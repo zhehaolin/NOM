@@ -11,6 +11,14 @@ import jasonDavid.EndGameRoom;
 import jasonDavid.JasonDavidStartRoom;
 import jasonDavid.JasonNPC;
 import jasonDavid.JasonRoom;
+import cobyZhehao.zhehaoRoom;
+import victorRemington.RemingtonRoom;
+import victorRemington.VictorRemingtonPuzzleRoom;
+import victorRemington.VictorRoom;
+import jasonDavid.DavidFront;
+import jasonDavid.DavidNPC;
+import jasonDavid.JasonNPC;
+import jasonDavid.JasonRoom;
 
 public class CaveRoom {
 
@@ -191,10 +199,11 @@ public class CaveRoom {
 
 		CaveExplorer.caves[3][6] = new zhehaoRoom("There is a sign in front. Press 'f' to interact");
 		
-		CaveExplorer.caves[3][3] = new VictorRoom("This is coords 3, 3. There is a shiny box in the middle of the room. Press 'f' to touch it.", 0.5, -20,
-				"The box is empty", "The box was a trap!. You have been struck by an arrow", 10);
+		CaveExplorer.caves[7][2] = new VictorRoom("You are in the middle of a battlefield. You see a supply cache. Press 'f' to try and get it.", 0.5, -20,
+				"You got the cache already", "You were struck by a bullet. The cache was desrtoyed by an explosive. You are hit by a bullet", 10);
+
 		
-		CaveExplorer.caves[0][2] = new RemingtonFrontEnd("The remains of a fire seem to be in the corner of the room. Maybe the owner will come back soon.");
+		CaveExplorer.caves[0][2] = new RemingtonRoom("There are a variety of artifacts on the floor.");
 		
 		NPCRoom customRoom2 = new DavidFront("There is a strange figure in the corner. Press 'f' to interact.");
 		CaveExplorer.caves[0][4] = customRoom2;		
@@ -202,17 +211,17 @@ public class CaveRoom {
 		NPCRoom customRoom3 = new JasonRoom("There is a mysterious carving in the floor of the room. Press 'f' to interact. Be warned this may do strange things.");
 		CaveExplorer.caves[0][1] = customRoom3;
 //df
+		VictorRemingtonPuzzleRoom minesweeperRoom = new VictorRemingtonPuzzleRoom("Minesweeper");
+		CaveExplorer.caves[7][1] = minesweeperRoom;
 		JasonDavidStartRoom startRoom = new JasonDavidStartRoom("Magic Square");
 		CaveExplorer.caves[9][9] = startRoom;
-//		CaveExplorer.npcs = new NPC[1];
-//		CaveExplorer.npcs[0] = new NPC();
-//		CaveExplorer.npcs[0].setposition(9, 2);
+		CaveExplorer.npcs=new NPC[1];
 		EndGameRoom endgame = new EndGameRoom("Game End");
 		CaveExplorer.caves[9][0] = endgame;
 		
 		MiniStarter starterNPC=new MiniStarter("There is a monster moving. Type 'e' to in","You already challenged the monster");
 		starterNPC.setposition(3,8);
-		CaveExplorer.npcs=new NPC[1];
+		
 		CaveExplorer.npcs[0]=starterNPC;
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[9][4];
