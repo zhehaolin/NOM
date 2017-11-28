@@ -65,7 +65,7 @@ public class RemingtonFrontEnd implements VictorSupport{
 		
 		if(victory) {
 			System.out.print(revealAll());
-			System.out.print("\n\nYou passed through the minefield unscathed. You retreive the key and move back.\n");
+			System.out.print("\n\n You passed through the minefield unscathed. You retreive the key and move back.\n");
 			Inventory.changePassedMine();
 			Inventory.Obtainkeys();
 		}
