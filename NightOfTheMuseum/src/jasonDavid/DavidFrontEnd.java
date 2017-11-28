@@ -228,7 +228,7 @@ public class DavidFrontEnd implements JasonSupport{
 	public static int getValidSize(){
         Scanner sc = new Scanner(System.in);
         String size = sc.nextLine();
-        while(!JasonBackEnd.isNum(size) || Integer.parseInt(size)%2 != 1){
+        while(!JasonBackEnd.isNum(size) || Integer.parseInt(size)%2 != 1 || Integer.parseInt(size)>31 || Integer.parseInt(size)<0){
                 System.out.println("Try again");
                 size = sc.nextLine();
         }
