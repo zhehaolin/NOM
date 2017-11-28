@@ -5,6 +5,7 @@ public class VictorBackEnd implements RemingtonSupport{
 	private RemingtonFrontEnd frontend;
 	private VictorRemingtonPlot[][] minefield;
 	private static int bombs; 
+	
 	private static int correctFlaged;
 	private static int flaged;
 	
