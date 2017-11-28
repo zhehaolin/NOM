@@ -31,7 +31,7 @@ public class VictorBackEnd implements RemingtonSupport{
 	}
 	
 	public void setUpBombs() {
-		while(bombs < 1) {
+		while(bombs < 11) {
 			int row = (int)(Math.random() * 8);
 			int col = (int)(Math.random() * 8);
 			while(minefield[row][col].hasBomb()) {
