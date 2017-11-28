@@ -45,14 +45,14 @@ public class DavidFrontEnd implements JasonSupport{
                  if(backend.respondToInput(input1,input2)) {
                         backend.performSwap(input1, input2);
                     }
-                 if (input1.equals("help")&&backend.isValidCoord(input2)) {
+                 if (input1.equals("help")&&input2.matches(".*\\d+.*")&&backend.isValidCoord(input2)) {
                      int coord1 = Integer.parseInt(input2.substring(0,1));
                      int coord2 = Integer.parseInt(input2.substring(2,3));
                      provideHint(coord2, coord1, size);
                  }
                  else { 
                      if(!backend.respondToInput(input1,input2)) {
-                         System.out.println("Please type in valid coordinates in this format ('x,y') or type 'help' and the selected coord after.");
+                         System.out.println("Please type in valid coordinates in this format ('x,y'). You may also get help with a selected coordinate by first inputting 'help', then the target coordinate.");
                  }
                  }
                  backend.analyzeBoard();
@@ -228,7 +228,7 @@ public class DavidFrontEnd implements JasonSupport{
 	public static int getValidSize(){
         Scanner sc = new Scanner(System.in);
         String size = sc.nextLine();
-        while(!JasonBackEnd.isNum(size) || Integer.parseInt(size)%2 != 1){
+        while(!JasonBackEnd.isNum(size) || Integer.parseInt(size)%2 != 1 || Integer.parseInt(size)>31 || Integer.parseInt(size)<0){
                 System.out.println("Try again");
                 size = sc.nextLine();
         }

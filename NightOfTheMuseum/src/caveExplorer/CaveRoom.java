@@ -225,7 +225,7 @@ public class CaveRoom {
 		EndGameRoom endgame = new EndGameRoom("Game End");
 		CaveExplorer.caves[9][0] = endgame;
 		
-		keyRoom OpenFinal = new keyRoom("Open Final");
+		keyRoom OpenFinal = new keyRoom("Mysterious Machine");
 		CaveExplorer.caves[5][9] = OpenFinal;
 		
 		CheatRoom cheat = new CheatRoom("WARNING: This is just to cheat and get all 3 keys. Press 'e' to continue.");
