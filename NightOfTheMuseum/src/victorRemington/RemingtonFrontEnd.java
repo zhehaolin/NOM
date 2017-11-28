@@ -50,7 +50,7 @@ public class RemingtonFrontEnd implements VictorSupport{
 					backend.flag(coords);
 				}else {
 					if(minefield[coords[0]][coords[1]].hasBomb()) {
-						System.out.println("BOOM! You stepped on a bomb. You retreat and watch the mines get rearanged by the soldier models.");
+						System.out.println("BOOM! You stepped on a mine. You retreat and watch the mines get rearanged by the soldier models.");
 						break;
 					}else {
 						backend.changeVisibility(coords[0], coords[1], true);
@@ -108,7 +108,7 @@ public class RemingtonFrontEnd implements VictorSupport{
 		System.out.println(chart);;
 	}
 	public void displayGameState() {
-		System.out.println("You have "+ backend.getFlaged() + " flaged tiles. You need to correctly flag 11 bombs to win. But make sure they are actually bombs...or else." + "TEST " + backend.getCorrectFlaged());
+		System.out.println("You have flagged "+ backend.getFlaged() + " tiles as possible mines. You need to correctly flag 11 mines to win. But make sure they are actually mines...or else.");
 	}
 	
 	public String revealAll() {
