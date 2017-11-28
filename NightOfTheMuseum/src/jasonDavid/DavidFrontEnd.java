@@ -45,7 +45,7 @@ public class DavidFrontEnd implements JasonSupport{
                  if(backend.respondToInput(input1,input2)) {
                         backend.performSwap(input1, input2);
                     }
-                 if (input1.equals("help")&&backend.isValidCoord(input2)) {
+                 if (input1.equals("help")&&input2.matches(".*\\d+.*")&&backend.isValidCoord(input2)) {
                      int coord1 = Integer.parseInt(input2.substring(0,1));
                      int coord2 = Integer.parseInt(input2.substring(2,3));
                      provideHint(coord2, coord1, size);
