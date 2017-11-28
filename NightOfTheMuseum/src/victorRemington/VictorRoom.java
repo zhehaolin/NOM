@@ -55,7 +55,7 @@ public class VictorRoom extends CaveRoom{
 			Inventory.changeHP(damage);
 			triggered = true;
 			CaveExplorer.print(descTrapActivate);
-			this.setDescription("This room has coords 2, 3. This was where you were shot. The fightting has abated");
+			this.setDescription("This was where you were shot. The fighting has abated");
 		}
 		passed = true;
 	}

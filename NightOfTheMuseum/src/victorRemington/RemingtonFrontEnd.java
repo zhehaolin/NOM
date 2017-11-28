@@ -22,6 +22,8 @@ public class RemingtonFrontEnd implements VictorSupport{
 		RemingtonFrontEnd demo = new RemingtonFrontEnd();
 		if(!passed) {
 			demo.play();
+		}else {
+			System.out.println("You got the key already.");
 		}
 		
 	}
@@ -40,15 +42,15 @@ public class RemingtonFrontEnd implements VictorSupport{
 				System.out.println("Type input in form #,# or f#,# to flag or unflag a tile.");
 				input = in.nextLine();
 			}
-			int[] coords = getCoords(input);
 			if(checkCheatCode(input)){
 				victory = true;
 			}else {
+				int[] coords = getCoords(input);
 				if(input.substring(0, 1).equals("f")) {
 					backend.flag(coords);
 				}else {
 					if(minefield[coords[0]][coords[1]].hasBomb()) {
-						System.out.println("That was a bomb. You lose.");
+						System.out.println("BOOM! You stepped on a bomb. You retreat and watch the mines get rearanged by the soldier models.");
 						break;
 					}else {
 						backend.changeVisibility(coords[0], coords[1], true);
@@ -58,16 +60,13 @@ public class RemingtonFrontEnd implements VictorSupport{
 					}
 				}
 			}
-			
-			//MAKE SURE TO ENSURE THAT ALL INPUTS WORK. 
-			//HAVE SOME ERROR CHECKING TO TELL THE USER WHAT TO DO.
-
-			
+			victory = backend.checkVictory();
 		}
+		
 		if(victory) {
 			System.out.print(revealAll());
-			System.out.print("\n\nYou won!");
-			passed = true;
+			System.out.print("\n\nYou passed through the minefield unscathed. You retreive the key and move back.\n");
+			Inventory.changePassedMine();
 			Inventory.Obtainkeys();
 		}
 	}
@@ -88,7 +87,7 @@ public class RemingtonFrontEnd implements VictorSupport{
 		backend = new VictorBackEnd(this);
 		minefield = backend.getMinefield();
 		cheatCode = "ab";
-		passed = false;
+		passed = Inventory.getPassedMine();
 	}
 	
 	public void drawField() {
@@ -146,49 +145,54 @@ public class RemingtonFrontEnd implements VictorSupport{
 		if(row > 0) {
 			//N
 			if(checkForZero(row - 1, col)) {
-				if(!minefield[row-1][col].isVisible()) {
+				if(!minefield[row - 1][col].isVisible()) {
 					revealAdjacentZeros(row - 1, col);
 				}
-				revealAdjacent(row - 1, col);
+			}else {
+				backend.changeVisibility(row - 1, col, true);
 			}
 		}
 		
 		if(row < minefield.length - 1) {
 			//S
 			if(checkForZero(row + 1, col)) {
-				if(!minefield[row+1][col].isVisible()) {
+				if(!minefield[row + 1][col].isVisible()) {
 					revealAdjacentZeros(row + 1, col);
 				}
-				revealAdjacent(row + 1, col);
+			}else {
+				backend.changeVisibility(row + 1, col, true);
 			}
 		}
 		
 		if(col > 0) {
 			//W
 			if(checkForZero(row, col - 1)) {
-				if(!minefield[row][col-1].isVisible()) {
+				if(!minefield[row][col - 1].isVisible()) {
 					revealAdjacentZeros(row, col - 1);
 				}
-				revealAdjacent(row, col - 1);
+			}else {
+				backend.changeVisibility(row, col - 1, true);
 			}
 			
 			if(row > 0) {
 				//NW
 				if(checkForZero(row - 1, col - 1)) {
-					if(!minefield[row-1][col-1].isVisible()) {
+					if(!minefield[row - 1][col - 1].isVisible()) {
 						revealAdjacentZeros(row - 1, col - 1);
 					}
-					revealAdjacent(row - 1, col - 1);
+				}else {
+					backend.changeVisibility(row - 1, col - 1, true);
 				}
 	
 			}
 			if(row < minefield.length - 1) {
 				//SW
 				if(checkForZero(row + 1, col - 1)) {
-					if(!minefield[row+1][col-1].isVisible()) {
+					if(!minefield[row + 1][col - 1].isVisible()) {
 						revealAdjacentZeros(row + 1, col - 1);
 					}
-					revealAdjacent(row + 1, col - 1);
+				}else {
+					backend.changeVisibility(row + 1, col - 1, true);
 				}
 			}
 		}
@@ -196,29 +200,32 @@ public class RemingtonFrontEnd implements VictorSupport{
 		if(col < minefield[0].length - 1) {
 			//E
 			if(checkForZero(row, col + 1)) {
-				if(!minefield[row][col+1].isVisible()) {
+				if(!minefield[row][col + 1].isVisible()) {
 					revealAdjacentZeros(row, col + 1);
 				}
-				revealAdjacent(row, col + 1);
+			}else {
+				backend.changeVisibility(row, col + 1, true);
 			}
+			
 			if(row > 0) {
 				//NE
 				if(checkForZero(row - 1, col + 1)) {
-					if(!minefield[row-1][col+1].isVisible()) {
+					if(!minefield[row - 1][col + 1].isVisible()) {
 						revealAdjacentZeros(row - 1, col + 1);
 					}
-					revealAdjacent(row - 1, col + 1);
+				}else {
+					backend.changeVisibility(row - 1, col + 1, true);
 				}
 			}
 			if(row < minefield.length - 1) {
 				//SE
 				if(checkForZero(row + 1, col + 1)) {
-					if(!minefield[row+1][col+1].isVisible()) {
+					if(!minefield[row + 1][col + 1].isVisible()) {
 						revealAdjacentZeros(row + 1, col + 1);
 					}
-					revealAdjacent(row + 1, col + 1);
-				}
-					
+				}else {
+					backend.changeVisibility(row + 1, col + 1, true);
+				}		
 			}
 		}
 	}
@@ -230,7 +237,7 @@ public class RemingtonFrontEnd implements VictorSupport{
 	public void revealAdjacent(int row, int col) {
 		if(row > 0) {
 			//N
-			backend.changeVisibility(row - 1, col,true);
+			backend.changeVisibility(row - 1, col, true);
 		}
 		
 		if(row < minefield.length - 1) {

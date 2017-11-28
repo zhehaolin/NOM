@@ -9,6 +9,7 @@ public class Inventory {
 	private boolean gloveofpp;
 	private boolean Strangekey;
 	private boolean hasKey;
+	private static boolean passedMinesweeper;
 
 	private static int hp;
 	private static boolean magicSquare;
@@ -141,7 +142,14 @@ public class Inventory {
 		return hp;
 	}
 
-
+	public static boolean getPassedMine() {
+		return passedMinesweeper;
+	}
+	
+	public static void changePassedMine() {
+		passedMinesweeper = true;
+	}
+	
 }
 
 //df

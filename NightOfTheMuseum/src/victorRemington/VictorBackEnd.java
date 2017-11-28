@@ -31,7 +31,7 @@ public class VictorBackEnd implements RemingtonSupport{
 	}
 	
 	public void setUpBombs() {
-		while(bombs < 11) {
+		while(bombs < 1) {
 			int row = (int)(Math.random() * 8);
 			int col = (int)(Math.random() * 8);
 			while(minefield[row][col].hasBomb()) {
@@ -103,12 +103,10 @@ public class VictorBackEnd implements RemingtonSupport{
 		return Integer.toString(count);
 	}
 
-	//checks if the space is visible or not
-	public boolean checkValidCoords(int[] coords) {
-		int row = coords[0];
-		int col = coords[1];
+	//checks if the space is visible or not or flaged
+	public boolean checkValidCoords(int row, int col) {
 		if(row >= 0 && row < 8 && col >= 0 && col < 8) {
-			return !minefield[coords[0]][coords[1]].isVisible();
+			return !minefield[row][col].isVisible() || minefield[row][col].isFlaged();
 		}
 		return false;
 	}
@@ -126,11 +124,13 @@ public class VictorBackEnd implements RemingtonSupport{
 				correctFlaged--;
 			}
 		}else {
-			minefield[coords[0]][coords[1]].setFlaged(true);
-			changeVisibility(coords[0],coords[1], true);
-			flaged++;
-			if(checkIsFlagedBombs(coords)) {
-				correctFlaged++;
+			if(!minefield[coords[0]][coords[1]].isVisible()) {
+				minefield[coords[0]][coords[1]].setFlaged(true);
+				changeVisibility(coords[0],coords[1], true);
+				flaged++;
+				if(checkIsFlagedBombs(coords)) {
+					correctFlaged++;
+				}
 			}
 		}
 	}
@@ -154,14 +154,14 @@ public class VictorBackEnd implements RemingtonSupport{
 		if(s.equals(frontend.cheatCode)) {
 			return true;
 		}
-		if(s.length() > 5 || s.length() < 3) {
+		if(s.length() > 5 || s.length() < 3){
 			return false;
 		}
 		
-		if(s.length() == 4 && s.substring(0, 1).equals("f") && Character.isDigit(s.charAt(1)) && s.substring(2,3).equals(",") && Character.isDigit(s.charAt(3))) {
+		if(s.length() == 4 && s.substring(0, 1).equals("f") && Character.isDigit(s.charAt(1)) && s.substring(2,3).equals(",") && Character.isDigit(s.charAt(3))  && checkValidCoords(Integer.parseInt(s.substring(1, 2)), Integer.parseInt(s.substring(3, 4)))) {
 			return true;
 		}
-		return Character.isDigit(s.charAt(0)) && s.substring(1,2).equals(",") && Character.isDigit(s.charAt(2));
+		return Character.isDigit(s.charAt(0)) && s.substring(1,2).equals(",") && Character.isDigit(s.charAt(2)) && checkValidCoords(Integer.parseInt(s.substring(0, 1)), Integer.parseInt(s.substring(2, 3)));
 	}
 
 	public int getCorrectFlaged() {
