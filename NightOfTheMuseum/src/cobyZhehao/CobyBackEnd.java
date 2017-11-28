@@ -80,16 +80,16 @@ public class CobyBackEnd implements ZhehaoSupport{
 
 	public boolean validCoords(String input) {
 		if(input.length() == 3) {
-		if(input.substring(1,2).equals(",")){
-			if(input.substring(0,1).equals(blankSpot[0]) && input.substring(2,3).equals(blankSpot[1])){
-				return false;
-			}
-			if(input.substring(0,1).equals("0") || input.substring(0,1).equals("1") || input.substring(0,1).equals("2") || input.substring(0,1).equals("3")) {
-				if(input.substring(2,3).equals("0") || input.substring(2,3).equals("1") || input.substring(2,3).equals("2") || input.substring(2,3).equals("3")) {
-					return true;
+			if(input.substring(1,2).equals(",")){
+				if(input.substring(0,1).equals(blankSpot[0]) && input.substring(2,3).equals(blankSpot[1])){
+					return false;
+				}
+				if(input.substring(0,1).equals("0") || input.substring(0,1).equals("1") || input.substring(0,1).equals("2") || input.substring(0,1).equals("3")) {
+					if(input.substring(2,3).equals("0") || input.substring(2,3).equals("1") || input.substring(2,3).equals("2") || input.substring(2,3).equals("3")) {
+						return true;
+					}
 				}
 			}
-		}
 		}
 		if(input.substring(0,1).equals("9") && input.substring(2,3).equals("9")) {
 			return true;
